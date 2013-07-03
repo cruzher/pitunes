@@ -25,5 +25,5 @@ while True:
 		vol_sw_last = vol_sw
 		
 		if (vol_sw==1):
-			print("hello")
+			mekk = subprocess.Popen("mpc play", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
