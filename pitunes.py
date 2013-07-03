@@ -57,7 +57,7 @@ while True:
 	
 	if (mop_track != mop_track_last):
 		lcd.setCursor(0,1)
-		lcd.message(mop_track)
+		lcd.message(mop_track[:20])
 		print(mop_track[:20])
 		mop_track_last = mop_track
 	
