@@ -37,6 +37,7 @@ timeNow_last = None
 
 #Mopidy Variables
 mop_track_last = None
+mop_artist_last = None
 
 
 while True:
@@ -48,6 +49,8 @@ while True:
 	
 	pSong = subprocess.Popen("mpc current -f %title%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	mop_track, errSong = pSong.communicate()
+	pArtist = subprocess.Popen("mpc current -f %artist%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	mop_artist, errSong = pArtist.communicate()
 	
 	#LCD Update Time
 	if (timeNow != timeNow_last):
@@ -59,6 +62,11 @@ while True:
 		lcd.setCursor(0,1)
 		lcd.message(mop_track[:20])
 		print(mop_track[:20])
+		mop_track_last = mop_track
+		
+	if (mop_artist != mop_artist_last):
+		lcd.setCursor(0,1)
+		lcd.message(mop_artist[:20])
 		mop_track_last = mop_track
 	
 	
