@@ -6,6 +6,7 @@ echo "## and reboot before you continue      ##"
 echo "##                                     ##"
 echo "## i2c-bcm2708                         ##"
 echo "## i2c-dev                             ##"
+echo "## ipv6                                ##"
 echo "#########################################"
 
 read -p "Have you done this? (y/n)" -n 1
@@ -14,15 +15,16 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cd $HOME
 	
 	echo "###"
-	echo "### APT UPDATE"
+	echo "### APT UPDATE / UPGRADE"
 	echo "###"
 	sudo aptitude update
-	
-	
-	echo "###"
-	echo "### APT UPGRADE"
-	echo "###"
 	sudo aptitude -y upgrade
+	
+	
+	echo "###"
+	echo "### INSTALLING DEPENDENCIES"
+	echo "###"
+	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools	
 	
 	
 	echo "###"
@@ -35,10 +37,15 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	
 	
 	echo "###"
-	echo "### INSTALLING DEPENDENCIES"
+	echo "### INSTALLING MOPIDY"
 	echo "###"
-	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio
-	#sudo aptitude install -y mpc php5 apache2 mysql-server
+	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+	sudo wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
+	sudo apt-get update
+	sudo apt-get install -y mopidy
+	mkdir $HOME/.config/mopidy
+	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
+	
 	
 	echo "###"
 	echo "### INSTALLING WIRINGPI2"
@@ -64,8 +71,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cd ..
 	
 	
-	#Adafruit LCD Library
-	#git clone https://github.com/rainierez/Adafruit-Raspberry-Pi-Python-Code
+	echo "###"
+	echo "### INSTALLING TOOLS"
+	echo "###"
+	#sudo aptitude install -y mpc php5 apache2 mysql-server
 	
 	
 	echo "###"
