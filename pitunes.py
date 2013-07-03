@@ -6,6 +6,15 @@ from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 import gaugette.rotary_encoder
 import gaugette.switch
 
+#LCD
+lcd = Adafruit_CharLCDPlate()
+lcd.begin(20, 4)
+
+lcd.clear()
+lcd.setCursor(0,0)
+lcd.message("Mekk");
+
+#Rotary Encoders
 volume_a = 14
 volume_b = 13
 volume_sw = 12
