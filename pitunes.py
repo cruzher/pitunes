@@ -16,7 +16,7 @@ volume_switch = gaugette.switch.Switch(volume_sw)
 vol_sw_last = None
 vol_state_last = None
 
-while true:
+while True:
 	vol_state = volume_enc.rotation_state()
 	vol_sw = volume_switch.get_state()
 	
