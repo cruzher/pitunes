@@ -55,8 +55,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
 	echo "###"
 	cp pitunes/shutdowncheck $HOME/
-	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
-	sudo echo "exit 0" >> /etc/rc.local
+	sudo sed -i "/exit 0/ c\ " /etc/rc.local
+	echo "(cd /home/pi && exec ./shutdowncheck) &" | sudo tee -a /etc/rc.local
+	echo "exit 0" | sudo tee -a /etc/rc.local
 	sudo bash ./shutdowncheck &
 	
 	
