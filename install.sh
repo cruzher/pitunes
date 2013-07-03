@@ -81,7 +81,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "###"
 	echo "### Setting audio to Analog out"
 	echo "###"
-	#sudo amixer cset numid=3 1 > /dev/null
+	sudo amixer cset numid=3 1 > /dev/null
 	
 	
 	echo "###"
@@ -97,6 +97,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "### START RASPBERRYPI.PY ON BOOT"
 	echo "###"
 	echo ""
-	#sudo sed -i "/exit 0/ c\python /home/pi/pitunes/raspberrypi.py" /etc/rc.local
-	#sudo echo "exit 0" >> /etc/rc.local
+	#sudo sed -i "/exit 0/ c\ " /etc/rc.local
+	#echo "python /home/pi/pitunes/pitunes.py" | sudo tee -a /etc/rc.local
+	#echo "exit 0" | sudo tee -a /etc/rc.local
 fi
