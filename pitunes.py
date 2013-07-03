@@ -55,3 +55,5 @@ while True:
 		
 		if (stn_sw==1):
 			mekk = subprocess.Popen("mpc stop", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+	sleep(0.01)
