@@ -71,7 +71,7 @@ while True:
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
 		lcd.message(mop_artist[:20])
-		mop_track_last = mop_track
+		mop_artist_last = mop_artist
 	
 	
 	if (vol_state != vol_state_last or vol_sw != vol_sw_last):
