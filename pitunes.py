@@ -13,8 +13,8 @@ volume_sw = 12
 volume_enc = gaugette.rotary_encoder.RotaryEncoder(volume_a, volume_b)
 volume_switch = gaugette.switch.Switch(volume_sw)
 
-vol_sw_last
-vol_state_last
+vol_sw_last = None
+vol_state_last = None
 
 while true:
 	vol_state = volume_enc.rotation_state()
