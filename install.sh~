@@ -1,0 +1,94 @@
+#!/bin/bash
+
+echo "#########################################"
+echo "## Add these two lines to /etc/modules ##"
+echo "## and reboot before you continue      ##"
+echo "##                                     ##"
+echo "## i2c-bcm2708                         ##"
+echo "## i2c-dev                             ##"
+echo "#########################################"
+
+read -p "Have you done this? (y/n)" -n 1
+echo ''
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	cd $HOME
+	
+	echo "###"
+	echo "### APT UPDATE"
+	echo "###"
+	sudo aptitude update
+	
+	
+	echo "###"
+	echo "### APT UPGRADE"
+	echo "###"
+	sudo aptitude -y upgrade
+	
+	
+	echo "###"
+	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
+	echo "###"
+	cp piduino/shutdowncheck $HOME/
+	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
+	sudo echo "exit 0" >> /etc/rc.local
+	sudo bash ./shutdowncheck &
+	
+	
+	echo "###"
+	echo "### INSTALLING DEPENDENCIES"
+	echo "###"
+	sudo aptitude install -y mpd mpc build-essential php5 apache2 mysql-server python-smbus i2c-tools python-dev python-rpi.gpio
+	
+	
+	echo "###"
+	echo "### INSTALLING WIRINGPI2"
+	echo "###"
+	#Wiringpi2
+	git clone git://git.drogon.net/wiringPi
+	cd wiringPi
+	./build
+	cd ..
+	#Wiringpi2-python
+	git clone https://github.com/Gadgetoid/WiringPi2-Python.git
+	cd WiringPi2-Python/
+	sudo python setup.py install
+	cd ..
+
+
+	echo "###"
+	echo "### INSTALLING PY-GAUGETTE"
+	echo "###"
+	#py-gaugette
+	git clone git://github.com/guyc/py-gaugette.git
+	cd py-gaugette
+	git checkout wiringpi2
+	sudo python setup.py install
+	cd ..
+	
+	
+	#Adafruit LCD Library
+	#git clone https://github.com/rainierez/Adafruit-Raspberry-Pi-Python-Code
+	
+	
+	echo "###"
+	echo "### Setting audio to Analog out"
+	echo "###"
+	#sudo amixer cset numid=3 1 > /dev/null
+	
+	
+	echo "###"
+	echo "### COPY WEBGUI TO APACHE-ROOT"
+	echo "###"
+	echo ""
+	#sudo chmod 777 /var/www
+	#rm -rf /var/www/*
+	#cp -R piduino/webgui/* /var/www/
+	
+	
+	echo "###"
+	echo "### START RASPBERRYPI.PY ON BOOT"
+	echo "###"
+	echo ""
+	#sudo sed -i "/exit 0/ c\python /home/pi/piduino/raspberrypi.py" /etc/rc.local
+	#sudo echo "exit 0" >> /etc/rc.local
+fi
