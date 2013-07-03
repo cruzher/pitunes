@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "#########################################"
-echo "## Add these two lines to /etc/modules ##"
+echo "## Add these lines to /etc/modules     ##"
 echo "## and reboot before you continue      ##"
 echo "##                                     ##"
 echo "## i2c-bcm2708                         ##"
@@ -24,27 +24,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "###"
 	echo "### INSTALLING DEPENDENCIES"
 	echo "###"
-	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools	
-	
-	
-	echo "###"
-	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
-	echo "###"
-	cp pitunes/shutdowncheck $HOME/
-	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
-	sudo echo "exit 0" >> /etc/rc.local
-	sudo bash ./shutdowncheck &
-	
-	
-	echo "###"
-	echo "### INSTALLING MOPIDY"
-	echo "###"
-	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-	sudo wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
-	sudo apt-get update
-	sudo apt-get install -y mopidy
-	mkdir $HOME/.config/mopidy
-	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
+	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools		
 	
 	
 	echo "###"
@@ -69,6 +49,26 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	git checkout wiringpi2
 	sudo python setup.py install
 	cd ..
+	
+	
+	echo "###"
+	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
+	echo "###"
+	cp pitunes/shutdowncheck $HOME/
+	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
+	sudo echo "exit 0" >> /etc/rc.local
+	sudo bash ./shutdowncheck &
+	
+	
+	echo "###"
+	echo "### INSTALLING MOPIDY"
+	echo "###"
+	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+	sudo wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
+	sudo apt-get update
+	sudo apt-get install -y mopidy
+	mkdir $HOME/.config/mopidy
+	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
 	
 	
 	echo "###"
