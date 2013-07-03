@@ -37,13 +37,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "###"
 	echo "### INSTALLING DEPENDENCIES"
 	echo "###"
-	sudo aptitude install -y mpd mpc build-essential php5 apache2 mysql-server python-smbus i2c-tools python-dev python-rpi.gpio
-	
+	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio
+	#sudo aptitude install -y mpc php5 apache2 mysql-server
 	
 	echo "###"
 	echo "### INSTALLING WIRINGPI2"
 	echo "###"
-	#Wiringpi2
 	git clone git://git.drogon.net/wiringPi
 	cd wiringPi
 	./build
@@ -58,7 +57,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "###"
 	echo "### INSTALLING PY-GAUGETTE"
 	echo "###"
-	#py-gaugette
 	git clone git://github.com/guyc/py-gaugette.git
 	cd py-gaugette
 	git checkout wiringpi2

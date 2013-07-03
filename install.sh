@@ -28,7 +28,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "###"
 	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
 	echo "###"
-	cp piduino/shutdowncheck $HOME/
+	cp pitunes/shutdowncheck $HOME/
 	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
 	sudo echo "exit 0" >> /etc/rc.local
 	sudo bash ./shutdowncheck &
@@ -80,13 +80,13 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo ""
 	#sudo chmod 777 /var/www
 	#rm -rf /var/www/*
-	#cp -R piduino/webgui/* /var/www/
+	#cp -R pitunes/webgui/* /var/www/
 	
 	
 	echo "###"
 	echo "### START RASPBERRYPI.PY ON BOOT"
 	echo "###"
 	echo ""
-	#sudo sed -i "/exit 0/ c\python /home/pi/piduino/raspberrypi.py" /etc/rc.local
+	#sudo sed -i "/exit 0/ c\python /home/pi/pitunes/raspberrypi.py" /etc/rc.local
 	#sudo echo "exit 0" >> /etc/rc.local
 fi
