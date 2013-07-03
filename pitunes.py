@@ -11,8 +11,6 @@ lcd = Adafruit_CharLCDPlate()
 lcd.begin(20, 4)
 
 lcd.clear()
-lcd.setCursor(0,0)
-lcd.message("Mekk");
 
 #Rotary Encoders
 volume_a = 14
@@ -35,12 +33,24 @@ station_switch = gaugette.switch.Switch(station_sw)
 stn_sw_last = None
 stn_state_last = None
 
+#Mopidy Variables
+mop_track_last = None
+
 
 while True:
 	vol_state = volume_enc.rotation_state()
 	vol_sw = volume_switch.get_state()
 	stn_state = station_enc.rotation_state()
 	stn_sw = station_switch.get_state()
+	
+	pSong = subprocess.Popen("mpc current -f %title%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	mop_track, errSong = pSong.communicate()
+	
+	if (mop_track != mop_track_last):
+		lcd.setCursor(0,1)
+		lcd.message(mop_track)
+		mop_track_last = mop_track
+	
 	
 	if (vol_state != vol_state_last or vol_sw != vol_sw_last):
 		vol_state_last = vol_state
