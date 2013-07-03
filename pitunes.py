@@ -25,5 +25,5 @@ while true:
 		vol_sw_last = vol_sw
 		
 		if (vol_sw==1):
-			echo "hello"
+			print("hello")
 
