@@ -33,11 +33,14 @@ station_switch = gaugette.switch.Switch(station_sw)
 stn_sw_last = None
 stn_state_last = None
 
+timeNow_last = None
+
 #Mopidy Variables
 mop_track_last = None
 
 
 while True:
+	timeNow = datetime.now().strftime("%Y-%m-%d %H:%M")
 	vol_state = volume_enc.rotation_state()
 	vol_sw = volume_switch.get_state()
 	stn_state = station_enc.rotation_state()
@@ -45,6 +48,12 @@ while True:
 	
 	pSong = subprocess.Popen("mpc current -f %title%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	mop_track, errSong = pSong.communicate()
+	
+	#LCD Update Time
+	if (timeNow != timeNow_last):
+		lcd.setCursor(0,0)
+		lcd.message(timeNow)
+		timeNow_last = timeNow
 	
 	if (mop_track != mop_track_last):
 		lcd.setCursor(0,1)
