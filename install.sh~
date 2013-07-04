@@ -1,11 +1,12 @@
 #!/bin/bash
 
 echo "#########################################"
-echo "## Add these two lines to /etc/modules ##"
+echo "## Add these lines to /etc/modules     ##"
 echo "## and reboot before you continue      ##"
 echo "##                                     ##"
 echo "## i2c-bcm2708                         ##"
 echo "## i2c-dev                             ##"
+echo "## ipv6                                ##"
 echo "#########################################"
 
 read -p "Have you done this? (y/n)" -n 1
@@ -14,31 +15,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cd $HOME
 	
 	echo "###"
-	echo "### APT UPDATE"
+	echo "### APT UPDATE / UPGRADE"
 	echo "###"
 	sudo aptitude update
-	
-	
-	echo "###"
-	echo "### APT UPGRADE"
-	echo "###"
 	sudo aptitude -y upgrade
-	
-	
-	echo "###"
-	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
-	echo "###"
-	cp piduino/shutdowncheck $HOME/
-	sudo sed -i "/exit 0/ c\(cd /home/pi && exec ./shutdowncheck) &" /etc/rc.local
-	sudo echo "exit 0" >> /etc/rc.local
-	sudo bash ./shutdowncheck &
 	
 	
 	echo "###"
 	echo "### INSTALLING DEPENDENCIES"
 	echo "###"
-	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio
-	#sudo aptitude install -y mpc php5 apache2 mysql-server
+	sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools		
+	
 	
 	echo "###"
 	echo "### INSTALLING WIRINGPI2"
@@ -64,14 +51,37 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cd ..
 	
 	
-	#Adafruit LCD Library
-	#git clone https://github.com/rainierez/Adafruit-Raspberry-Pi-Python-Code
+	echo "###"
+	echo "### INSTALLING ATXRASPI SHUTDOWNCHECK"
+	echo "###"
+	cp pitunes/shutdowncheck $HOME/
+	sudo sed -i "/exit 0/ c\ " /etc/rc.local
+	echo "(cd /home/pi && exec ./shutdowncheck) &" | sudo tee -a /etc/rc.local
+	echo "exit 0" | sudo tee -a /etc/rc.local
+	sudo bash ./shutdowncheck &
+	
+	
+	echo "###"
+	echo "### INSTALLING MOPIDY"
+	echo "###"
+	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+	sudo wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
+	sudo apt-get update
+	sudo apt-get install -y mopidy
+	mkdir $HOME/.config/mopidy
+	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
+	
+	
+	echo "###"
+	echo "### INSTALLING TOOLS"
+	echo "###"
+	#sudo aptitude install -y mpc php5 apache2 mysql-server
 	
 	
 	echo "###"
 	echo "### Setting audio to Analog out"
 	echo "###"
-	#sudo amixer cset numid=3 1 > /dev/null
+	sudo amixer cset numid=3 1 > /dev/null
 	
 	
 	echo "###"
@@ -80,13 +90,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo ""
 	#sudo chmod 777 /var/www
 	#rm -rf /var/www/*
-	#cp -R piduino/webgui/* /var/www/
+	#cp -R pitunes/webgui/* /var/www/
 	
 	
 	echo "###"
 	echo "### START RASPBERRYPI.PY ON BOOT"
 	echo "###"
 	echo ""
-	#sudo sed -i "/exit 0/ c\python /home/pi/piduino/raspberrypi.py" /etc/rc.local
-	#sudo echo "exit 0" >> /etc/rc.local
+	#sudo sed -i "/exit 0/ c\ " /etc/rc.local
+	#echo "python /home/pi/pitunes/pitunes.py" | sudo tee -a /etc/rc.local
+	#echo "exit 0" | sudo tee -a /etc/rc.local
 fi
