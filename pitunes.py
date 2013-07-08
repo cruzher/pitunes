@@ -77,7 +77,7 @@ def checkinput():
                 else:
                         if (left_count >0 and left_count < 50): #Button pressedv
                         	if (interface_state == 1):
-					print "Gillar den hŠr lŒten"
+					print "Like Current Song"
 				elif (interface_state == 2):
 					print "Byter Spellista"
 
