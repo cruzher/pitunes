@@ -120,7 +120,7 @@ while True:
 	if (interface_state == 1):
 		lcd_source = "Radio"
 	elif (interface_state == 2):
-		lcd_source = "Spotify"
+		lcd_source = "Spotify         1/75"
 	if (lcd_source != lcd_source_last):
 		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
