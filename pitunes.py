@@ -118,19 +118,22 @@ while True:
 		lcd.setCursor(0,0)
 		lcd.message(timeNow)
 		timeNow_last = timeNow
+		print timeNow
 	
 	if (mop_track != mopidy_track_last):
 		lcd.setCursor(0,2)
 		lcd.message("                    ")
 		lcd.setCursor(0,2)
-		lcd.message(mop_track[:20])
-		mop_track_last = mop_track
+		lcd.message(mop_track[:-1][:20])
+		mopidy_track_last = mop_track
+		print mop_track[:-1]
 		
 	if (mop_artist != mopidy_artist_last):
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
-		lcd.message(mop_artist[:20])
-		mop_artist_last = mop_artist
+		lcd.message(mop_artist[:-1][:20])
+		mopidy_artist_last = mop_artist
+		print mop_artist[:-1]
 	
 	sleep(0.01)
