@@ -30,6 +30,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 timeNow_last = None
 airplay_lock = False
 mopidy_track_last = None
+lcd_source_last = None
 interface_state = 1		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
@@ -116,10 +117,20 @@ while True:
 		timeNow_last = timeNow
 		print timeNow
 		
-	if (mopidy_track != mopidy_track_last):
+	if (interface_state == 1):
+		lcd_source = "Radio"
+	elif (interface_state == 2):
+		lcd_source = "Spotify"
+	if (lcd_source != lcd_source_last):
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
+		lcd.message(lcd_source)
+	
+	if (mopidy_track != mopidy_track_last):
+		lcd.setCursor(0,2)
+		lcd.message("                    ")
+		lcd.setCursor(0,2)
 		lcd.message(mopidy_track[:-1][:20])
 		mopidy_track_last = mopidy_track
 		print mopidy_track[:-1]
