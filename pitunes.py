@@ -41,6 +41,7 @@ def checkinput():
 	print test_var
 	
 	while True:
+		print test_var
 		enc_vol_state = enc_volume.rotation_state()
 		enc_stn_state = enc_station.rotation_state()
 		sw_vol_state = sw_volume.get_state()
