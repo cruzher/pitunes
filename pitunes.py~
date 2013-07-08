@@ -59,9 +59,9 @@ def checkinput():
 			vol_count = 0
 
 		#VOLUME ENCODER
-		if (enc_vol_state_last != enc_vol_state):
-			enc_vol_state_last = enc_vol_state
-			print ("rotating")
+		#if (enc_vol_state_last != enc_vol_state):
+			#enc_vol_state_last = enc_vol_state
+			#print ("rotating")
 
 
 		#STATION SWITCH
