@@ -102,6 +102,8 @@ while True:
 
 	tmp = track_info.split("#")
 	tmp = tmp[1]
+	tmp = tmp.split("   ")
+	tmp = tmp[0]
 	print tmp
 
 	if (airplay and airplay_lock == False):
