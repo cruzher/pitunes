@@ -30,7 +30,6 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 timeNow_last = None
 airplay_lock = False
 mopidy_track_last = None
-mopidy_artist_last = None
 interface_state = 1		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
@@ -93,10 +92,8 @@ thread.start_new_thread(checkinput, ())
 while True:
 	timeNow = datetime.now().strftime("%Y-%m-%d %H:%M")
 	
-	pSong = subprocess.Popen("mpc current -f %title%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	mop_track, errSong = pSong.communicate()
-	pArtist = subprocess.Popen("mpc current -f %artist%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	mop_artist, errSong = pArtist.communicate()
+	pArtist = subprocess.Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	mopidy_track, errSong = pArtist.communicate()
 	pairplay = subprocess.Popen("netstat -t |grep rfe", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	airplay, errAirplay = pairplay.communicate()
 
@@ -110,7 +107,6 @@ while True:
 		airplay_lock = True
 	elif (not airplay and airplay_lock == True):
 		mopidy_track_last = None
-		mopidy_artist_last = None
 		airplay_lock = False
 
 	#LCD Update Time
@@ -119,21 +115,13 @@ while True:
 		lcd.message(timeNow)
 		timeNow_last = timeNow
 		print timeNow
-	
-	if (mop_track != mopidy_track_last):
-		lcd.setCursor(0,2)
-		lcd.message("                    ")
-		lcd.setCursor(0,2)
-		lcd.message(mop_track[:-1][:20])
-		mopidy_track_last = mop_track
-		print mop_track[:-1]
 		
-	if (mop_artist != mopidy_artist_last):
+	if (mopidy_track != mopidy_track_last):
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
-		lcd.message(mop_artist[:-1][:20])
-		mopidy_artist_last = mop_artist
-		print mop_artist[:-1]
+		lcd.message(mopidy_track[:-1][:20])
+		mopidy_track_last = mopidy_track
+		print mopidy_track[:-1]
 	
 	sleep(0.01)
