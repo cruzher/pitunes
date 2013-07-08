@@ -100,11 +100,10 @@ while True:
 	pairplay = subprocess.Popen("netstat -t |grep rfe", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	airplay, errAirplay = pairplay.communicate()
 
-	tmp = track_info.split("#")
-	tmp = tmp[1]
-	tmp = tmp.split("   ")
-	tmp = tmp[0]
-	print tmp
+	track_info = track_info.split("#")
+	track_info = track_info[1]
+	track_info = track_info.split("   ")
+	track_info = track_info[0]
 
 	if (airplay and airplay_lock == False):
 		lcd.setCursor(0,1)
@@ -128,7 +127,7 @@ while True:
 	if (interface_state == 1):
 		lcd_source = "Radio"
 	elif (interface_state == 2):
-		lcd_source = "Spotify         1/75"
+		lcd_source = "Spotify       "+track_info
 	if (lcd_source != lcd_source_last):
 		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
