@@ -101,7 +101,8 @@ while True:
 	airplay, errAirplay = pairplay.communicate()
 
 	tmp = track_info.split("#")
-	print tmp[1]
+	tmp = tmp[1]
+	print tmp
 
 	if (airplay and airplay_lock == False):
 		lcd.setCursor(0,1)
