@@ -113,7 +113,7 @@ while True:
 	#LCD Update Time
 	if (timeNow != timeNow_last):
 		lcd.setCursor(0,0)
-		lcd.message(timeNow)
+		lcd.message("[ "+timeNow+" ]")
 		timeNow_last = timeNow
 		print timeNow
 		
