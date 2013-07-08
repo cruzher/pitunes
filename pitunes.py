@@ -31,7 +31,7 @@ timeNow_last = None
 airplay_lock = False
 mopidy_track_last = None
 lcd_source_last = None
-interface_state = 1		# 1=Radio 2=Spotify 3=Change Station/Playlist
+interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
 	enc_right_state_last = enc_right.rotation_state()
@@ -122,6 +122,7 @@ while True:
 	elif (interface_state == 2):
 		lcd_source = "Spotify"
 	if (lcd_source != lcd_source_last):
+		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
