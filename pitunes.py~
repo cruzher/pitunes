@@ -15,70 +15,77 @@ lcd.begin(20, 4)
 lcd.clear()
 
 #Rotary Encoders
-enc_vol_pin_a = 14
-enc_vol_pin_b = 13
-sw_vol_pin = 12
-enc_stn_pin_a = 11
-enc_stn_pin_b = 10
-sw_stn_pin = 6
-enc_volume = gaugette.rotary_encoder.RotaryEncoder(enc_vol_pin_a, enc_vol_pin_b)
-sw_volume = gaugette.switch.Switch(sw_vol_pin)
-enc_station = gaugette.rotary_encoder.RotaryEncoder(enc_stn_pin_a, enc_stn_pin_b)
-sw_station = gaugette.switch.Switch(sw_stn_pin)
+enc_right_pin_a = 14
+enc_right_pin_b = 13
+sw_right_pin = 12
+enc_left_pin_a = 11
+enc_left_pin_b = 10
+sw_left_pin = 6
+enc_right = gaugette.rotary_encoder.RotaryEncoder(enc_right_pin_a, enc_right_pin_b)
+sw_right = gaugette.switch.Switch(sw_right_pin)
+enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
+sw_left = gaugette.switch.Switch(sw_left_pin)
 
 #Global Variables
 timeNow_last = None
 airplay_lock = False
 mopidy_track_last = None
 mopidy_artist_last = None
+interface_state = 1		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
-	enc_vol_state_last = None
-	enc_stn_state_last = None
-	vol_count = 0
-	stn_count = 0
+	enc_right_state_last = enc_right.rotation_state()
+	enc_left_state_last = enc_left.rotation_state()
+	right_count = 0
+	left_count = 0
 	
 	while True:
-		enc_vol_state = enc_volume.rotation_state()
-		enc_stn_state = enc_station.rotation_state()
-		sw_vol_state = sw_volume.get_state()
-		sw_stn_state = sw_station.get_state()
+		enc_right_state = enc_right.rotation_state()
+		enc_left_state = enc_left.rotation_state()
+		sw_right_state = sw_right.get_state()
+		sw_left_state = sw_left.get_state()
 
-		#VOLUME SWITCH
-		if (sw_vol_state == 1):
-			if (vol_count < 50):
-				vol_count += 1
-			elif (vol_count < 100):
-				print("vol hold")
-				vol_count = 101
+		#RIGHT SWITCH
+		if (sw_right_state == 1):
+			if (right_count < 50):
+				right_count += 1
+			elif (right_count < 100): #Button held down
+				right_count = 101 #So value is just registerd once
+				print "right Hold"	
 		else:
-			if (vol_count >0 and vol_count < 50):
-				print("vol push")
+			if (right_count >0 and right_count < 50): #Button pressed
+				print "right Press"
 
-			#reset counter
-			vol_count = 0
+			right_count = 0 #Resetting Counter for next press.
 
-		#VOLUME ENCODER
-		#if (enc_vol_state_last != enc_vol_state):
-			#enc_vol_state_last = enc_vol_state
-			#print ("rotating")
+		#RIGHT ENCODER
+		if (enc_right_state_last != enc_right_state):
+			enc_right_state_last = enc_right_state
+			print ("rotating")
 
 
-		#STATION SWITCH
-		if (sw_stn_state == 1):
-                        if (stn_count < 50):
-                                stn_count += 1
-                        elif (stn_count < 100):
-                                print("stn hold")
-                                stn_count = 101
+		#LEFT SWITCH
+		if (sw_left_state == 1):
+                        if (left_count < 50):
+                                left_count += 1
+                        elif (left_count < 100): #Button held down
+                        	left_count = 101
+                        	if (interface_state == 1):
+					print "Byter kŠlla till Spotify"
+				elif (interface_state == 2):
+					print "Byter kŠlla till Radio"
                 else:
-                        if (stn_count >0 and stn_count < 50):
-                                print("stn push")
+                        if (left_count >0 and left_count < 50): #Button pressedv
+                        	if (interface_state == 1):
+					print "Gillar den hŠr lŒten"
+				elif (interface_state == 2):
+					print "Byter Spellista"
 
-                        #reset counter
-                        stn_count = 0
-		#STATION ENCODER
-		sleep(.01)
+                        left_count = 0 #Resetting Counter for next press.
+		#LEFT ENCODER
+		
+		
+		sleep(.01) #Sleeping for 0.01 sec so the CPU isnt loading at max.
 
 #Staring Thread checkinput
 thread.start_new_thread(checkinput, ())

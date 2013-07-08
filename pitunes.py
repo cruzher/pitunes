@@ -71,9 +71,9 @@ def checkinput():
                         elif (left_count < 100): #Button held down
                         	left_count = 101
                         	if (interface_state == 1):
-					print "Byter kŠlla till Spotify"
+					print "Byter till Spotify"
 				elif (interface_state == 2):
-					print "Byter kŠlla till Radio"
+					print "Byter till Radio"
                 else:
                         if (left_count >0 and left_count < 50): #Button pressedv
                         	if (interface_state == 1):
