@@ -95,8 +95,13 @@ while True:
 	
 	pArtist = subprocess.Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	mopidy_track, errSong = pArtist.communicate()
+	pTrack = subprocess.Popen("mpc |grep \"#\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	track_info, errSong = pTrack.communicate()
 	pairplay = subprocess.Popen("netstat -t |grep rfe", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	airplay, errAirplay = pairplay.communicate()
+
+	tmp = track_info.split("#")
+	print tmp
 
 	if (airplay and airplay_lock == False):
 		lcd.setCursor(0,1)
