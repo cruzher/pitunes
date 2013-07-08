@@ -33,8 +33,8 @@ mopidy_track_last = None
 mopidy_artist_last = None
 
 def checkinput():
-	enc_vol_state_last = None
-	enc_stn_state_last = None
+	enc_vol_state_last = enc_volume.rotation_state()
+	enc_stn_state_last = enc_station.rotation_state()
 	vol_count = 0
 	stn_count = 0
 	
