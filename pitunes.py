@@ -31,6 +31,7 @@ lcd_timeNow = None
 lcd_song = None
 lcd_source_last = None
 airplay_lock = False
+mopidy_playing = False
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
@@ -53,7 +54,12 @@ def checkinput():
 				print "right Hold"	
 		else:
 			if (right_count >0 and right_count < 50): #Button pressed
-				print "right Press"
+				if(mopidy_playing == True):
+					subprocess.Popen("mpc pause", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+					mopidy_playing = False
+				else:
+					subprocess.Popen("mpc play", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+					mopidy_playing = True
 
 			right_count = 0 #Resetting Counter for next press.
 
