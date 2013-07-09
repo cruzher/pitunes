@@ -31,13 +31,13 @@ lcd_timeNow = None
 lcd_song = None
 lcd_source_last = None
 airplay_lock = False
-mopidy_playing = False
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
 	enc_left_state_last = enc_left.rotation_state()
 	right_count = 0
 	left_count = 0
+	mopidy_playing = False
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
