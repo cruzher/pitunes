@@ -134,14 +134,14 @@ while True:
 	#LCD Update Time
 	if (timeNow != lcd_timeNow):
 		lcd.setCursor(0,0)
-		lcd.message("[ "+timeNow+" ]")
+		lcd.message(timeNow)
 		lcd_timeNow = timeNow
 		print "time: "+timeNow
 		
 	if (interface_state == 1):
 		lcd_source = "Radio"
 	elif (interface_state == 2):
-		lcd_source = "Spotify       "+track_info
+		lcd_source = track_info+"Spotify     "
 	if (lcd_source_last != lcd_source):
 		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
