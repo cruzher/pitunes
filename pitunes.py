@@ -29,7 +29,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 #Global Variables
 lcd_timeNow = None
 lcd_song = None
-lcd_source = None
+lcd_source_last = None
 airplay_lock = False
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
@@ -125,18 +125,19 @@ while True:
 		lcd.setCursor(0,0)
 		lcd.message("[ "+timeNow+" ]")
 		lcd_timeNow = timeNow
-		print timeNow
+		print "time: "+timeNow
 		
 	if (interface_state == 1):
 		lcd_source = "Radio"
 	elif (interface_state == 2):
 		lcd_source = "Spotify       "+track_info
-	if (lcd_source != lcd_source):
-		lcd_source = lcd_source
+	if (lcd_source_last != lcd_source):
+		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
 		lcd.message(lcd_source)
+		print "Source: "+lcd_source
 	
 	if (mopidy_track != lcd_song):
 		lcd.setCursor(0,2)
@@ -144,6 +145,6 @@ while True:
 		lcd.setCursor(0,2)
 		lcd.message(mopidy_track[:-1][:20])
 		lcd_song = mopidy_track
-		print mopidy_track[:-1]
+		print "Song: "+mopidy_track[:-1]
 	
 	sleep(0.01)
