@@ -30,17 +30,16 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 timeNow_last = None
 airplay_lock = False
 mopidy_track_last = None
-mopidy_artist_last = None
-interface_state = 1		# 1=Radio 2=Spotify 3=Change Station/Playlist
+lcd_source_last = None
+interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
-	enc_right_state_last = enc_right.rotation_state()
 	enc_left_state_last = enc_left.rotation_state()
 	right_count = 0
 	left_count = 0
 	
 	while True:
-		enc_right_state = enc_right.rotation_state()
+		enc_right_delta = enc_right.get_delta()
 		enc_left_state = enc_left.rotation_state()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
@@ -59,10 +58,11 @@ def checkinput():
 			right_count = 0 #Resetting Counter for next press.
 
 		#RIGHT ENCODER
-		if (enc_right_state_last != enc_right_state):
-			enc_right_state_last = enc_right_state
-			print ("rotating")
-
+		if (enc_right_delta != 0):
+			if (enc_right_delta<0):
+				print ("Rotating to the right")
+			elif (enc_right_delta>0):
+				print ("Rotating to the left")
 
 		#LEFT SWITCH
 		if (sw_left_state == 1):
@@ -71,13 +71,13 @@ def checkinput():
                         elif (left_count < 100): #Button held down
                         	left_count = 101
                         	if (interface_state == 1):
-					print "Byter kŠlla till Spotify"
+					print "Byter till Spotify"
 				elif (interface_state == 2):
-					print "Byter kŠlla till Radio"
+					print "Byter till Radio"
                 else:
                         if (left_count >0 and left_count < 50): #Button pressedv
                         	if (interface_state == 1):
-					print "Gillar den hŠr lŒten"
+					print "Like Current Song"
 				elif (interface_state == 2):
 					print "Byter Spellista"
 
@@ -93,12 +93,17 @@ thread.start_new_thread(checkinput, ())
 while True:
 	timeNow = datetime.now().strftime("%Y-%m-%d %H:%M")
 	
-	pSong = subprocess.Popen("mpc current -f %title%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	mop_track, errSong = pSong.communicate()
-	pArtist = subprocess.Popen("mpc current -f %artist%", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-	mop_artist, errSong = pArtist.communicate()
+	pArtist = subprocess.Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	mopidy_track, errSong = pArtist.communicate()
+	pTrack = subprocess.Popen("mpc |grep \"#\"", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	track_info, errSong = pTrack.communicate()
 	pairplay = subprocess.Popen("netstat -t |grep rfe", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	airplay, errAirplay = pairplay.communicate()
+
+	track_info = track_info.split("#")
+	track_info = track_info[1]
+	track_info = track_info.split("   ")
+	track_info = track_info[0]
 
 	if (airplay and airplay_lock == False):
 		lcd.setCursor(0,1)
@@ -110,27 +115,32 @@ while True:
 		airplay_lock = True
 	elif (not airplay and airplay_lock == True):
 		mopidy_track_last = None
-		mopidy_artist_last = None
 		airplay_lock = False
 
 	#LCD Update Time
 	if (timeNow != timeNow_last):
 		lcd.setCursor(0,0)
-		lcd.message(timeNow)
+		lcd.message("[ "+timeNow+" ]")
 		timeNow_last = timeNow
-	
-	if (mop_track != mopidy_track_last):
-		lcd.setCursor(0,2)
-		lcd.message("                    ")
-		lcd.setCursor(0,2)
-		lcd.message(mop_track[:20])
-		mop_track_last = mop_track
+		print timeNow
 		
-	if (mop_artist != mopidy_artist_last):
+	if (interface_state == 1):
+		lcd_source = "Radio"
+	elif (interface_state == 2):
+		lcd_source = "Spotify       "+track_info
+	if (lcd_source != lcd_source_last):
+		lcd_source_last = lcd_source
 		lcd.setCursor(0,1)
 		lcd.message("                    ")
 		lcd.setCursor(0,1)
-		lcd.message(mop_artist[:20])
-		mop_artist_last = mop_artist
+		lcd.message(lcd_source)
+	
+	if (mopidy_track != mopidy_track_last):
+		lcd.setCursor(0,2)
+		lcd.message("                    ")
+		lcd.setCursor(0,2)
+		lcd.message(mopidy_track[:-1][:20])
+		mopidy_track_last = mopidy_track
+		print mopidy_track[:-1]
 	
 	sleep(0.01)
