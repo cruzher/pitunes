@@ -59,7 +59,7 @@ def checkinput():
 
 		#RIGHT ENCODER
 		if (enc_right_delta != 0):
-			print ("Rotating to the right"+enc_right_delta)
+			print ("Rotating to the right"+str(enc_right_delta))
 
 		#LEFT SWITCH
 		if (sw_left_state == 1):
