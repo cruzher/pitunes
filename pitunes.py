@@ -40,7 +40,7 @@ def checkinput():
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
-		enc_left_state = enc_left.rotation_state()
+		enc_left_delta = enc_left.get_delta()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
 
@@ -83,7 +83,11 @@ def checkinput():
 
                         left_count = 0 #Resetting Counter for next press.
 		#LEFT ENCODER
-		
+		if (enc_left_delta != 0):
+			if (enc_left_delta<0):
+				print ("Rotating to the right")
+			elif (enc_left_delta>0):
+				print ("Rotating to the left")
 		
 		sleep(.01) #Sleeping for 0.01 sec so the CPU isnt loading at max.
 
