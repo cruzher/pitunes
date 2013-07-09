@@ -34,13 +34,12 @@ lcd_source_last = None
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
 
 def checkinput():
-	enc_right_state_last = enc_right.rotation_state()
 	enc_left_state_last = enc_left.rotation_state()
 	right_count = 0
 	left_count = 0
 	
 	while True:
-		enc_right_state = enc_right.rotation_state()
+		enc_right_delta = enc_right.get_delta()
 		enc_left_state = enc_left.rotation_state()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
@@ -59,8 +58,7 @@ def checkinput():
 			right_count = 0 #Resetting Counter for next press.
 
 		#RIGHT ENCODER
-		if (enc_right_state_last != enc_right_state):
-			enc_right_state_last = enc_right_state
+		if (enc_right_delta != 0):
 			print ("rotating")
 
 
