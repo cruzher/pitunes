@@ -52,7 +52,7 @@ def checkinput():
 			elif (right_count < 100): #Button held down
 				right_count = 101 #So value is just registerd once
 				subprocess.Popen("mpc stop", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-					mopidy_playing = False	
+				mopidy_playing = False	
 		else:
 			if (right_count >0 and right_count < 50): #Button pressed
 				if(mopidy_playing == True):
