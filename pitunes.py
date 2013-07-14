@@ -30,8 +30,17 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 lcd_timeNow = None
 lcd_song = None
 lcd_source_last = None
+volume_current = 10
 airplay_lock = False
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
+
+def changevolume():
+	volume_last = 0
+	while True:
+		if (volume_last != volume_current):
+			subprocess.Popen("mpc volume "+volume_current, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			print volume_current
+			volume_last = volume_current
 
 def checkinput():
 	enc_left_state_last = enc_left.rotation_state()
@@ -67,9 +76,11 @@ def checkinput():
 		#RIGHT ENCODER
 		if (enc_right_delta != 0):
 			if (enc_right_delta<0):
-				print ("Rotating to the right")
+				if (volume_current > 0)
+					volume_current += 1
 			elif (enc_right_delta>0):
-				print ("Rotating to the left")
+				if (volume_current < 100)
+					volume_current -= 1
 
 		#LEFT SWITCH
 		if (sw_left_state == 1):
@@ -98,8 +109,9 @@ def checkinput():
 		
 		sleep(.01) #Sleeping for 0.01 sec so the CPU isnt loading at max.
 
-#Staring Thread checkinput
+#Staring Threads
 thread.start_new_thread(checkinput, ())
+thread.start_new_thread(changevolume, ())
 
 while True:
 	timeNow = datetime.now().strftime("%Y-%m-%d %H:%M")
