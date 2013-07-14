@@ -76,10 +76,10 @@ def checkinput():
 		#RIGHT ENCODER
 		if (enc_right_delta != 0):
 			if (enc_right_delta<0):
-				if (volume_current > 0)
+				if (volume_current > 0):
 					volume_current += 1
 			elif (enc_right_delta>0):
-				if (volume_current < 100)
+				if (volume_current < 100):
 					volume_current -= 1
 
 		#LEFT SWITCH
