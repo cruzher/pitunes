@@ -47,6 +47,7 @@ def changevolume():
 		if (volume_last != volume_current):
 			print volume_current
 			volume_last = volume_current
+		sleep(.01)
 
 def checkinput():
 	global volume_current
