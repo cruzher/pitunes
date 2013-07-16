@@ -45,7 +45,6 @@ def changevolume():
 		if (volume_current < 0):
 			volume_current = 0
 		if (volume_last != volume_current):
-			subprocess.Popen("mpc volume "+str(volume_current), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			print volume_current
 			volume_last = volume_current
 
