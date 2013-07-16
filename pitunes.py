@@ -85,9 +85,9 @@ def checkinput():
 
 		#RIGHT ENCODER
 		if (enc_right_delta != 0 and enc_right_seq == 2):
-			if (enc_right_delta<0):
+			if (enc_right_delta<0 and volume_current <= 95):
 				volume_current += 5
-			elif (enc_right_delta>0):
+			elif (enc_right_delta>0 and volume_current >= 5):
 				volume_current -= 5
 
 		#LEFT SWITCH
