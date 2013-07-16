@@ -60,6 +60,7 @@ def checkinput():
 		enc_right_delta = enc_right.get_delta()
 		enc_right_seq = enc_right.rotation_sequence()
 		enc_left_delta = enc_left.get_delta()
+		enc_left_seq = enc_left.rotation_sequence()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
 
@@ -85,9 +86,9 @@ def checkinput():
 		#RIGHT ENCODER
 		if (enc_right_delta != 0 and enc_right_seq == 2):
 			if (enc_right_delta<0):
-				volume_current += 1
+				volume_current += 5
 			elif (enc_right_delta>0):
-				volume_current -= 1
+				volume_current -= 5
 
 		#LEFT SWITCH
 		if (sw_left_state == 1):
