@@ -33,20 +33,28 @@ lcd_source_last = None
 volume_current = 10
 airplay_lock = False
 interface_state = 2		# 1=Radio 2=Spotify 3=Change Station/Playlist
+mopidy_playing = False
 
 def changevolume():
+	global volume_current
 	volume_last = 0
+	
 	while True:
+		if (volume_current > 100):
+			volume_current = 100
+		if (volume_current < 0):
+			volume_current = 0
 		if (volume_last != volume_current):
 			subprocess.Popen("mpc volume "+str(volume_current), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			print volume_current
 			volume_last = volume_current
 
 def checkinput():
+	global volume_current
+	global mopidy_playing
 	enc_left_state_last = enc_left.rotation_state()
 	right_count = 0
 	left_count = 0
-	mopidy_playing = False
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
