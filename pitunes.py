@@ -58,6 +58,7 @@ def checkinput():
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
+		enc_right_seq = enc_right.rotation_sequence()
 		enc_left_delta = enc_left.get_delta()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
@@ -82,7 +83,7 @@ def checkinput():
 			right_count = 0 #Resetting Counter for next press.
 
 		#RIGHT ENCODER
-		if (enc_right_delta != 0):
+		if (enc_right_delta != 0 and enc_right_seq == 2):
 			if (enc_right_delta<0):
 				volume_current += 1
 			elif (enc_right_delta>0):
