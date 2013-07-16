@@ -109,7 +109,7 @@ def checkinput():
 
                         left_count = 0 #Resetting Counter for next press.
 		#LEFT ENCODER
-		if (enc_left_delta != 0):
+		if (enc_left_delta != 0 and enc_left_seq == 2):
 			if (enc_left_delta<0):
 				print ("Rotating to the right")
 			elif (enc_left_delta>0):
