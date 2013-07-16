@@ -40,10 +40,6 @@ def changevolume():
 	volume_last = 0
 	
 	while True:
-		if (volume_current > 100):
-			volume_current = 100
-		if (volume_current < 0):
-			volume_current = 0
 		if (volume_last != volume_current):
 			print volume_current
 			volume_last = volume_current
