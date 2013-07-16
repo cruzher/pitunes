@@ -111,9 +111,9 @@ def checkinput():
 		#LEFT ENCODER
 		if (enc_left_delta != 0 and enc_left_seq == 2):
 			if (enc_left_delta<0):
-				print ("Rotating to the right")
+				subprocess.Popen("mpc next", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			elif (enc_left_delta>0):
-				print ("Rotating to the left")
+				subprocess.Popen("mpc prev", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		
 		sleep(.01) #Sleeping for 0.01 sec so the CPU isnt loading at max.
 
