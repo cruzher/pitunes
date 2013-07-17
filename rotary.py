@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import gaugette.rotary_encoder
 import gaugette.switch
+from time import sleep
 
 #Rotary Encoders
 enc_right_pin_a = 11
