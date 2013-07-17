@@ -1,4 +1,6 @@
 #!/usr/bin/python
+import gaugette.rotary_encoder
+import gaugette.switch
 
 #Rotary Encoders
 enc_right_pin_a = 11

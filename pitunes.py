@@ -7,8 +7,6 @@ from rotary import checkinput
 from time import sleep
 from datetime import datetime
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
-import gaugette.rotary_encoder
-import gaugette.switch
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
