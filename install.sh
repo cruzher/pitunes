@@ -60,7 +60,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
 	
 	echo "(09/) INSTALLING SHAIRPORT"
-	wget http://files.pixor.se/install.scripts/rpi/shairport.sh
+	wget -q http://files.pixor.se/install.scripts/rpi/shairport.sh
 	chmod +x shairport.sh
 	./shairport.sh piTunes
 	rm shairport.sh
@@ -78,5 +78,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	#echo "python /home/pi/pitunes/pitunes.py" | sudo tee -a /etc/rc.local
 	#echo "exit 0" | sudo tee -a /etc/rc.local
 	
+	echo ""
 	echo "FINISHED"
+
+else
+	echo "Please run this script again reboot"
+	read -p "Continue and add lines? (this will reboot)" -n 1
+	echo ''
+	if [[ $REPLY =~ ^[Yy]$ ]]; then	
+		echo "i2c-bcm2708" | sudo tee -a /etc/modules
+		echo "i2c-dev" | sudo tee -a /etc/modules
+		echo "ipv6" | sudo tee -a /etc/modules
+		sudo reboot
+	fi
 fi
