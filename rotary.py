@@ -15,6 +15,8 @@ sw_right = gaugette.switch.Switch(sw_right_pin)
 enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
 sw_left = gaugette.switch.Switch(sw_left_pin)
 
+global volume_current
+
 def checkinput():
 	global volume_current
 	global mopidy_playing
