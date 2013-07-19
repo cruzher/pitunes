@@ -105,8 +105,6 @@ def checkinput():
 		## SPOTIFY
 		##
 		if (interface_state == 2 and interface_change_track == False):
-		
-
 			#RIGHT SWITCH
 			if (sw_right_state == 1):
 				if (right_count < 50):
