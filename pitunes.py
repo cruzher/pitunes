@@ -3,11 +3,20 @@
 import string
 import subprocess
 import thread
+import RPi.GPIO as GPIO
 from time import sleep
 from datetime import datetime
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 import gaugette.rotary_encoder
 import gaugette.switch
+
+#GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(27, GPIO.OUT) #Cheapamp
+GPIO.setup(22, GPIO.OUT) #LCD Backlight
+
+GPIO.output(27, True)
+GPIO.output(22, True)
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
