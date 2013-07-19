@@ -180,6 +180,7 @@ def checkinput():
 		## MENU TO CHANGE TRACK/STATION
 		##
 		if (interface_change_track == True):
+			print "mekk"
 			## WOOP WOOP
 		
 		sleep(.01) 
