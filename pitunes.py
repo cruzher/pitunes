@@ -100,7 +100,7 @@ def checkinput():
 		##INTERNET RADIO
 		##
 		if (interface_state == 1 and interface_change_track == False):
-			
+			echo "mekk"
 		##
 		## SPOTIFY
 		##
