@@ -60,7 +60,8 @@ thread.start_new_thread(checkinputs, ())
 #Main Thread
 while True:
 	#menu
-	for x in range(0,3):
-		print mopidy_playlist[menu_lcd_start + x]
-		
+	if (interface_change_track == True):
+		for x in range(0,3):
+			print mopidy_playlist[menu_lcd_start + x]
+
 	sleep(2)
