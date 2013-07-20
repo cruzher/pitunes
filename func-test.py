@@ -49,6 +49,7 @@ menu_lcd_start_last = None
 def checkinputs():
 	global interface_change_track
 	global menu_lcd_start
+	global menu_position
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
