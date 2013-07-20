@@ -45,7 +45,7 @@ menu_lcd_start = 0
 
 def checkinputs():
 	while True:
-		if (interface_state = 2 and interface_change_track == False):
+		if (interface_state == 2 and interface_change_track == False):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
 				#Starting to move means to switch track
