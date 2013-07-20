@@ -23,12 +23,12 @@ lcd.begin(20, 4)
 lcd.clear()
 
 #Rotary Encoders
-enc_right_pin_a = 11
-enc_right_pin_b = 10
-sw_right_pin = 6
-enc_left_pin_a = 14
-enc_left_pin_b = 13
-sw_left_pin = 12
+enc_right_pin_a = 14
+enc_right_pin_b = 13
+sw_right_pin = 12
+enc_left_pin_a = 11
+enc_left_pin_b = 10
+sw_left_pin = 6
 enc_right = gaugette.rotary_encoder.RotaryEncoder(enc_right_pin_a, enc_right_pin_b)
 sw_right = gaugette.switch.Switch(sw_right_pin)
 enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
