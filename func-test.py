@@ -73,7 +73,7 @@ def checkinputs():
 				elif (enc_right_delta>0):
 					if (menu_position > 1):
 						menu_position -= 1
-					if (menu_lcd_start > 0):
+					elif (menu_lcd_start > 0):
 						menu_lcd_start -= 1
 	sleep(.01)
 				
