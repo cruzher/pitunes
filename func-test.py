@@ -60,10 +60,10 @@ def checkinputs():
 		if (interface_change_track == True):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
-				if (enc_right_delta<0 and menu_position < 3):
-					menu_position += 1
-				elif (enc_right_delta>0 and menu_position > 0):
-					menu_position -= 1
+				if (enc_right_delta<0 and menu_lcd_start < 3):
+					menu_lcd_start += 1
+				elif (enc_right_delta>0 and menu_lcd_start > 0):
+					menu_lcd_start -= 1
 	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
@@ -75,5 +75,6 @@ while True:
 	if (interface_change_track == True):
 		for x in range(0,3):
 			print mopidy_playlist[menu_lcd_start + x]
+		print "---"
 
 	sleep(2)
