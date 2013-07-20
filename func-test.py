@@ -45,6 +45,10 @@ menu_lcd_start = 0
 
 def checkinputs():
 	while True:
+		enc_right_delta = enc_right.get_delta()
+		enc_right_seq = enc_right.rotation_sequence()
+		sw_right_state = sw_right.get_state()
+		
 		if (interface_state == 2 and interface_change_track == False):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
