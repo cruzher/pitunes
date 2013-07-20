@@ -3,11 +3,17 @@
 import string
 import subprocess
 import thread
+import RPi.GPIO as GPIO
 from time import sleep
 from datetime import datetime
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 import gaugette.rotary_encoder
 import gaugette.switch
+
+#GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(27, GPIO.OUT) #Cheapamp
+GPIO.setup(22, GPIO.OUT) #LCD Backlight
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
@@ -33,7 +39,7 @@ interface_change_track = False
 interface_change_playlist = False
 mopidy_playlist_length = 
 mopidy_playlist_position = 
-mopidy_playlist = ["first song", "next song", "next song again"]
+mopidy_playlist = ["first song", "next song", "next song again", "and again", "ohh so many"]
 menu_position
 menu_lcd_start
 
@@ -54,4 +60,5 @@ thread.start_new_thread(checkinputs, ())
 #Main Thread
 while True:
 	#menu
-	
+	for x in range(0,3):
+		print mopidy_playlist[menu_lcd_start + x]
