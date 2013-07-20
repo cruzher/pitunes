@@ -58,7 +58,13 @@ def checkinputs():
 				interface_change_track = True
 		
 		if (interface_change_track == True):
-			print "nothing"
+			#RIGHT ENCODER
+			if (enc_right_delta != 0 and enc_right_seq == 2):
+				if (enc_right_delta<0 and menu_position < 3):
+					menu_position += 1
+				elif (enc_right_delta>0 and menu_position > 0):
+					menu_position -= 1
+	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
 
