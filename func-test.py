@@ -65,12 +65,12 @@ def checkinputs():
 		if (interface_change_track == True):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
-				if (enc_right_delta<0 and menu_lcd_start < mopidy_playlist_length - 4):
+				if (enc_right_delta<0):
 					if (menu_position < 4):
 						menu_position +=1
 					elif (menu_lcd_start < mopidy_playlist_length - 4):
 						menu_lcd_start += 1
-				elif (enc_right_delta>0 and menu_lcd_start > 0):
+				elif (enc_right_delta>0):
 					if (menu_position > 1):
 						menu_position -= 1
 					if (menu_lcd_start > 0):
