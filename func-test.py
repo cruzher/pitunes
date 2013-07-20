@@ -44,6 +44,8 @@ menu_position = 1
 menu_lcd_start = 0
 
 def checkinputs():
+	global interface_change_track
+	
 	while True:
 		enc_right_delta = enc_right.get_delta()
 		enc_right_seq = enc_right.rotation_sequence()
