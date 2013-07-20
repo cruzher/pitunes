@@ -43,12 +43,14 @@ mopidy_playlist_length = 10
 mopidy_playlist_position = 5
 mopidy_playlist = ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5", "Row 6", "Row 7", "Row 8", "Row 9", "Row 10"]
 menu_position = 1
+menu_lcd_position = None
 menu_lcd_start = 0
 menu_lcd_start_last = None
 
 def checkinputs():
 	global interface_change_track
 	global menu_lcd_start
+	global menu_lcd_position
 	global menu_position
 	
 	while True:
@@ -66,15 +68,17 @@ def checkinputs():
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
 				if (enc_right_delta<0):
-					if (menu_position < 4):
-						menu_position +=1
+					if (menu_lcd_position < 4):
+						menu_lcd_position +=1
 					elif (menu_lcd_start < mopidy_playlist_length - 4):
 						menu_lcd_start += 1
+					menu_position += 1
 				elif (enc_right_delta>0):
-					if (menu_position > 1):
-						menu_position -= 1
+					if (menu_lcd_position > 1):
+						menu_lcd_position -= 1
 					elif (menu_lcd_start > 0):
 						menu_lcd_start -= 1
+					menu_position -= 1
 	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
@@ -98,7 +102,11 @@ while True:
 		lcd.message(" ")
 		lcd.setCursor(0,3)
 		lcd.message(" ")
-		lcd.setCursor(0,menu_position -1)
+		lcd.setCursor(0,menu_lcd_position -1)
 		lcd.message(">")
+		lcd.setCursor(10, 0)
+		lcd.message("          ")
+		lcd.setCursor(10, 0)
+		lcd.message(mopidy_playlist[menu_position])
 
 	sleep(.01)
