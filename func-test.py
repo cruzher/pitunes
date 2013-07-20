@@ -44,6 +44,7 @@ mopidy_playlist_position = 5
 mopidy_playlist = ["first song", "next song", "next song again", "and again", "ohh so many"]
 menu_position = 1
 menu_lcd_start = 0
+menu_lcd_start_last = None
 
 def checkinputs():
 	global interface_change_track
@@ -76,9 +77,11 @@ thread.start_new_thread(checkinputs, ())
 while True:
 	#menu
 	if (interface_change_track == True):
-		lcd.clear()
-		for x in range(0,3):
-			lcd.setCursor(2, x)
-			lcd.message(mopidy_playlist[menu_lcd_start + x])
+		if (menu_lcd_start_last != menu_lcd_start):
+			menu_lcd_start_last = menu_lcd_start
+			lcd.clear()
+			for x in range(0,3):
+				lcd.setCursor(2, x)
+				lcd.message(mopidy_playlist[menu_lcd_start + x])
 
 	sleep(2)
