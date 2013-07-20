@@ -72,13 +72,15 @@ def checkinputs():
 						menu_lcd_position +=1
 					elif (menu_lcd_start < mopidy_playlist_length - 4):
 						menu_lcd_start += 1
-					menu_position += 1
+					if (menu_position < mopidy_playlist_length):
+						menu_position += 1
 				elif (enc_right_delta>0):
 					if (menu_lcd_position > 1):
 						menu_lcd_position -= 1
 					elif (menu_lcd_start > 0):
 						menu_lcd_start -= 1
-					menu_position -= 1
+					if (menu_position > 0):
+						menu_position -= 1
 	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
