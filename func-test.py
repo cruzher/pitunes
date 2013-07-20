@@ -14,6 +14,8 @@ import gaugette.switch
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT) #Cheapamp
 GPIO.setup(22, GPIO.OUT) #LCD Backlight
+GPIO.output(27, True)
+GPIO.output(22, True)
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
@@ -74,8 +76,9 @@ thread.start_new_thread(checkinputs, ())
 while True:
 	#menu
 	if (interface_change_track == True):
+		lcd.clear()
 		for x in range(0,3):
-			print mopidy_playlist[menu_lcd_start + x]
-		print "---"
+			lcd.setCursor(2, x)
+			lcd.message(mopidy_playlist[menu_lcd_start + x])
 
 	sleep(2)
