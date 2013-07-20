@@ -42,8 +42,8 @@ interface_change_playlist = False
 mopidy_playlist_length = 10
 mopidy_playlist_position = 5
 mopidy_playlist = ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5", "Row 6", "Row 7", "Row 8", "Row 9", "Row 10"]
-menu_position = 1
-menu_lcd_position = None
+menu_position = 0
+menu_lcd_position = 1
 menu_lcd_start = 0
 menu_lcd_start_last = None
 
