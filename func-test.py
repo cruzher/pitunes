@@ -39,7 +39,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 interface_state = 2
 interface_change_track = False
 interface_change_playlist = False
-mopidy_playlist_length = 70
+mopidy_playlist_length = 10
 mopidy_playlist_position = 5
 mopidy_playlist = ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5", "Row 6", "Row 7", "Row 8", "Row 9", "Row 10"]
 menu_position = 1
@@ -65,10 +65,10 @@ def checkinputs():
 		if (interface_change_track == True):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
-				if (enc_right_delta<0 and menu_lcd_start < 3):
-					if (menu_position < 3):
+				if (enc_right_delta<0 and menu_lcd_start < mopidy_playlist_length - 4):
+					if (menu_position < 4):
 						menu_position +=1
-					elif (menu_lcd_start < mopidy_playlist_length - 3):
+					elif (menu_lcd_start < mopidy_playlist_length - 4):
 						menu_lcd_start += 1
 				elif (enc_right_delta>0 and menu_lcd_start > 0):
 					if (menu_position > 1):
@@ -87,9 +87,17 @@ while True:
 		if (menu_lcd_start_last != menu_lcd_start):
 			menu_lcd_start_last = menu_lcd_start
 			lcd.clear()
-			for x in range(0,3):
+			for x in range(0,4):
 				lcd.setCursor(2, x)
 				lcd.message(mopidy_playlist[menu_lcd_start + x])
+		lcd.setCursor(0,0)
+		lcd.message(" ")
+		lcd.setCursor(0,1)
+		lcd.message(" ")
+		lcd.setCursor(0,2)
+		lcd.message(" ")
+		lcd.setCursor(0,3)
+		lcd.message(" ")
 		lcd.setCursor(0,menu_position -1)
 		lcd.message(">")
 
