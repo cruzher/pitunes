@@ -52,7 +52,7 @@ def checkinputs():
 				interface_change_track = True
 		
 		if (interface_change_track == True):
-			
+			print "nothing"
 				
 thread.start_new_thread(checkinputs, ())
 
