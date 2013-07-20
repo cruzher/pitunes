@@ -14,7 +14,7 @@ import gaugette.switch
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT) #Cheapamp
 GPIO.setup(22, GPIO.OUT) #LCD Backlight
-GPIO.output(27, True)
+GPIO.output(27, False)
 GPIO.output(22, True)
 
 #LCD
