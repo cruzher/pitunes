@@ -41,7 +41,7 @@ interface_change_track = False
 interface_change_playlist = False
 mopidy_playlist_length = 70
 mopidy_playlist_position = 5
-mopidy_playlist = ["first song", "next song", "next song again", "and again", "ohh so many"]
+mopidy_playlist = ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5", "Row 6", "Row 7", "Row 8", "Row 9", "Row 10"]
 menu_position = 1
 menu_lcd_start = 0
 menu_lcd_start_last = None
@@ -65,9 +65,15 @@ def checkinputs():
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
 				if (enc_right_delta<0 and menu_lcd_start < 3):
-					menu_lcd_start += 1
+					if (menu_position < 3):
+						menu_position +=1
+					elif (menu_lcd_start < mopidy_playlist_length - 3):
+						menu_lcd_start += 1
 				elif (enc_right_delta>0 and menu_lcd_start > 0):
-					menu_lcd_start -= 1
+					if (menu_position > 1):
+						menu_position -= 1
+					if (menu_lcd_start > 0):
+						menu_lcd_start -= 1
 	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
@@ -83,5 +89,7 @@ while True:
 			for x in range(0,3):
 				lcd.setCursor(2, x)
 				lcd.message(mopidy_playlist[menu_lcd_start + x])
+		lcd.setCursor(0,menu_position -1)
+		lcd.message(">")
 
 	sleep(.01)
