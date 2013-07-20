@@ -45,6 +45,7 @@ menu_lcd_start = 0
 
 def checkinputs():
 	global interface_change_track
+	global menu_lcd_start
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
