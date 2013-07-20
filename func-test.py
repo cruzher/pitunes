@@ -37,11 +37,11 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 interface_state = 2
 interface_change_track = False
 interface_change_playlist = False
-mopidy_playlist_length = 
-mopidy_playlist_position = 
+mopidy_playlist_length = 70
+mopidy_playlist_position = 5
 mopidy_playlist = ["first song", "next song", "next song again", "and again", "ohh so many"]
-menu_position
-menu_lcd_start
+menu_position = 1
+menu_lcd_start = 0
 
 def checkinputs():
 	while True:
