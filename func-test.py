@@ -84,4 +84,4 @@ while True:
 				lcd.setCursor(2, x)
 				lcd.message(mopidy_playlist[menu_lcd_start + x])
 
-	sleep(2)
+	sleep(.01)
