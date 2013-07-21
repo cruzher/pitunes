@@ -34,7 +34,6 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 interface_state = 2
 interface_change_track = False
 interface_change_playlist = False
-mopidy_playlist_length = 10
 mopidy_playlist_position = 5
 mopidy_playlist = ["Row 1", "Row 2"]
 menu_position = 0
@@ -90,9 +89,9 @@ def checkinputs():
 				if (enc_left_delta<0):
 					if (menu_lcd_position < 4):
 						menu_lcd_position +=1
-					elif (menu_lcd_start < mopidy_playlist_length - 4):
+					elif (menu_lcd_start < len(mopidy_playlist) - 4):
 						menu_lcd_start += 1
-					if (menu_position < mopidy_playlist_length -1):
+					if (menu_position < len(mopidy_playlist) -1):
 						menu_position += 1
 				elif (enc_left_delta>0):
 					if (menu_lcd_position > 1):
