@@ -64,6 +64,7 @@ def checkinputs():
 	global menu_lcd_position
 	global menu_position
 	global menu_timeout
+	global mopidy_playlist
 	
 	while True:
 		enc_left_delta = enc_left.get_delta()
