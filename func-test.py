@@ -52,14 +52,15 @@ def timeout():
 	global interface_change_track
 	global menu_timeout
 	
-	if (interface_change_track == True):
-		print "test"
-		menu_timeout += 1
-		if (menu_timeout > 3):
-			print "now"
-			lcd.clear()
-			interface_change_track = False
-	sleep(1)
+	while True:
+		if (interface_change_track == True):
+			print "test"
+			menu_timeout += 1
+			if (menu_timeout > 3):
+				print "now"
+				lcd.clear()
+				interface_change_track = False
+		sleep(1)
 
 def checkinputs():
 	global interface_change_track
@@ -96,7 +97,7 @@ def checkinputs():
 						menu_lcd_start -= 1
 					if (menu_position > 0):
 						menu_position -= 1
-	sleep(.01)
+		sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(timeout, ())
