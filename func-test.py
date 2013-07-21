@@ -81,9 +81,6 @@ def checkinputs():
 				playlist = playlist[:-7]
 				mopidy_playlist = playlist.split('\\n')
 				interface_change_track = True
-			
-			if (sw_left_state == 1):
-				print "test"
 		
 		if (interface_change_track == True):
 			#LEFT ENCODER
@@ -106,15 +103,12 @@ def checkinputs():
 						
 			#LEFT SWITCH
 			if (sw_left_state == 1):
-				print "test"
 				if (left_count < 50):
 					left_count += 1
-					print "test"
 			else:
 				if (left_count >0 and left_count < 50): 
 					#Do this if button is pressed once
-					print "mekk"
-					song_to_play = menu_position + 1
+					song_to_play = str(menu_position + 1)
 					subprocess.Popen("mpc play "+song_to_play, shell=True, stdout=subprocess.PIPE)
 					
 				#Reset hold-counter
