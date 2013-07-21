@@ -65,6 +65,7 @@ def checkinputs():
 	global menu_position
 	global menu_timeout
 	global mopidy_playlist
+	global mopidy_playlist_position
 	left_count = 0
 	
 	while True:
@@ -77,11 +78,14 @@ def checkinputs():
 			if (enc_left_delta != 0 and enc_left_seq == 2):
 				#Starting to move means to switch track
 				playlist = subprocess.Popen("mpc playlist", shell=True, stdout=subprocess.PIPE)
+				mopidy_playlist_position = subprocess.Popen("mpc current -f %position%", shell=True, stdout=subprocess.PIPE)
 				playlist = playlist.communicate()
 				playlist = str(playlist)
-				playlist = playlist[2:]
-				playlist = playlist[:-7]
+				playlist = playlist[2:-10]
 				mopidy_playlist = playlist.split('\\n')
+				mopidy_playlist_position = mopidy_playlist_position.communicate()
+				mopidy_playlist_position = str(mopidy_playlist_position)
+				mopidy_playlist_position = mopidy_playlist_position[2:-10]
 				interface_change_track = True
 		
 		if (interface_change_track == True):
