@@ -45,6 +45,7 @@ menu_timeout = 0
 def timeout():
 	global interface_change_track
 	global menu_timeout
+	global menu_lcd_start_last
 	
 	while True:
 		if (interface_change_track == True):
