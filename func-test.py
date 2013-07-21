@@ -116,7 +116,7 @@ while True:
 			lcd.clear()
 			for x in range(0,4):
 				lcd.setCursor(2, x)
-				lcd.message(mopidy_playlist[menu_lcd_start + x][:20])
+				lcd.message(mopidy_playlist[menu_lcd_start + x][:18])
 		lcd.setCursor(0,0)
 		lcd.message(" ")
 		lcd.setCursor(0,1)
