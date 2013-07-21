@@ -81,6 +81,9 @@ def checkinputs():
 				playlist = playlist[:-7]
 				mopidy_playlist = playlist.split('\\n')
 				interface_change_track = True
+			
+			if (sw_left_state == 1):
+				print "test"
 		
 		if (interface_change_track == True):
 			#LEFT ENCODER
