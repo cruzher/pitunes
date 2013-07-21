@@ -46,6 +46,14 @@ menu_position = 0
 menu_lcd_position = 1
 menu_lcd_start = 0
 menu_lcd_start_last = None
+menu_timeout = 0
+
+def timeout():
+	if (interface_change_track == True):
+		menu_timeout += 1
+		if (menu_timeout > 10):
+			interface_change_track = False
+	sleep(1)
 
 def checkinputs():
 	global interface_change_track
@@ -67,6 +75,7 @@ def checkinputs():
 		if (interface_change_track == True):
 			#RIGHT ENCODER
 			if (enc_right_delta != 0 and enc_right_seq == 2):
+				menu_timeout = 0
 				if (enc_right_delta<0):
 					if (menu_lcd_position < 4):
 						menu_lcd_position +=1
@@ -84,6 +93,7 @@ def checkinputs():
 	sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
+thread.start_new_thread(timeout, ())
 
 
 #Main Thread
