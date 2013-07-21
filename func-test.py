@@ -53,8 +53,10 @@ def timeout():
 	global menu_timeout
 	
 	if (interface_change_track == True):
+		print "test"
 		menu_timeout += 1
 		if (menu_timeout > 3):
+			print "now"
 			lcd.clear()
 			interface_change_track = False
 	sleep(1)
