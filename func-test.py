@@ -130,6 +130,6 @@ while True:
 		lcd.setCursor(10, 0)
 		lcd.message("          ")
 		lcd.setCursor(10, 0)
-		lcd.message(mopidy_playlist[menu_position])
+		lcd.message(mopidy_playlist[menu_position][:18])
 
 	sleep(.01)
