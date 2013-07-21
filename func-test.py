@@ -63,6 +63,7 @@ def checkinputs():
 	global menu_position
 	global menu_timeout
 	global mopidy_playlist
+	left_count = 0
 	
 	while True:
 		enc_left_delta = enc_left.get_delta()
@@ -99,10 +100,11 @@ def checkinputs():
 						menu_lcd_start -= 1
 					if (menu_position > 0):
 						menu_position -= 1
+						
 			#LEFT SWITCH
 			if (sw_left_state == 1):
 				if (left_count < 50):
-					left_count += 1
+					left_count += 1			
 			else:
 				if (left_count >0 and left_count < 50): 
 					#Do this if button is pressed once
@@ -110,8 +112,7 @@ def checkinputs():
 					subprocess.Popen("mpc play "+song_to_play, shell=True)
 					
 				#Reset hold-counter
-				left_count = 0  
-					
+				left_count = 0 
 		sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
