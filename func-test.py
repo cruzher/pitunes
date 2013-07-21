@@ -58,6 +58,7 @@ def timeout():
 			menu_timeout += 1
 			if (menu_timeout > 10):
 				print "now"
+				menu_timeout = 0
 				lcd.clear()
 				interface_change_track = False
 		sleep(1)
@@ -67,6 +68,7 @@ def checkinputs():
 	global menu_lcd_start
 	global menu_lcd_position
 	global menu_position
+	global menu_timeout
 	
 	while True:
 		enc_right_delta = enc_right.get_delta()
