@@ -76,7 +76,7 @@ def checkinputs():
 			#LEFT ENCODER
 			if (enc_left_delta != 0 and enc_left_seq == 2):
 				#Starting to move means to switch track
-				playlist = subprocess.Popen("mpc playlist", shell=True, stdout=subprocess.PIPE)
+				playlist = subprocess.Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=subprocess.PIPE)
 				mopidy_playlist_position = subprocess.Popen("mpc current -f %position%", shell=True, stdout=subprocess.PIPE)
 				playlist = playlist.communicate()
 				playlist = str(playlist)
