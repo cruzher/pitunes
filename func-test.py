@@ -104,7 +104,8 @@ def checkinputs():
 			#LEFT SWITCH
 			if (sw_left_state == 1):
 				if (left_count < 50):
-					left_count += 1			
+					left_count += 1
+					print "test"
 			else:
 				if (left_count >0 and left_count < 50): 
 					#Do this if button is pressed once
