@@ -49,10 +49,8 @@ def timeout():
 	
 	while True:
 		if (interface_change_track == True):
-			print menu_timeout
 			menu_timeout += 1
 			if (menu_timeout > 10):
-				print "now"
 				menu_timeout = 0
 				menu_lcd_start_last = None
 				lcd.clear()
