@@ -109,7 +109,7 @@ def checkinputs():
 				if (left_count >0 and left_count < 50): 
 					#Do this if button is pressed once
 					song_to_play = menu_position + 1
-					subprocess.Popen("mpc play "+song_to_play, shell=True)
+					subprocess.Popen("mpc play "+song_to_play, shell=True, stdout=subprocess.PIPE)
 					
 				#Reset hold-counter
 				left_count = 0 
