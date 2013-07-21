@@ -39,7 +39,6 @@ mopidy_playlist = ["Row 1", "Row 2"]
 menu_position = 0
 menu_lcd_position = 1
 menu_lcd_start = 0
-menu_lcd_start_last = None
 menu_timeout = 0
 
 def timeout():
@@ -100,11 +99,27 @@ def checkinputs():
 						menu_lcd_start -= 1
 					if (menu_position > 0):
 						menu_position -= 1
+			#LEFT SWITCH
+			if (sw_left_state == 1):
+				if (left_count < 50):
+					left_count += 1
+			else:
+				if (left_count >0 and left_count < 50): 
+					#Do this if button is pressed once
+					song_to_play = menu_position + 1
+					subprocess.Popen("mpc play "+song_to_play, shell=True)
+					
+				#Reset hold-counter
+				left_count = 0  
+					
 		sleep(.01)
 				
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(timeout, ())
 
+
+#Main Thread Variables
+menu_lcd_start_last = None
 
 #Main Thread
 while True:
