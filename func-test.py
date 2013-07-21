@@ -55,6 +55,7 @@ def timeout():
 	if (interface_change_track == True):
 		menu_timeout += 1
 		if (menu_timeout > 10):
+			lcd.clear()
 			interface_change_track = False
 	sleep(1)
 
