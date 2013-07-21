@@ -103,6 +103,7 @@ def checkinputs():
 						
 			#LEFT SWITCH
 			if (sw_left_state == 1):
+				print "test"
 				if (left_count < 50):
 					left_count += 1
 					print "test"
