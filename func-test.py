@@ -39,6 +39,7 @@ mopidy_playlist = ["Row 1", "Row 2"]
 menu_position = 0
 menu_lcd_position = 1
 menu_lcd_start = 0
+menu_lcd_start_last = None
 menu_timeout = 0
 
 def timeout():
@@ -52,6 +53,7 @@ def timeout():
 			if (menu_timeout > 10):
 				print "now"
 				menu_timeout = 0
+				menu_lcd_start_last = None
 				lcd.clear()
 				interface_change_track = False
 		sleep(1)
@@ -118,9 +120,6 @@ def checkinputs():
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(timeout, ())
 
-
-#Main Thread Variables
-menu_lcd_start_last = None
 
 #Main Thread
 while True:
