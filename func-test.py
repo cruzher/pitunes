@@ -54,7 +54,7 @@ def timeout():
 	
 	while True:
 		if (interface_change_track == True):
-			print "test"
+			print menu_timeout
 			menu_timeout += 1
 			if (menu_timeout > 10):
 				print "now"
