@@ -124,7 +124,7 @@ def checkinputs():
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(timeout, ())
 
-def clearscreen()
+def clearscreen():
 	menu_lcd_start_last = None
 	sleep(.1)
 	lcd.clear()
