@@ -36,6 +36,7 @@ interface_change_track = False
 interface_change_playlist = False
 mopidy_playlist_position = 5
 mopidy_playlist = ["Row 1", "Row 2"]
+menu_active = False
 menu_position = 0
 menu_lcd_position = 1
 menu_lcd_start = 0
@@ -76,15 +77,6 @@ def checkinputs():
 			#LEFT ENCODER
 			if (enc_left_delta != 0 and enc_left_seq == 2):
 				#Starting to move means to switch track
-				playlist = subprocess.Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=subprocess.PIPE)
-				mopidy_playlist_position = subprocess.Popen("mpc current -f %position%", shell=True, stdout=subprocess.PIPE)
-				playlist = playlist.communicate()
-				playlist = str(playlist)
-				playlist = playlist[2:-10]
-				mopidy_playlist = playlist.split('\\n')
-				mopidy_playlist_position = mopidy_playlist_position.communicate()
-				mopidy_playlist_position = str(mopidy_playlist_position)
-				mopidy_playlist_position = mopidy_playlist_position[2:-10]
 				interface_change_track = True
 		
 		if (interface_change_track == True):
@@ -116,7 +108,7 @@ def checkinputs():
 					song_to_play = str(menu_position + 1)
 					interface_change_track = False
 					lcd.clear()
-					subprocess.Popen("mpc play "+song_to_play, shell=True, stdout=subprocess.PIPE)
+					subprocess.Popen("mpc -q play "+song_to_play, shell=True, stdout=subprocess.PIPE)
 					
 				#Reset hold-counter
 				left_count = 0 
@@ -136,6 +128,16 @@ def clearscreen():
 while True:
 	#menu
 	if (interface_change_track == True):
+		playlist = subprocess.Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=subprocess.PIPE)
+		mopidy_playlist_position = subprocess.Popen("mpc current -f %position%", shell=True, stdout=subprocess.PIPE)
+		playlist = playlist.communicate()
+		playlist = str(playlist)
+		playlist = playlist[2:-10]
+		mopidy_playlist = playlist.split('\\n')
+		mopidy_playlist_position = mopidy_playlist_position.communicate()
+		mopidy_playlist_position = str(mopidy_playlist_position)
+		mopidy_playlist_position = mopidy_playlist_position[2:-10]
+		
 		if (menu_lcd_start_last != menu_lcd_start):
 			menu_lcd_start_last = menu_lcd_start
 			lcd.clear()
