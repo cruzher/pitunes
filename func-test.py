@@ -39,7 +39,7 @@ mopidy_playlist = ["Row 1", "Row 2"]
 menu_active = False
 menu_position = 0
 menu_lcd_position = 1
-menu_lcd_position = None
+menu_lcd_position_last = None
 menu_lcd_start = 0
 menu_lcd_start_last = None
 menu_timeout = 0
@@ -159,5 +159,6 @@ while True:
 			lcd.message(" ")
 			lcd.setCursor(0,menu_lcd_position -1)
 			lcd.message(">")
+			menu_lcd_position_last = menu_lcd_position
 
 	sleep(.01)
