@@ -39,7 +39,6 @@ mopidy_playlist = ["Row 1", "Row 2"]
 menu_active = False
 menu_position = 0
 menu_lcd_position = 1
-menu_lcd_position = None
 menu_lcd_start = 0
 menu_lcd_start_last = None
 menu_timeout = 0
@@ -120,11 +119,8 @@ thread.start_new_thread(timeout, ())
 
 def clearscreen():
 	global menu_lcd_start_last
-	global menu_lcd_position_last
-	
 	
 	menu_lcd_start_last = None
-	menu_lcd_position_last = None
 	sleep(.1)
 	lcd.clear()
 
@@ -148,16 +144,15 @@ while True:
 			for x in range(0,4):
 				lcd.setCursor(2, x)
 				lcd.message(mopidy_playlist[menu_lcd_start + x][:18])
-		if (menu_lcd_position_last != menu_lcd_position):
-			lcd.setCursor(0,0)
-			lcd.message(" ")
-			lcd.setCursor(0,1)
-			lcd.message(" ")
-			lcd.setCursor(0,2)
-			lcd.message(" ")
-			lcd.setCursor(0,3)
-			lcd.message(" ")
-			lcd.setCursor(0,menu_lcd_position -1)
-			lcd.message(">")
+		lcd.setCursor(0,0)
+		lcd.message(" ")
+		lcd.setCursor(0,1)
+		lcd.message(" ")
+		lcd.setCursor(0,2)
+		lcd.message(" ")
+		lcd.setCursor(0,3)
+		lcd.message(" ")
+		lcd.setCursor(0,menu_lcd_position -1)
+		lcd.message(">")
 
 	sleep(.01)
