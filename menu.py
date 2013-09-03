@@ -31,7 +31,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 #Global Main
 current_song = ""
 current_time = ""
-current_source = ""
+current_source = "Spotify"
 current_playlist = ["mekk", "mekking"]
 current_playlist_pos = ""
 current_radiostation = ""
