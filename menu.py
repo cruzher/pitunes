@@ -147,6 +147,11 @@ def checkinputs(): #Will be used as a thread
 		if (sw_right_state == 1):
 			if (right_count < 50):
 				right_count += 1
+			else:
+				if (menu_active == False):
+					if (current_source == "Spotify"):
+						#stop
+						print "stop"
 		else:
 			if (right_count >0 and right_count < 50): #button is pressed once
 				if (menu_active == False):
@@ -164,11 +169,6 @@ def checkinputs(): #Will be used as a thread
 						else:
 							Popen("mpc -q stop", shell=True)
 							current_playstatus = False
-			elif (right_count >0 and right_count > 50): #button is held down
-				if (menu_active == False):
-					if (current_source == "Spotify"):
-						#stop
-						print "stop"
 
 			##Reset hold-counter##
 			right_count = 0
