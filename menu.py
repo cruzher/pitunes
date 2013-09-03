@@ -2,7 +2,7 @@
 
 import string
 from subprocess import Popen, PIPE
-import threading
+import thread
 import RPi.GPIO as GPIO
 from time import sleep
 from datetime import datetime
@@ -183,6 +183,9 @@ def clearscreen():
 
 	#clear LCD
 	lcd.clear()
+
+#Staring Threads
+thread.start_new_thread(checkinputs, ())
 
 while True:
 	#if menu is active
