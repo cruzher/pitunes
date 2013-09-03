@@ -72,6 +72,9 @@ def timeouts(): #Will be used as a thread
 		#Activate standby mode if nothing is playing for 5 minutes
 
 def checkinputs(): #Will be used as a thread
+	global current_source
+	global menu_active
+	global current_playstatus
 	left_count = 0
 	right_count = 0
 
@@ -170,6 +173,7 @@ def checkinputs(): #Will be used as a thread
 			##Reset hold-counter##
 			right_count = 0
 		## Right switch pressed ##
+		sleep(.01)
 
 
 def clearscreen():
