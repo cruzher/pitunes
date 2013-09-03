@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import string
-from subprocess import Popen
+from subprocess import Popen, PIPE
 import threading
 import RPi.GPIO as GPIO
 from time import sleep
