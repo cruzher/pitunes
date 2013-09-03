@@ -147,7 +147,8 @@ def checkinputs(): #Will be used as a thread
 		if (sw_right_state == 1):
 			if (right_count < 50):
 				right_count += 1
-			else:
+			elif(right_count > 50 and right_count < 60): #Button is held down
+				right_count = 70
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#stop
