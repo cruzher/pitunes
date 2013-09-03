@@ -35,6 +35,7 @@ current_source = "Spotify"
 current_playlist = ["mekk", "mekking"]
 current_playlist_pos = ""
 current_radiostation = ""
+current_playstatus = False
 
 #Global Menu
 menu_active = False
@@ -147,11 +148,19 @@ def checkinputs(): #Will be used as a thread
 			if (right_count >0 and right_count < 50): #button is pressed once
 				if (menu_active == False):
 					if (current_source == "Spotify"):
-						#play/pause
-						print "play/pause"
+						if (current_playstatus == False):
+							Popen("mpc -q play", shell=True)
+							current_playstatus = True
+						else:
+							Popen("mpc -q pause", shell=True)
+							current_playstatus = False
 					if (current_source == "Radio"):
-						#play/stop
-						print "play/stop"
+						if (current_playstatus == False):
+							Popen("mpc -q play", shell=True)
+							current_playstatus = True
+						else:
+							Popen("mpc -q stop", shell=True)
+							current_playstatus = False
 			elif (right_count >0 and right_count > 50): #button is held down
 				if (menu_active == False):
 					if (current_source == "Spotify"):
