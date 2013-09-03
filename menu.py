@@ -107,11 +107,14 @@ def checkinputs(): #Will be used as a thread
 			if (left_count >0 and left_count < 50): #button is pressed once
 				if (menu_active == True):
 					#choose selected item
+					print "choosing selected item"
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
+						menu_active = True
 					if (current_source == "Radio"):
 						#Like this song (saves to logfile)
+						print "I Like This Song"
 			elif (left_count >0 and left_count > 50): #button is held down
 				if (menu_active == False):
 					if (current_source == "Spotify"):
@@ -129,25 +132,31 @@ def checkinputs(): #Will be used as a thread
 			if (menu_active == False): #if menu is not active
 				if (enc_right_delta<0): #rotating left
 					#increase volume
+					print "Increasing Volume"
 				elif (enc_right_delta>0): #rotating right
 					#decrease volume
+					print "Decreasing Volume"
 		## END Right encoder rotating ##
 
 
 		## Right switch pressed ##
 		if (sw_right_state == 1):
 			if (right_count < 50):
+				right_count += 1
 		else:
 			if (right_count >0 and right_count < 50): #button is pressed once
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#play/pause
+						print "play/pause"
 					if (current_source == "Radio"):
 						#play/stop
+						print "play/stop"
 			elif (right_count >0 and right_count > 50): #button is held down
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#stop
+						print "stop"
 
 			##Reset hold-counter##
 			right_count = 0
@@ -169,6 +178,7 @@ def clearscreen():
 while True:
 	#if menu is active
 	if (menu_active == True): 
+		print "menu is active"
 
 	#if menu is not active
 	else: 
@@ -194,8 +204,7 @@ while True:
 
 			#Update Songposition
 			if (current_playlist_pos != lcd_playlist_pos):
-
-				lcd.setCursor()
+				lcd.setCursor(0,10)
 
 
 		if (current_source == "Radio"):
