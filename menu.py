@@ -65,6 +65,7 @@ GPIO.output(lcdbacklight_pin, True)
 
 def timeouts(): #Kommer användas som en tråd
 	while True:
+		print "hello" 
 		#Stäng menyn om timeout nås
 
 		#Aktivera viloläge om inget spelats på 5 min.
@@ -190,7 +191,7 @@ while True:
 			if (current_source != lcd_source):
 				lcd.setCursor(0,1)
 				lcd.message(current_source)
-				
+
 			#Update Songposition
 			if (current_playlist_pos != lcd_playlist_pos):
 
