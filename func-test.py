@@ -10,12 +10,37 @@ from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 import gaugette.rotary_encoder
 import gaugette.switch
 
+#Global Main
+current_song = ""
+current_time = ""
+current_source = ""
+current_playlist_length = ""
+current_playlist_pos = ""
+current_radiostation = ""
+
+#Global Menu
+menu_active = False
+menu_pointer = None
+menu_selected = None
+menu_timeout = 0
+
+#Global LCD
+lcd_song = ""
+lcd_time = ""
+lcd_source = ""
+lcd_playlist = ["mekk", "mekk"]
+lcd_playlist_pos = 0
+lcd_radiostation = "N/A"
+
 #GPIO
+cheapamp_pin = 27
+lcdbacklight_pin = 22
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(27, GPIO.OUT) #Cheapamp
-GPIO.setup(22, GPIO.OUT) #LCD Backlight
-GPIO.output(27, True)
-GPIO.output(22, True)
+GPIO.setup(cheapamp_pin, GPIO.OUT) #Cheapamp
+GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
+# Initial start of amp and backlight
+GPIO.output(cheapamp_pin, True)
+GPIO.output(lcdbacklight_pin, True)
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
@@ -28,7 +53,6 @@ enc_left_pin_b = 13
 sw_left_pin = 12
 enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
 sw_left = gaugette.switch.Switch(sw_left_pin)
-
 
 #global variables
 interface_state = 2

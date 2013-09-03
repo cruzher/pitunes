@@ -1,0 +1,48 @@
+#!/usr/bin/python
+
+#if Left is rotating
+	#if Menu is active
+		#regardless of source
+			#Navigate up or down
+	#if Menu is not active
+		#if source is Spotify
+			#activate menu (change track)
+		#if source is radio
+			#activate menu (change station)
+#if Left is pressed
+	#if menu is active
+		#regardless of source
+			#choose selected item
+	#if menu is not active
+		#if source is Spotify
+			#activate menu (change playlist)
+		#if source is Radio
+			#Like this song (saves to logfile)
+#if Left is held
+	#if menu is active
+		#nothing
+	#if menu is not active
+		#if source is spotify
+			#Change source to radio
+		#if source is radio
+			#change source to spotify
+		#if source is airplay
+			#nothing
+
+
+#if Right is rotating
+	#if menu is not active
+		#regardless of source
+			#Change volume
+#if Right is pressed
+	#if menu is not active
+		#if source is spotify
+			#play/pause
+		#if source is radio
+			#play/stop
+#if Right is held
+	#if menu is not active
+		#if source is spotify
+			#stop
+		#if source is radio
+			#?
