@@ -63,14 +63,14 @@ GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
 GPIO.output(cheapamp_pin, True)
 GPIO.output(lcdbacklight_pin, True)
 
-def timeouts(): #Kommer användas som en tråd
+def timeouts(): #Will be used as a thread
 	while True:
 		print "hello" 
-		#Stäng menyn om timeout nås
+		#Close menu on timeout
 
-		#Aktivera viloläge om inget spelats på 5 min.
+		#Activate standby mode if nothing is playing for 5 minutes
 
-def checkinputs(): #Kommer användas som en tråd
+def checkinputs(): #Will be used as a thread
 	left_count = 0
 	right_count = 0
 
