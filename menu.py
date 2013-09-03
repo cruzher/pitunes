@@ -76,7 +76,9 @@ def checkinputs(): #Will be used as a thread
 	global menu_active
 	global current_playstatus
 	left_count = 0
+	left_held = False
 	right_count = 0
+	right_held = False
 
 	while True:
 		enc_right_delta = enc_right.get_delta()
@@ -147,8 +149,8 @@ def checkinputs(): #Will be used as a thread
 		if (sw_right_state == 1):
 			if (right_count < 50):
 				right_count += 1
-			elif(right_count > 50 and right_count < 60): #Button is held down
-				right_count = 70
+			elif(right_held == False): #Button is held down
+				right_held = True
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#stop
@@ -173,6 +175,7 @@ def checkinputs(): #Will be used as a thread
 
 			##Reset hold-counter##
 			right_count = 0
+			right_held = False
 		## Right switch pressed ##
 		sleep(.01)
 
