@@ -208,3 +208,5 @@ while True:
 
 
 		if (current_source == "Radio"):
+			print "Source is Radio"
+	sleep(.01)
