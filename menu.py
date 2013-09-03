@@ -201,10 +201,17 @@ while True:
 			if (current_source != lcd_source):
 				lcd.setCursor(0,1)
 				lcd.message(current_source)
+				lcd_source = current_source
 
 			#Update Songposition
 			if (current_playlist_pos != lcd_playlist_pos):
 				lcd.setCursor(0,10)
+
+			#Update Song
+			if (current_song != lcd_song):
+				lcd.setCursor(0,2)
+				lcd.message(current_song[:20])
+				lcd_song = current_song
 
 
 		if (current_source == "Radio"):
