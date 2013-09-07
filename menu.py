@@ -39,7 +39,7 @@ current_playstatus = False
 
 #Global Menu
 menu_active = False
-menu_purpose = ""		#track or source
+menu_purpose = ""		#track or playlist
 menu_pointer = None
 menu_selected = None
 menu_timeout = 0
@@ -74,6 +74,7 @@ def timeouts(): #Will be used as a thread
 def checkinputs(): #Will be used as a thread
 	global current_source
 	global menu_active
+	global menu_purpose
 	global current_playstatus
 	left_count = 0
 	left_held = False
@@ -98,10 +99,8 @@ def checkinputs(): #Will be used as a thread
 					if (menu_selected < len(current_playlist)):
 						menu_selected += 1
 			elif (menu_active == False):
-				if (current_source == "Spotify"): 
-					menu_active = True
-				if (current_source == "Radio"): 
-					menu_active = True
+				menu_purpose = "track"
+				menu_active = True
 		## END Left encoder rotating ##
 
 
@@ -117,6 +116,7 @@ def checkinputs(): #Will be used as a thread
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
+						menu_purpose = "playlist"
 						menu_active = True
 					if (current_source == "Radio"):
 						#Like this song (saves to logfile)
@@ -202,7 +202,8 @@ while True:
 
 	#if menu is not active
 	else: 
-		current_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+		#current_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+		current_time = datetime.now()
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
