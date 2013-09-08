@@ -206,9 +206,7 @@ while True:
 	try:
 		with open('shuttingdown'):
 			print "yes"
-	except IOError:
-		print "mekk"
-
+			
 	#if menu is active
 	if (menu_active == True): 
 		print "menu is active"
