@@ -218,10 +218,12 @@ while True:
 			if (current_time != lcd_time):
 				lcd.setCursor(0,0)
 				lcd.message(current_time)
-				lcd.setCursor(0,3)
-				lcd.message(timetest)
 				lcd_time = current_time
 				#print "time: "+current_time
+
+			if (current_time >= timetest):
+				lcd.setCursor(0,3)
+				lcd.message("Timeout")
 
 			#Print Source
 			if (current_source != lcd_source):
