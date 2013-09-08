@@ -201,6 +201,13 @@ lcd.setCursor(0,3)
 lcd.message("Vol -              +")
 
 while True:
+
+	#Shutdown check
+	try:
+		with open('shuttingdown'):
+			print "yes"
+	except IOError:
+		
 	#if menu is active
 	if (menu_active == True): 
 		print "menu is active"
@@ -222,8 +229,6 @@ while True:
 				lcd.message(current_datetime)
 				lcd_datetime = current_datetime
 				print "time: "+current_datetime
-
-			break
 
 			#Print Source
 			if (current_source != lcd_source):
