@@ -209,7 +209,7 @@ while True:
 			lcd.clear()
 			lcd.setCursor(0,0)
 			lcd.message("+------------------+")
-			lcd.setCursor(0,0)
+			lcd.setCursor(0,1)
 			lcd.message("|      SYSTEM      |")
 			lcd.setCursor(0,2)
 			lcd.message("|   SHUTTING DOWN  |")
