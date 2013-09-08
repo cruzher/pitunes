@@ -204,8 +204,10 @@ while True:
 
 	#Shutdown check
 	try:
-		with open('shuttingdown'):
+		with open('halting'):
+			Popen("rm -f halting", shell=True)
 			print "yes"
+
 	except IOError:
 		sleep(0)
 
