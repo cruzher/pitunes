@@ -204,7 +204,7 @@ while True:
 	#if menu is not active
 	else: 
 		#current_time = datetime.now().strftime("%Y-%m-%d %H:%M")
-		current_time = time.time()
+		current_time = round(time.time())
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
