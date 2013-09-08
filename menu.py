@@ -196,6 +196,8 @@ def clearscreen():
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 
+timetest = round(time.time()) + 10
+
 while True:
 	#if menu is active
 	if (menu_active == True): 
@@ -204,7 +206,7 @@ while True:
 	#if menu is not active
 	else: 
 		#current_time = datetime.now().strftime("%Y-%m-%d %H:%M")
-		current_time = round(datetime.time())
+		current_time = round(time.time())
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
@@ -216,6 +218,8 @@ while True:
 			if (current_time != lcd_time):
 				lcd.setCursor(0,0)
 				lcd.message(current_time)
+				lcd.setCursor(0,3)
+				lcd.message(timetest)
 				lcd_time = current_time
 				#print "time: "+current_time
 
