@@ -206,8 +206,16 @@ while True:
 	try:
 		with open('halting'):
 			Popen("rm -f halting", shell=True)
-			print "yes"
-
+			lcd.clear()
+			lcd.setCursor(0,0)
+			lcd.message("+------------------+")
+			lcd.setCursor(0,0)
+			lcd.message("|      SYSTEM      |")
+			lcd.setCursor(0,2)
+			lcd.message("|   SHUTTING DOWN  |")
+			lcd.setCursor(0,3)
+			lcd.message("+------------------+")
+			break
 	except IOError:
 		sleep(0)
 
