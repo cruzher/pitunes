@@ -203,10 +203,9 @@ lcd.message("Vol -              +")
 while True:
 
 	#Shutdown check
-	try:
-		with open('shuttingdown'):
-			print "yes"
-			
+	if (open('shuttingdown')):
+		print "yes"
+		
 	#if menu is active
 	if (menu_active == True): 
 		print "menu is active"
