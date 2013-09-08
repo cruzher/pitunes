@@ -32,6 +32,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 #Global Main
 current_song = ""
 current_time = ""
+current_datetime = ""
 current_source = "Spotify"
 current_playlist = ["mekk", "mekking"]
 current_playlist_pos = ""
@@ -47,7 +48,7 @@ menu_timeout = 0
 
 #Global LCD
 lcd_song = ""
-lcd_time = ""
+lcd_datetime = ""
 lcd_source = ""
 lcd_playlist_length = 0
 lcd_playlist_pos = 0
@@ -185,7 +186,7 @@ def clearscreen():
 	#reset lcd variables
 	lcd_radiostation = None
 	lcd_source = None
-	lcd_time = None
+	lcd_datetime = None
 	lcd_song = None
 	lcd_playlist_pos = None
 	lcd_playlist_length = None
@@ -205,7 +206,7 @@ while True:
 
 	#if menu is not active
 	else: 
-		#current_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+		current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M")
 		current_time = round(time.time())
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
@@ -215,13 +216,13 @@ while True:
 		if (current_source == "Spotify"):
 			
 			#Update Time
-			if (current_time != lcd_time):
+			if (current_datetime != lcd_datetime):
 				lcd.setCursor(0,0)
-				lcd.message(current_time)
-				lcd_time = current_time
-				#print "time: "+current_time
+				lcd.message(current_datetime)
+				lcd_datetime = current_datetime
+				print "time: "+current_datetime
 
-			if (current_time >= timetest):
+			if (current_time  >= timetest):
 				lcd.setCursor(0,3)
 				lcd.message("Timeout")
 
