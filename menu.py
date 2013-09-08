@@ -223,7 +223,7 @@ while True:
 				lcd_datetime = current_datetime
 				print "time: "+current_datetime
 
-			
+			break
 
 			#Print Source
 			if (current_source != lcd_source):
