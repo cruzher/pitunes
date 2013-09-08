@@ -197,7 +197,8 @@ def clearscreen():
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 
-timetest = round(time.time()) + 10
+lcd.setCursor(0,3)
+lcd.message("Vol -              +")
 
 while True:
 	#if menu is active
@@ -222,9 +223,7 @@ while True:
 				lcd_datetime = current_datetime
 				print "time: "+current_datetime
 
-			if (current_time  >= timetest):
-				lcd.setCursor(0,3)
-				lcd.message("Timeout")
+			
 
 			#Print Source
 			if (current_source != lcd_source):
