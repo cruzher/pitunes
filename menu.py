@@ -69,28 +69,6 @@ GPIO.output(cheapamp_pin, True)
 sleep(1)
 GPIO.output(lcdbacklight_pin, True)
 
-def timeouts(): #Will be used as a thread
-	while True:
-		global menu_active
-		global menu_pointer
-		global menu_fristdraw
-		global menu_selected
-		
-		#Close menu on timeout
-		if (current_time > menu_timeout and menu_active == True):
-			lcd_redraw = True
-			menu_active = False
-			menu_pointer = None
-			menu_fristdraw = True
-			menu_selected = None
-
-		#If nothing is playing for 5 minutes
-			#turn volume down to zero
-			#set current_volume to 10%
-			#turn off Amp
-			#Turn off LCD_backlight
-		sleep(.01)
-
 def navigate(direction):
 	global menu_selected
 	global menu_pointer
@@ -235,7 +213,6 @@ def clearscreen():
 
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
-thread.start_new_thread(timeouts, ())
 
 lcd.setCursor(9,3)
 lcd.message("Vol"+chr(255)+chr(255)+"      ")
@@ -270,6 +247,14 @@ while True:
 			lcd.message("MENU")
 			print "menu is active"
 			menu_fristdraw = False
+
+		#Close menu on timeout
+		if (current_time > menu_timeout):
+			lcd_redraw = True
+			menu_active = False
+			menu_pointer = None
+			menu_fristdraw = True
+			menu_selected = None
 
 	#if menu is not active
 	else: 
