@@ -66,7 +66,7 @@ GPIO.setup(cheapamp_pin, GPIO.OUT) #Cheapamp
 GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
 # Initial start of amp and backlight
 GPIO.output(cheapamp_pin, True)
-sleep(.5)
+sleep(1)
 GPIO.output(lcdbacklight_pin, True)
 
 def timeouts(): #Will be used as a thread
