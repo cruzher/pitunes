@@ -242,11 +242,14 @@ while True:
 	#if menu is active
 	if (menu_active == True): 
 		if (menu_fristdraw == True):
+			menu_timeout = current_time + 10
+			menu_fristdraw = False
 			clearscreen()
 			lcd.setCursor(8,0)
 			lcd.message("MENU")
 			print "menu is active"
-			menu_fristdraw = False
+			
+		#MENU STUFF
 
 		#Close menu on timeout
 		if (current_time > menu_timeout):
