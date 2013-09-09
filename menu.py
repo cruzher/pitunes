@@ -263,7 +263,7 @@ while True:
 
 	#if menu is not active
 	else: 
-		current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+		current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
 		current_time = round(time.time())
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
