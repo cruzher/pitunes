@@ -253,6 +253,7 @@ while True:
 
 		#Close menu on timeout
 		if (current_time > menu_timeout):
+			print "deactivating menu"
 			lcd_redraw = True
 			menu_active = False
 			menu_pointer = None
