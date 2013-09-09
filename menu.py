@@ -230,8 +230,8 @@ def clearscreen():
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 
-lcd.setCursor(7,3)
-lcd.message("Vol["+chr(255)+chr(255)+"       ]")
+lcd.setCursor(9,3)
+lcd.message("Vol"+chr(255)+chr(255)+"      ")
 
 while True:
 
