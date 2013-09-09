@@ -71,6 +71,11 @@ GPIO.output(lcdbacklight_pin, True)
 
 def timeouts(): #Will be used as a thread
 	while True:
+		global menu_active
+		global menu_pointer
+		global menu_fristdraw
+		global menu_selected
+		
 		#Close menu on timeout
 		if (current_time > menu_timeout and menu_active == True):
 			lcd_redraw = True
