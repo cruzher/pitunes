@@ -84,6 +84,7 @@ def timeouts(): #Will be used as a thread
 			#set current_volume to 10%
 			#turn off Amp
 			#Turn off LCD_backlight
+		sleep(.01)
 
 def navigate(direction):
 	global menu_selected
@@ -229,6 +230,7 @@ def clearscreen():
 
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
+thread.start_new_thread(timeouts, ())
 
 lcd.setCursor(9,3)
 lcd.message("Vol"+chr(255)+chr(255)+"      ")
@@ -259,7 +261,7 @@ while True:
 			clearscreen()
 			lcd.setCursor(8,0)
 			lcd.message("MENU")
-		print "menu is active"
+			print "menu is active"
 
 	#if menu is not active
 	else: 
