@@ -262,6 +262,7 @@ while True:
 			lcd.setCursor(8,0)
 			lcd.message("MENU")
 			print "menu is active"
+			menu_fristdraw = False
 
 	#if menu is not active
 	else: 
