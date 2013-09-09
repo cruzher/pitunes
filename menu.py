@@ -206,7 +206,7 @@ def clearscreen():
 	global lcd_song
 	global lcd_playlist_pos
 	global lcd_playlist_length
-	
+
 	#reset lcd variables
 	lcd_radiostation = None
 	lcd_source = None
@@ -252,8 +252,12 @@ while True:
 			menu_timeout = current_time + 10
 			menu_fristdraw = False
 			clearscreen()
-			lcd.setCursor(8,0)
-			lcd.message("MENU")
+			if (menu_purpose == "track"):
+				lcd.setCursor(7,0)
+				lcd.message("Tracks")
+			else:
+				lcd.setCursor(5,0)
+				lcd.message("Playlists")
 			print "menu is active"
 			
 		#MENU STUFF
