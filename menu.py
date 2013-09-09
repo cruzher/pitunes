@@ -236,6 +236,8 @@ lcd.setCursor(9,3)
 lcd.message("Vol"+chr(255)+chr(255)+"      ")
 
 while True:
+	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
+	current_time = round(time.time())
 
 	#Show message on screen when System is shutting down.
 	try:
@@ -266,8 +268,6 @@ while True:
 
 	#if menu is not active
 	else: 
-		current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
-		current_time = round(time.time())
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
