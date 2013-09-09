@@ -37,7 +37,7 @@ current_source = "Spotify"
 current_playlist = ["nothing"]
 current_playlist_pos = ""
 current_radiostation = ""
-current_playstatus = False
+current_playstatus = ""	#play, stop, pause
 
 #Global Menu
 menu_fristdraw = True
@@ -46,7 +46,7 @@ menu_purpose = ""		#track or playlist
 menu_pointer = None
 menu_selected = None
 menu_timeout = 0
-menu_items = ["nothing"]
+menu_items = ["row1", "row2", "row3", "row4"]
 
 #Global LCD
 lcd_song = ""
@@ -56,6 +56,7 @@ lcd_playlist_length = 0
 lcd_playlist_pos = 0
 lcd_radiostation = "N/A"
 lcd_redraw = False
+lcd_playstatus = ""
 ## END VARIABLES
 
 #GPIO
@@ -303,7 +304,6 @@ while True:
 				lcd.setCursor(0,2)
 				lcd.message(current_song[:20])
 				lcd_song = current_song
-
 
 		if (current_source == "Radio"):
 			print "Source is Radio"
