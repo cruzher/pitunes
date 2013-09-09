@@ -15,7 +15,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	cd $HOME
 	
 	echo "(01/) ADDING APT SOURCES/KEYS"
-	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
+	wget -q -O - http://apt.mopidy.com/mopidy.gpg | sudo apt-key add - > /dev/null
 	sudo wget -q -O /etc/apt/sources.list.d/mopidy.list http://apt.mopidy.com/mopidy.list
 	
 	echo "(02/) APT UPDATE / UPGRADE"
@@ -58,6 +58,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	sudo apt-get install -y mopidy > /dev/null
 	mkdir $HOME/.config/mopidy
 	cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
+	sudo sed -i "/exit 0/ c\ " /etc/rc.local
+	echo "screen -dmS mopidy mopidy --config=/home/pi/.config/mopidy/mopidy.conf" | sudo tee -a /etc/rc.local
+	echo "exit 0" | sudo tee -a /etc/rc.local
 	
 	echo "(09/) INSTALLING SHAIRPORT"
 	wget -q http://files.pixor.se/install.scripts/rpi/shairport.sh
@@ -82,7 +85,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo "FINISHED"
 
 else
-	echo "Please run this script again reboot"
+	echo "Please run this script again after reboot"
 	read -p "Continue and add lines? (this will reboot)" -n 1
 	echo ''
 	if [[ $REPLY =~ ^[Yy]$ ]]; then	
