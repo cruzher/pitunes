@@ -200,6 +200,13 @@ def checkinputs(): #Will be used as a thread
 
 
 def clearscreen():
+	global lcd_radiostation
+	global lcd_source
+	global lcd_datetime
+	global lcd_song
+	global lcd_playlist_pos
+	global lcd_playlist_length
+	
 	#reset lcd variables
 	lcd_radiostation = None
 	lcd_source = None
