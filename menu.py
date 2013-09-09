@@ -34,17 +34,19 @@ current_song = ""
 current_time = ""
 current_datetime = ""
 current_source = "Spotify"
-current_playlist = ["mekk", "mekking"]
+current_playlist = ["nothing"]
 current_playlist_pos = ""
 current_radiostation = ""
 current_playstatus = False
 
 #Global Menu
+menu_fristdraw = True
 menu_active = False
 menu_purpose = ""		#track or playlist
 menu_pointer = None
 menu_selected = None
 menu_timeout = 0
+menu_items = ["nothing"]
 
 #Global LCD
 lcd_song = ""
@@ -68,15 +70,45 @@ GPIO.output(lcdbacklight_pin, True)
 
 def timeouts(): #Will be used as a thread
 	while True:
-		print "hello" 
 		#Close menu on timeout
+		if (current_time > menu_timeout and menu_active == True):
+			lcd_redraw = True
+			menu_active = False
+			menu_pointer = None
+			menu_fristdraw = True
+			menu_selected = None
 
-		#Activate standby mode if nothing is playing for 5 minutes
+		#If nothing is playing for 5 minutes
+			#turn volume down to zero
+			#set current_volume to 10%
+			#turn off Amp
+			#Turn off LCD_backlight
+
+def navigate(direction):
+	global menu_selected
+	global menu_pointer
+	global menu_lcd_start
+
+	if (direction == "up"):
+		if (menu_selected > 0):
+			menu_selected -= 1
+			if (menu_pointer > 1):
+				menu_pointer -= 1
+			else:
+				menu_lcd_start -= 1
+	else:
+		if (menu_selected < len(menu_items) -1):
+			menu_selected += 1
+			if (menu_pointer < 3):
+				menu_pointer +=1
+			else:
+				menu_lcd_start +=1
 
 def checkinputs(): #Will be used as a thread
 	global current_source
 	global menu_active
 	global menu_purpose
+	global menu_timeout
 	global current_playstatus
 	left_count = 0
 	left_held = False
@@ -94,12 +126,12 @@ def checkinputs(): #Will be used as a thread
 		## Left encoder rotating ##
 		if (enc_left_delta != 0 and enc_left_seq == 2):
 			if (menu_active == True): 
+				#Update timeout to keep menu active.
+				menu_timeout = current_time + 10
 				if (enc_left_delta<0): #rotating left
-					if (menu_selected > 0):
-						menu_selected -= 1
+					navigate("up")
 				elif (enc_left_delta>0): #rotating right
-					if (menu_selected < len(current_playlist)):
-						menu_selected += 1
+					navigate("down")
 			elif (menu_active == False):
 				menu_purpose = "track"
 				menu_active = True
@@ -197,12 +229,12 @@ def clearscreen():
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 
-lcd.setCursor(0,3)
-lcd.message("Vol -              +")
+lcd.setCursor(7,3)
+lcd.message("Vol["+chr(255)+chr(255)+"       ]")
 
 while True:
 
-	#Shutdown check
+	#Show message on screen when System is shutting down.
 	try:
 		with open('halting'):
 			Popen("rm -f halting", shell=True)
@@ -219,8 +251,13 @@ while True:
 	except IOError:
 		sleep(0)
 
+
 	#if menu is active
 	if (menu_active == True): 
+		if (menu_fristdraw == True):
+			clearscreen()
+			lcd.setCursor(8,0)
+			lcd.message("MENU")
 		print "menu is active"
 
 	#if menu is not active
@@ -230,6 +267,7 @@ while True:
 		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
+			lcd_redraw = False
 			clearscreen() 
 
 		if (current_source == "Spotify"):
