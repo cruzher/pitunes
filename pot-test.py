@@ -11,7 +11,7 @@ def read():
 	return wiper
 
 def write(value):
-	bus.write_byte_data(address, 1, value)
+	bus.write_byte_data(address, -1, value)
 
 while True:
 	print read()
