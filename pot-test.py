@@ -4,7 +4,7 @@ import smbus
 from time import sleep
 
 bus = smbus.SMBus(1)
-addr = Ax2A
+addr = 0x2A
 
 def read():
 	wiper = bus.read_byte_data(address, 3)
