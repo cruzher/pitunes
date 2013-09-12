@@ -11,9 +11,10 @@ def read():
 	return wiper
 
 def write(value):
-	bus.write_byte_data(addr, -1, value)
+	bus.write_byte_data(addr, 1, value)
 
 while True:
 	print read()
+	write (200)
 
 	sleep(1)
