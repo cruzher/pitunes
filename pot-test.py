@@ -1,20 +1,12 @@
 #!/usr/bin/python
 
-import smbus
+from Adafruit_I2C import Adafruit_I2C
 from time import sleep
 
-bus = smbus.SMBus(1)
 addr = 0x2A
-
-def read():
-	wiper = bus.read_byte_data(addr, 3, 0x03)
-	return wiper
-
-def write(value):
-	bus.write_byte_data(addr, 1, value)
+bus = Adafruit_I2C(addr, 1, True)
 
 while True:
-	print read()
-	write (0x01)
+	bus.readU16(addr, 3)
 
 	sleep(1)
