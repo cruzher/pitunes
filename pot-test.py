@@ -7,7 +7,7 @@ bus = smbus.SMBus(1)
 addr = 0x2A
 
 def read():
-	wiper = bus.read_byte_data(addr, 3)
+	wiper = bus.read_byte_data(addr, 3, 0x03)
 	return wiper
 
 def write(value):
@@ -15,6 +15,6 @@ def write(value):
 
 while True:
 	print read()
-	write (200)
+	write (0x01)
 
 	sleep(1)
