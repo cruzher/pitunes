@@ -199,6 +199,9 @@ def checkinputs(): #Will be used as a thread
 		## Right switch pressed ##
 		sleep(.01)
 
+def mopidyread():
+	current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+	sleep(1)
 
 def clearscreen():
 	global lcd_radiostation
@@ -221,6 +224,7 @@ def clearscreen():
 
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
+thread.start_new_thread(mopidyread, ())
 
 lcd.setCursor(9,3)
 lcd.message("Vol"+chr(255)+chr(255)+"      ")
@@ -274,7 +278,6 @@ while True:
 
 	#if menu is not active
 	else: 
-		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 		
 		if (lcd_redraw == True):
 			lcd_redraw = False
