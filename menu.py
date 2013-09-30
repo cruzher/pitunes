@@ -203,7 +203,8 @@ def mopidyread():
 	global current_song
 
 	while (True):
-		current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+		if (current_source == "Spotify"):
+			current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 	
 		sleep(1)
 
@@ -231,7 +232,7 @@ thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
 
 lcd.setCursor(9,3)
-lcd.message("Vol"+chr(255)+chr(255)+"      ")
+lcd.message("Vol"+chr(255)+chr(255)+chr(190)"     ")
 
 while True:
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
