@@ -200,7 +200,10 @@ def checkinputs(): #Will be used as a thread
 		sleep(.01)
 
 def mopidyread():
+	global current_song
+
 	current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+	
 	sleep(1)
 
 def clearscreen():
