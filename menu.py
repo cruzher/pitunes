@@ -232,7 +232,7 @@ thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
 
 lcd.setCursor(9,3)
-lcd.message("Vol"+chr(255)+chr(255)+chr(219)+"     ")
+lcd.message("Vol"+chr(255)+chr(255)+chr(219)+chr(219)+chr(219)+chr(219)+chr(219)+chr(219))
 
 while True:
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
