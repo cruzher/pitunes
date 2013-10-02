@@ -18,7 +18,7 @@ lcd.begin(20, 4)
 lcd.clear()
 
 #Volume control
-i2c = Adafruit_I2C(0x2A, 1, True)
+i2c = Adafruit_I2C(0x2A, 1, False)
 i2c.write8(0x10, 0)
 volume_max = 30
 volume_visual_max = 8
@@ -170,13 +170,13 @@ def checkinputs(): #Will be used as a thread
 					if (current_volume < volume_max):
 						#increase volume
 						current_volume += 1
-						print "Increasing Volume"
+						print "Increasing Volume to " + current_volume
 						i2c.write8(0x10, current_volume)
 				elif (enc_right_delta>0): #rotating right
 					if (current_volume > 0):
 						#decrease volume
 						current_volume -= 1
-						print "Decreasing Volume"
+						print "Decreasing Volume to " + current_volume
 						i2c.write8(0x10, current_volume)
 		## END Right encoder rotating ##
 
