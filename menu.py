@@ -18,10 +18,12 @@ lcd.begin(20, 4)
 lcd.clear()
 
 #Volume control
-i2c = Adafruit_I2C(0x2A, 1, False)
-i2c.write8(0x10, 5) #Default Volumelevel
 volume_max = 60
 volume_visual_max = 8
+volume_default = 5
+i2c = Adafruit_I2C(0x2A, 1, False)
+i2c.write8(0x10, volume_default) #Default Volumelevel
+
 
 
 #Rotary Encoders
