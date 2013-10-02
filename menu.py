@@ -335,9 +335,9 @@ while True:
 				vol_print = "Vol"
 				for i in range(1,8):
 					if (i <= volume_visual):
-						vol_print = vol_print + char(255)
+						vol_print = vol_print + chr(255)
 					else:
-						vol_print = vol_print + char(219)
+						vol_print = vol_print + chr(219)
 				lcd.message(vol_print)
 
 		if (current_source == "Radio"):
