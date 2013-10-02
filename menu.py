@@ -20,6 +20,8 @@ lcd.clear()
 #Volume control
 i2c = Adafruit_I2C(0x2A, 1, True)
 i2c.write8(0x10, 0)
+volume_max = 30
+volume_visual_max = 8
 
 
 #Rotary Encoders
@@ -44,6 +46,7 @@ current_playlist = ["nothing"]
 current_playlist_pos = ""
 current_radiostation = ""
 current_playstatus = ""	#play, stop, pause
+current_volume = 0
 
 #Global Menu
 menu_fristdraw = True
@@ -163,11 +166,17 @@ def checkinputs(): #Will be used as a thread
 		if (enc_right_delta != 0 and enc_right_seq == 2):
 			if (menu_active == False): #if menu is not active
 				if (enc_right_delta<0): #rotating left
-					#increase volume
-					print "Increasing Volume"
+					if (current_volume < volume_max):
+						#increase volume
+						current_volume += 1
+						print "Increasing Volume"
+						i2c.write8(0x10, current_volume)
 				elif (enc_right_delta>0): #rotating right
-					#decrease volume
-					print "Decreasing Volume"
+					if (current_volume > 0):
+						#decrease volume
+						current_volume -= 1
+						print "Decreasing Volume"
+						i2c.write8(0x10, current_volume)
 		## END Right encoder rotating ##
 
 
