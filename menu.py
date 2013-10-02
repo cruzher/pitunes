@@ -72,12 +72,19 @@ lcd_volume = None
 #GPIO
 cheapamp_pin = 27
 lcdbacklight_pin = 22
+atxraspi_pin_in = 24
+atxraspi_pin_out = 23
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(atxraspi_pin_out, GPIO.OUT)
+GPIO.setup(atxraspi_pin_in, GPIO.IN)
 GPIO.setup(cheapamp_pin, GPIO.OUT) #Cheapamp
 GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
-# Initial start of amp and backlight
+# Telling atxraspi boot-finished
+GPIO.output(atxraspi_pin_out, True)
+# Power ON Amp
 GPIO.output(cheapamp_pin, True)
 sleep(1)
+# Power ON LCD Backlight
 GPIO.output(lcdbacklight_pin, True)
 
 def navigate(direction):
@@ -238,6 +245,7 @@ def clearscreen():
 	lcd_song = None
 	lcd_playlist_pos = None
 	lcd_playlist_length = None
+	lcd_volume = None
 
 	#clear LCD
 	lcd.clear()
@@ -251,21 +259,18 @@ while True:
 	current_time = round(time.time())
 
 	#Show message on screen when System is shutting down.
-	try:
-		with open('halting'):
-			Popen("rm -f halting", shell=True)
-			lcd.clear()
-			lcd.setCursor(0,0)
-			lcd.message("+------------------+")
-			lcd.setCursor(0,1)
-			lcd.message("|      SYSTEM      |")
-			lcd.setCursor(0,2)
-			lcd.message("|   SHUTTING DOWN  |")
-			lcd.setCursor(0,3)
-			lcd.message("+------------------+")
-			break
-	except IOError:
-		sleep(0)
+	if (GPIO.input(atxraspi_pin_in)):
+		lcd.clear()
+		lcd.setCursor(0,0)
+		lcd.message("+------------------+")
+		lcd.setCursor(0,1)
+		lcd.message("|      SYSTEM      |")
+		lcd.setCursor(0,2)
+		lcd.message("|   SHUTTING DOWN  |")
+		lcd.setCursor(0,3)
+		lcd.message("+------------------+")
+		Popen("sudo halt", shell=True)
+		break
 
 
 	#if menu is active
