@@ -4,6 +4,9 @@ from Adafruit_I2C import Adafruit_I2C
 from time import sleep
 
 addr = 0x2A
+reg = 0x10
 bus = Adafruit_I2C(addr, 1, True)
 
- bus.readS16(3)
+ bus.write8(reg, 10)
+ sleep(10)
+ bus.write8(reg, 0)
