@@ -16,6 +16,11 @@ lcd = Adafruit_CharLCDPlate()
 lcd.begin(20, 4)
 lcd.clear()
 
+#Volume control
+i2c = Adafruit_I2C(0x2A, 1, True)
+i2c.write8(0x10, 0)
+
+
 #Rotary Encoders
 enc_right_pin_a = 11
 enc_right_pin_b = 10
