@@ -48,7 +48,7 @@ current_playlist = ["nothing"]
 current_playlist_pos = ""
 current_radiostation = ""
 current_playstatus = ""	#play, stop, pause
-current_volume = 0
+current_volume = volume_default
 
 #Global Menu
 menu_fristdraw = True
