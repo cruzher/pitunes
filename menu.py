@@ -66,7 +66,7 @@ lcd_playlist_pos = 0
 lcd_radiostation = "N/A"
 lcd_redraw = False
 lcd_playstatus = ""
-lcd_volume = 0
+lcd_volume = None
 ## END VARIABLES
 
 #GPIO
