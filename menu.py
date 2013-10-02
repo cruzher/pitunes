@@ -133,12 +133,16 @@ def checkinputs(): #Will be used as a thread
 		## Left encoder rotating ##
 		if (enc_left_delta != 0 and enc_left_seq == 2):
 			if (menu_active == True): 
+
 				#Update timeout to keep menu active.
 				menu_timeout = current_time + 10
+
 				if (enc_left_delta<0): #rotating left
 					navigate("up")
+
 				elif (enc_left_delta>0): #rotating right
 					navigate("down")
+
 			elif (menu_active == False):
 				menu_purpose = "track"
 				menu_active = True
@@ -297,9 +301,9 @@ while True:
 			print "deactivating menu"
 			lcd_redraw = True
 			menu_active = False
-			menu_pointer = None
+			menu_pointer = 0
 			menu_fristdraw = True
-			menu_selected = None
+			menu_selected = 0
 
 	#if menu is not active
 	else: 
