@@ -75,7 +75,6 @@ lcdbacklight_pin = 22
 atxraspi_pin_in = 24
 atxraspi_pin_out = 23
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarings(False)
 GPIO.setup(atxraspi_pin_out, GPIO.OUT)
 GPIO.setup(atxraspi_pin_in, GPIO.IN)
 GPIO.setup(cheapamp_pin, GPIO.OUT) #Cheapamp
