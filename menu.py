@@ -109,6 +109,7 @@ def navigate(direction):
 				menu_pointer +=1
 			else:
 				menu_lcd_start +=1
+	print str(menu_pointer) + ' ' + str(menu_lcd_start) + ' ' + str(menu_selected)
 
 def checkinputs(): #Will be used as a thread
 	global current_source
