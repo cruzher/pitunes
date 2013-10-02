@@ -330,7 +330,7 @@ while True:
 			#Update Volume
 			if (current_volume != lcd_volume):
 				lcd.setCursor(9,3)
-				volume_visual = round((volume_max / volume_visual_max) * current_volume)
+				volume_visual = round(current_volume / (volume_max / volume_visual_max))
 				volume_rest = volume_visual_max - volume_visual 
 				vol_print = "Vol"
 				for i in range(1,8):
