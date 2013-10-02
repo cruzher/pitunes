@@ -55,7 +55,7 @@ menu_fristdraw = True
 menu_active = False
 menu_purpose = ""		#track or playlist
 menu_pointer = None
-menu_selected = None
+menu_selected = 0
 menu_timeout = 0
 menu_items = ["row1", "row2", "row3", "row4"]
 
