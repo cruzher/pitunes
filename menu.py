@@ -138,10 +138,10 @@ def checkinputs(): #Will be used as a thread
 				#Update timeout to keep menu active.
 				menu_timeout = current_time + 10
 
-				if (enc_left_delta<0): #rotating left
+				if (enc_left_delta>0): #rotating left
 					navigate("up")
 
-				elif (enc_left_delta>0): #rotating right
+				elif (enc_left_delta<0): #rotating right
 					navigate("down")
 
 			elif (menu_active == False):
