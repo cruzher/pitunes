@@ -333,7 +333,7 @@ while True:
 				volume_visual = round((volume_max / volume_visual_max) * current_volume)
 				volume_rest = volume_visual_max - volume_visual 
 				vol_print = "Vol"
-				for(i=1; i<= 8; i++):
+				for i in range(1,8):
 					if (i <= volume_visual):
 						vol_print = vol_print + char(255)
 					else:
