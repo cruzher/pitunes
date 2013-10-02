@@ -20,7 +20,7 @@ lcd.clear()
 #Volume control
 i2c = Adafruit_I2C(0x2A, 1, False)
 i2c.write8(0x10, 0)
-volume_max = 30
+volume_max = 40
 volume_visual_max = 8
 
 
