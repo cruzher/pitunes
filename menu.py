@@ -8,6 +8,7 @@ from time import sleep
 from datetime import datetime
 import time
 from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
+from Adafruit_I2C import Adafruit_I2C
 import gaugette.rotary_encoder
 import gaugette.switch
 
