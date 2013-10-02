@@ -105,6 +105,7 @@ def checkinputs(): #Will be used as a thread
 	global menu_purpose
 	global menu_timeout
 	global current_playstatus
+	global current_volume
 	left_count = 0
 	left_held = False
 	right_count = 0
