@@ -66,6 +66,7 @@ lcd_playlist_pos = 0
 lcd_radiostation = "N/A"
 lcd_redraw = False
 lcd_playstatus = ""
+lcd_volume = 0
 ## END VARIABLES
 
 #GPIO
@@ -247,9 +248,6 @@ def clearscreen():
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
 
-lcd.setCursor(9,3)
-lcd.message("Vol"+chr(255)+chr(255)+chr(219)+chr(219)+chr(219)+chr(219)+chr(219)+chr(219))
-
 while True:
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
 	current_time = round(time.time())
@@ -328,6 +326,19 @@ while True:
 				lcd.setCursor(0,2)
 				lcd.message(current_song[:20])
 				lcd_song = current_song
+
+			#Update Volume
+			if (current_volume != lcd_volume):
+				lcd.setCursor(9,3)
+				volume_visual = round(volume_max / volume_visual_max) * current_volume)
+				volume_rest = volume_visual_max - volume_visual 
+				vol_print = "Vol"
+				for(i=1; i<= 8; i++):
+					if (i <= volume_visual):
+						vol_print = vol_print + char(255)
+					else:
+						vol_print = vol_print + char(219)
+				lcd.message(vol_print)
 
 		if (current_source == "Radio"):
 			print "Source is Radio"
