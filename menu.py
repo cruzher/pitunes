@@ -170,13 +170,13 @@ def checkinputs(): #Will be used as a thread
 					if (current_volume < volume_max):
 						#increase volume
 						current_volume += 1
-						print "Increasing Volume to " + current_volume
+						print "Increasing Volume to " + str(current_volume)
 						i2c.write8(0x10, current_volume)
 				elif (enc_right_delta>0): #rotating right
 					if (current_volume > 0):
 						#decrease volume
 						current_volume -= 1
-						print "Decreasing Volume to " + current_volume
+						print "Decreasing Volume to " + str(current_volume)
 						i2c.write8(0x10, current_volume)
 		## END Right encoder rotating ##
 
