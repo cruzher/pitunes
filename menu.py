@@ -58,6 +58,7 @@ menu_pointer = 0
 menu_selected = 0
 menu_timeout = 0
 menu_items = ["row1", "row2", "row3", "row4"]
+menu_lcd_start = 0
 
 #Global LCD
 lcd_song = ""
