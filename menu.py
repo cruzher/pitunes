@@ -70,6 +70,7 @@ lcd_radiostation = "N/A"
 lcd_redraw = False
 lcd_playstatus = ""
 lcd_volume = None
+lcd_pointer = 0
 ## END VARIABLES
 
 #GPIO
@@ -100,14 +101,14 @@ def navigate(direction):
 			menu_selected -= 1
 			if (menu_pointer > 1):
 				menu_pointer -= 1
-			else:
+			elif (menu_lcd_start > 0):
 				menu_lcd_start -= 1
 	else:
 		if (menu_selected < len(menu_items) -1):
 			menu_selected += 1
 			if (menu_pointer < 3):
 				menu_pointer +=1
-			else:
+			elif (menu_lcd_start < len(menu_items) -3):
 				menu_lcd_start +=1
 	print str(menu_pointer) + ' ' + str(menu_lcd_start) + ' ' + str(menu_selected)
 
@@ -254,6 +255,7 @@ def clearscreen():
 	lcd_playlist_pos = None
 	lcd_playlist_length = None
 	lcd_volume = None
+	lcd_pointer = 0
 
 	#clear LCD
 	lcd.clear()
@@ -297,6 +299,23 @@ while True:
 			
 		#MENU STUFF
 
+		#MenuPointer
+		if (menu_pointer != lcd_pointer):
+			lcd.setCursor(0,1)
+			lcd.message("  ")
+			lcd.setCursor(0,2)
+			lcd.message("  ")
+			lcd.setCursor(0,3)
+			lcd.message("  ")
+			lcd.setCursor(0,menu_pointer)
+			lcd.message("> ")
+			lcd_pointer = menu_pointer
+
+		lcd.setCursor(3,1)
+		lcd.message("LCD Start " + str(menu_lcd_start))
+		lcd.setCursor(3,2)
+		lcd.message("Selected " + str(menu_selected))
+
 		#Close menu on timeout
 		if (current_time > menu_timeout):
 			print "deactivating menu"
@@ -305,6 +324,7 @@ while True:
 			menu_pointer = 0
 			menu_fristdraw = True
 			menu_selected = 0
+			menu_lcd_start = 0
 
 	#if menu is not active
 	else: 
