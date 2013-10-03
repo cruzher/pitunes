@@ -70,7 +70,7 @@ lcd_radiostation = "N/A"
 lcd_redraw = False
 lcd_playstatus = ""
 lcd_volume = None
-lcd_menu_pointer = 0
+lcd_menu_pointer = -1
 lcd_menu_start = -1
 ## END VARIABLES
 
@@ -256,7 +256,8 @@ def clearscreen():
 	lcd_playlist_pos = None
 	lcd_playlist_length = None
 	lcd_volume = None
-	lcd_menu_pointer = 0
+	lcd_menu_pointer = -1
+	lcd_menu_start = -1
 
 	#clear LCD
 	lcd.clear()
