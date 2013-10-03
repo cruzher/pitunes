@@ -330,7 +330,7 @@ while True:
 			menu_pointer = 1
 			menu_fristdraw = True
 			menu_selected = 0
-			menu_start = -1
+			menu_start = 0
 
 	#if menu is not active
 	else: 
