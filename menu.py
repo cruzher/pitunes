@@ -40,6 +40,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 
 ##VARIABLES
 #Global Main
+current_artist = ""
 current_song = ""
 current_time = ""
 current_datetime = ""
@@ -148,6 +149,7 @@ def checkinputs(): #Will be used as a thread
 
 			elif (menu_active == False):
 				menu_purpose = "track"
+				menu_items = current_playlist
 				menu_active = True
 		## END Left encoder rotating ##
 
@@ -233,10 +235,17 @@ def checkinputs(): #Will be used as a thread
 
 def mopidyread():
 	global current_song
+	global current_playlist
 
 	while (True):
 		if (current_source == "Spotify"):
 			current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+
+			#playlist
+			playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
+			playlist = str(playlist)
+			playlist = playlist[2:-10]
+			current_playlist = playlist.split('\\n')
 	
 		sleep(1)
 
