@@ -19,7 +19,7 @@ lcd.clear()
 
 #Volume control
 volume_max = 60
-volume_visual_max = 8
+volume_visual_max = 18
 volume_default = 5
 i2c = Adafruit_I2C(0x2A, 1, False)
 i2c.write8(0x10, volume_default) #Default Volumelevel
@@ -366,16 +366,16 @@ while True:
 
 			#Update Volume
 			if (current_volume != lcd_volume):
-				lcd.setCursor(9,3)
+				lcd.setCursor(0,3)
 				volume_visual = round(current_volume / (volume_max / volume_visual_max))
 				volume_rest = volume_visual_max - volume_visual 
-				vol_print = "Vol"
-				for i in range(1,9):
+				vol_print = "-"
+				for i in range(1,19):
 					if (i <= volume_visual):
 						vol_print = vol_print + chr(255)
 					else:
 						vol_print = vol_print + chr(219)
-				lcd.message(vol_print)
+				lcd.message(vol_print+"+")
 
 		if (current_source == "Radio"):
 			print "Source is Radio"
