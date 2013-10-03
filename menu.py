@@ -58,7 +58,7 @@ menu_pointer = 0
 menu_selected = 0
 menu_timeout = 0
 menu_items = ["row1", "row2", "row3", "row4"]
-menu_lcd_start = 0
+menu_start = 0
 
 #Global LCD
 lcd_song = ""
@@ -70,7 +70,8 @@ lcd_radiostation = "N/A"
 lcd_redraw = False
 lcd_playstatus = ""
 lcd_volume = None
-lcd_pointer = 0
+lcd_menu_pointer = 0
+lcd_menu_start = -1
 ## END VARIABLES
 
 #GPIO
@@ -94,23 +95,23 @@ GPIO.output(lcdbacklight_pin, True)
 def navigate(direction):
 	global menu_selected
 	global menu_pointer
-	global menu_lcd_start
+	global menu_start
 
 	if (direction == "up"):
 		if (menu_selected > 0):
 			menu_selected -= 1
 			if (menu_pointer > 1):
 				menu_pointer -= 1
-			elif (menu_lcd_start > 0):
-				menu_lcd_start -= 1
+			elif (menu_start > 0):
+				menu_start -= 1
 	else:
 		if (menu_selected < len(menu_items) -1):
 			menu_selected += 1
 			if (menu_pointer < 3):
 				menu_pointer +=1
-			elif (menu_lcd_start < len(menu_items) -3):
-				menu_lcd_start +=1
-	print str(menu_pointer) + ' ' + str(menu_lcd_start) + ' ' + str(menu_selected)
+			elif (menu_start < len(menu_items) -3):
+				menu_start +=1
+	print str(menu_pointer) + ' ' + str(menu_start) + ' ' + str(menu_selected)
 
 def checkinputs(): #Will be used as a thread
 	global current_source
@@ -255,7 +256,7 @@ def clearscreen():
 	lcd_playlist_pos = None
 	lcd_playlist_length = None
 	lcd_volume = None
-	lcd_pointer = 0
+	lcd_menu_pointer = 0
 
 	#clear LCD
 	lcd.clear()
@@ -296,11 +297,12 @@ while True:
 				lcd.setCursor(5,0)
 				lcd.message("Playlists")
 			print "menu is active"
-			
-		#MENU STUFF
+		############	
+		#MENU STUFF#
+		############
 
 		#MenuPointer
-		if (menu_pointer != lcd_pointer):
+		if (menu_pointer != lcd_menu_pointer):
 			lcd.setCursor(0,1)
 			lcd.message("  ")
 			lcd.setCursor(0,2)
@@ -309,12 +311,15 @@ while True:
 			lcd.message("  ")
 			lcd.setCursor(0,menu_pointer)
 			lcd.message("> ")
-			lcd_pointer = menu_pointer
+			lcd_menu_pointer = menu_pointer
 
-		lcd.setCursor(3,1)
-		lcd.message("LCD Start " + str(menu_lcd_start))
-		lcd.setCursor(3,2)
-		lcd.message("Selected " + str(menu_selected))
+		if (menu_start != lcd_menu_start):
+			for i in range(0,3):
+				lcd.setCursor(2,i)
+				lcd.message("                  ")
+				lcd.setCursor(2, i)
+				lcd.message(menu_items[menu_start + i][:18])
+			lcd_menu_start = menu_start
 
 		#Close menu on timeout
 		if (current_time > menu_timeout):
@@ -324,7 +329,7 @@ while True:
 			menu_pointer = 0
 			menu_fristdraw = True
 			menu_selected = 0
-			menu_lcd_start = 0
+			menu_start = 0
 
 	#if menu is not active
 	else: 
