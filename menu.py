@@ -117,6 +117,7 @@ def navigate(direction):
 def checkinputs(): #Will be used as a thread
 	global current_source
 	global menu_active
+	global menu_items
 	global menu_purpose
 	global menu_timeout
 	global current_playstatus
