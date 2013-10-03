@@ -314,7 +314,7 @@ while True:
 			lcd_menu_pointer = menu_pointer
 
 		if (menu_start != lcd_menu_start):
-			for i in range(0,3):
+			for i in range(1,4):
 				lcd.setCursor(2,i)
 				lcd.message("                  ")
 				lcd.setCursor(2, i)
