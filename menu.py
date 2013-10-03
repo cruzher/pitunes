@@ -327,10 +327,10 @@ while True:
 			print "deactivating menu"
 			lcd_redraw = True
 			menu_active = False
-			menu_pointer = 0
+			menu_pointer = 1
 			menu_fristdraw = True
 			menu_selected = 0
-			menu_start = 0
+			menu_start = -1
 
 	#if menu is not active
 	else: 
