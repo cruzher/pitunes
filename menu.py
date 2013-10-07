@@ -292,6 +292,7 @@ while True:
 		lcd.message("|   SHUTTING DOWN  |")
 		lcd.setCursor(0,3)
 		lcd.message("+------------------+")
+		i2c.write8(0x10, 0)
 		Popen("sudo halt", shell=True)
 		break
 
