@@ -272,6 +272,12 @@ def clearscreen():
 	lcd.clear()
 
 def closeMenu():
+	global menu_active
+	global menu_pointer
+	global menu_fristdraw
+	global menu_selected
+	global menu_start
+	global lcd_redraw
 	print "deactivating menu"
 	lcd_redraw = True
 	menu_active = False
