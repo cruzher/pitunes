@@ -163,6 +163,7 @@ def checkinputs(): #Will be used as a thread
 				if (menu_active == True):
 					#choose selected item
 					print menu_items[menu_selected]
+					closeMenu()
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
@@ -270,6 +271,15 @@ def clearscreen():
 	#clear LCD
 	lcd.clear()
 
+def closeMenu():
+	print "deactivating menu"
+	lcd_redraw = True
+	menu_active = False
+	menu_pointer = 1
+	menu_fristdraw = True
+	menu_selected = 0
+	menu_start = 0
+
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
@@ -338,13 +348,7 @@ while True:
 
 		#Close menu on timeout
 		if (current_time > menu_timeout):
-			print "deactivating menu"
-			lcd_redraw = True
-			menu_active = False
-			menu_pointer = 1
-			menu_fristdraw = True
-			menu_selected = 0
-			menu_start = 0
+			closeMenu()
 
 	#if menu is not active
 	else: 
