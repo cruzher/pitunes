@@ -256,6 +256,7 @@ def clearscreen():
 	global lcd_song
 	global lcd_playlist_pos
 	global lcd_playlist_length
+	global lcd_menu_start
 
 	#reset lcd variables
 	lcd_radiostation = None
