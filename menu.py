@@ -373,7 +373,6 @@ while True:
 				lcd.setCursor(0,0)
 				lcd.message(current_datetime)
 				lcd_datetime = current_datetime
-				print "time: "+current_datetime
 
 			#Print Source
 			if (current_source != lcd_source):
