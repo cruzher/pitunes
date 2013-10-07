@@ -162,6 +162,7 @@ def checkinputs(): #Will be used as a thread
 			if (left_count >0 and left_count < 50): #button is pressed once
 				if (menu_active == True):
 					#choose selected item
+					Popen("mpc play "+str(menu_selected+1), shell=True, stdout=PIPE).stdout.read()
 					print menu_items[menu_selected]
 					closeMenu()
 				else:
