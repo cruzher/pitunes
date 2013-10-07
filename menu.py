@@ -164,6 +164,7 @@ def checkinputs(): #Will be used as a thread
 					#choose selected item
 					print menu_items[menu_selected]
 					closeMenu()
+					sleep(0.5) #to prevent false positive on button.
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
