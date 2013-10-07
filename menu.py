@@ -245,7 +245,7 @@ def mopidyread():
 			#playlist
 			playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
 			playlist = str(playlist)
-			#playlist = playlist[2:-10]
+			playlist = playlist[2:-10]
 			current_playlist = playlist.split('\n')
 			print len(current_playlist)
 	
