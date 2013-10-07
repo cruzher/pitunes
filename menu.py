@@ -247,7 +247,7 @@ def mopidyread():
 			playlist = str(playlist)
 			#playlist = playlist[2:-10]
 			current_playlist = playlist.split('\\n')
-			print len(current_playlist)
+			print current_playlist
 	
 		sleep(1)
 
