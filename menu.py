@@ -162,7 +162,7 @@ def checkinputs(): #Will be used as a thread
 			if (left_count >0 and left_count < 50): #button is pressed once
 				if (menu_active == True):
 					#choose selected item
-					print "choosing selected item"
+					print menu_items[menu_selected]
 				if (menu_active == False):
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
@@ -331,6 +331,10 @@ while True:
 				lcd.setCursor(2, i+1)
 				lcd.message(menu_items[menu_start + i][:18])
 			lcd_menu_start = menu_start
+
+		###################
+		# MENU STUFF ENDS #
+		################### 
 
 		#Close menu on timeout
 		if (current_time > menu_timeout):
