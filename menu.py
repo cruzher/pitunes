@@ -293,6 +293,7 @@ while True:
 		lcd.setCursor(0,3)
 		lcd.message("+------------------+")
 		i2c.write8(0x10, 0)
+		GPIO.output(cheapamp_pin, False) #Turn off Amp
 		Popen("sudo halt", shell=True)
 		break
 
