@@ -164,7 +164,7 @@ def checkinputs(): #Will be used as a thread
 					#choose selected item
 					print menu_items[menu_selected]
 					closeMenu()
-				else
+				else:
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
 						menu_purpose = "playlist"
