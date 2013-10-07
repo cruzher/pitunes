@@ -112,7 +112,6 @@ def navigate(direction):
 				menu_pointer +=1
 			elif (menu_start < len(menu_items) -3):
 				menu_start +=1
-	print str(menu_pointer) + ' ' + str(menu_start) + ' ' + str(menu_selected)
 
 def checkinputs(): #Will be used as a thread
 	global current_source
@@ -245,10 +244,8 @@ def mopidyread():
 			#playlist
 			playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
 			playlist = str(playlist)
-			playlist = playlist[2:-10]
-			current_playlist = playlist.split('\n')
-			print len(current_playlist)
-	
+			playlist = playlist[:-10]
+			current_playlist = playlist.split('\n')	
 		sleep(1)
 
 def clearscreen():
