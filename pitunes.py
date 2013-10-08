@@ -387,6 +387,8 @@ while True:
 			#Update Song
 			if (current_song != lcd_song):
 				lcd.setCursor(0,2)
+				lcd.message("                    ")
+				lcd.setCursor(0,2)
 				lcd.message(current_song[:20])
 				lcd_song = current_song
 
