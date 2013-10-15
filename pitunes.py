@@ -48,7 +48,7 @@ current_source = "Spotify"
 current_playlist = ["nothing"]
 current_playlist_pos = ""
 current_radiostation = ""
-current_playstatus = ""	#play, stop, pause
+current_playstatus = False	#play, stop, pause
 current_volume = volume_default
 
 #Global Menu
