@@ -53,13 +53,16 @@ chmod +x shairport.sh
 ./shairport.sh piTunes
 rm shairport.sh
 
-#echo "(10/) INSTALLING WEBSERVICE"
-#sudo aptitude install -y apache2 mysql-server phpmyadmin > /dev/null
+echo "(09/) INSTALLING WEBSERVICE"
+sudo apt-get install -y lighttpd
+sudo apt-get install -y php5-common php5-cgi php5
+sudo lighty-enable-mod fastcgi-php
+sudo service lighttpd force-reload
 
-#echo "(11/) COPY WEBGUI TO APACHE-ROOT"
-#sudo chmod 777 /var/www
-#rm -rf /var/www/*
-#cp -R pitunes/webgui/* /var/www/
+echo "(10/) COPY WEBGUI TO APACHE-ROOT"
+sudo chmod 777 /var/www
+rm -rf /var/www/*
+cp -R pitunes/webgui/* /var/www/
 
 #echo "(12/) START PITUNES.PY ON BOOT"
 #sudo sed -i "/exit 0/ c\ " /etc/rc.local
