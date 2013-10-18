@@ -54,7 +54,10 @@ rm shairport.sh
 
 echo "(09/) INSTALLING WEBSERVICE"
 sudo apt-get install -y lighttpd
+sudo apt-get install -y mysql-server
 sudo apt-get install -y php5-common php5-cgi php5
+sudo apt-get install -y php5-mysql
+sudo apt-get install -y phpmyadmin
 sudo lighty-enable-mod fastcgi-php
 sudo service lighttpd force-reload
 
