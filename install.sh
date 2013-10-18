@@ -21,8 +21,7 @@ echo "(03/) INSTALLING DEPENDENCIES"
 sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools mpc screen
 
 echo "(04/) INSTALLING WIRINGPI2"
-git clone git://git.drogon.net/wiringPi
-cd wiringPi
+cd $HOME/pitunes/wiringPi/
 ./build
 cd ..
 
