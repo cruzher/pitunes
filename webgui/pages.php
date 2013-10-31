@@ -118,19 +118,20 @@
 				$a = str_replace(" ", "", $line[0]);
 				$b = str_replace(" ", "", $line[1]);
 				$b = str_replace("\"", "", $b);
+				if (strpos($wifi, "Quality=")) {$endofnetwork = True} else {$endofnetwork = False}
 				
 				if ($a == "ESSID") { $ssid = $b; }
 				if ($a == "Encryptionkey") { $encryption = $b; }
-				if ($encryption != "off") {		
-					if ($a == "IE") { 
+				if ($endofnetwork) { 
+					if ($encryption != "off") {		
 						if (strpos($b, 'WPA2')) {
 							$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "wpa2");
 							array_push($networks, $network);
 						}
+					} else {
+						$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "");
+						array_push($networks, $network);
 					}
-				} else {
-					$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "");
-					array_push($networks, $network);
 				}
 			}
 			
