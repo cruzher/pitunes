@@ -53,7 +53,8 @@ chmod +x shairport.sh
 rm shairport.sh
 
 echo "(09/10) INSTALLING WEBSERVICE"
-sudo apt-get install -y apache2 php5 mysql-server phpmyadmin
+sudo apt-get install -y apache2 php5 mysql-server
+sudo apt-get install -y phpmyadmin #Not needed in final version
 
 echo "(10/10) COPY WEBGUI TO APACHE-ROOT"
 sudo chmod 777 /var/www
