@@ -120,12 +120,17 @@
 				$b = str_replace("\"", "", $b);
 				
 				if ($a == "ESSID") { $ssid = $b; }
-				if ($a == "Encryptionkey") { $encryption = $b; }				
-				if ($a == "IE") { 
-					if (strpos($b, 'WPA2')) {
-						$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "wpa2");
-						array_push($networks, $network);
+				if ($a == "Encryptionkey") { $encryption = $b; }
+				if ($encryption != "off") {		
+					if ($a == "IE") { 
+						if (strpos($b, 'WPA2')) {
+							$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "wpa2");
+							array_push($networks, $network);
+						}
 					}
+				} else {
+					$network = array("ssid" => $ssid, "encryption" => $encryption, "key" => "");
+					array_push($networks, $network);
 				}
 			}
 			
