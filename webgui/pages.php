@@ -118,7 +118,7 @@
 				$a = str_replace(" ", "", $line[0]);
 				$b = str_replace(" ", "", $line[1]);
 				$b = str_replace("\"", "", $b);
-				if (strpos($wifi, "Quality=")) {$endofnetwork = True} else {$endofnetwork = False}
+				if (strpos($wifi, "Quality=")) {$endofnetwork = True;} else {$endofnetwork = False;}
 				
 				if ($a == "ESSID") { $ssid = $b; }
 				if ($a == "Encryptionkey") { $encryption = $b; }
