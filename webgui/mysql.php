@@ -1,5 +1,5 @@
 <?php
 
-	mysql_connect("localhost", "piduino", "piduino");
-	mysql_select_db("piduino");
+	mysql_connect("localhost", "pitunes", "pitunes");
+	mysql_select_db("pitunes");
 ?>
