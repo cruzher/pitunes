@@ -319,7 +319,6 @@ while (mopidy_is_running == False):
 	sleep(1)
 
 while True:
-	print "mekk"
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
 	current_time = round(time.time())
 
