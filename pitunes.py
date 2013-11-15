@@ -257,7 +257,7 @@ def mopidyread():
 					current_playlist = playlist.split('\n')
 			else:
 				spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
-				if (spotify_check == True):
+				if (spotify_check != ""):
 					print "Connected to spotify"
 					connected_to_spotify = True
 		else:
