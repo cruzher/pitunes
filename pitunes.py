@@ -308,15 +308,17 @@ thread.start_new_thread(mopidyread, ())
 
 #INIT MODE
 lcd.clear()
-lcd.setCursor(0,0)
+lcd.setCursor(3,0)
+lcd.message("STARTING UP.")
+lcd.setCursor(0,1)
 lcd.message("Mopidy          [  ]")
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 	if (mopidy_check != ""):
-		lcd.setCursor(17,0)
+		lcd.setCursor(17,1)
 		lcd.message("OK")
 		mopidy_is_running = True
-		sleep(5)
+		sleep(2)
 	sleep(1)
 
 while True:
