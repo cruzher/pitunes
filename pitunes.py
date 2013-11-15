@@ -306,7 +306,7 @@ thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
 
 
-#INIT MODE
+#INIT
 lcd.clear()
 lcd.setCursor(4,0)
 lcd.message("STARTING UP.")
@@ -323,6 +323,9 @@ while (mopidy_is_running == False):
 		mopidy_is_running = True
 		sleep(2)
 	sleep(1)
+
+lcd.clear()
+#INIT END
 
 while True:
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
