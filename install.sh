@@ -58,9 +58,14 @@ sudo apt-get install -y phpmyadmin #Not needed in final version
 
 echo "(10/10) CONFIGURING APACHE2"
 #Change User to pi
+
 #Change DocumentRoot to webgui
+
 #remove lock folder
+
 #restart apache
+
+#createtables
 
 #echo "(12/) START PITUNES.PY ON BOOT"
 #sudo sed -i "/exit 0/ c\ " /etc/rc.local

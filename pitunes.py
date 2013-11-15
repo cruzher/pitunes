@@ -245,26 +245,21 @@ def mopidyread():
 	global connected_to_spotify
 
 	while (True):
-		if (mopidy_is_running == True):
+		if (current_source == "Spotify"):
 			if (connected_to_spotify == True):
-				if (current_source == "Spotify"):
-					current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+				current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 
-					#playlist
-					playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
-					playlist = str(playlist)
-					playlist = playlist[:-10]
-					current_playlist = playlist.split('\n')
-			else:
-				spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
-				if (spotify_check != ""):
-					print "Connected to spotify"
-					connected_to_spotify = True
-		else:
-			mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
-			if (mopidy_check != ""):
-				print "Mopidy is running"
-				mopidy_is_running = True
+				#playlist
+				playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
+				playlist = str(playlist)
+				playlist = playlist[:-10]
+				current_playlist = playlist.split('\n')
+
+		if (connected_to_spotify == False):
+			spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+			if (spotify_check != ""):
+				print "Connected to spotify"
+				connected_to_spotify = True
 		sleep(1)
 
 def clearscreen():
@@ -309,6 +304,19 @@ def closeMenu():
 #Staring Threads
 thread.start_new_thread(checkinputs, ())
 thread.start_new_thread(mopidyread, ())
+
+
+#INIT MODE
+lcd.clear()
+lcd.setCursor(0,0)
+lcd.message("Mopidy          [  ]")
+while (mopidy_is_running == False):
+	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+	if (mopidy_check != ""):
+		lcd.setCursor(0,18)
+		lcd.message("OK")
+		mopidy_is_running = True
+	sleep(1)
 
 while True:
 	current_datetime = datetime.now().strftime("%Y-%m-%d     %H:%M")
