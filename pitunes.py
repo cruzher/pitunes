@@ -313,9 +313,10 @@ lcd.message("Mopidy          [  ]")
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 	if (mopidy_check != ""):
-		lcd.setCursor(18,0)
+		lcd.setCursor(17,0)
 		lcd.message("OK")
 		mopidy_is_running = True
+		sleep(5)
 	sleep(1)
 
 while True:
