@@ -311,8 +311,9 @@ lcd.setCursor(0,1)
 lcd.message("Network         [  ]")
 lcd.setCursor(0,2)
 lcd.message("Mopidy          [  ]")
-lcd.setCursor(0,3)
-lcd.message("Spotify         [  ]")
+if (spotify_active == True):
+	lcd.setCursor(0,3)
+	lcd.message("Spotify         [  ]")
 
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
