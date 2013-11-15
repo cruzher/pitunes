@@ -64,7 +64,6 @@ echo "(10/10) CONFIGURING APACHE2"
 #remove lock folder
 
 #restart apache
-
 #createtables
 
 #echo "(12/) START PITUNES.PY ON BOOT"
