@@ -40,6 +40,9 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 
 ##VARIABLES
 #Global Main
+connected_to_network = False
+connected_to_spotify = False
+mopidy_is_running = False
 current_artist = ""
 current_song = ""
 current_time = ""
@@ -240,14 +243,21 @@ def mopidyread():
 	global current_playlist
 
 	while (True):
-		if (current_source == "Spotify"):
-			current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+		if (mopidy_is_running == True):
+			if (current_source == "Spotify"):
+				current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 
-			#playlist
-			playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
-			playlist = str(playlist)
-			playlist = playlist[:-10]
-			current_playlist = playlist.split('\n')	
+				#playlist
+				playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
+				playlist = str(playlist)
+				playlist = playlist[:-10]
+				current_playlist = playlist.split('\n')
+		else:
+			print "Waiting for Mopidy to start"
+			mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+			if (mopidy_check != ""):
+				print "Mopidy is running"
+				mopidy_is_running = True
 		sleep(1)
 
 def clearscreen():
