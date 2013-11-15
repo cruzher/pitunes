@@ -302,10 +302,6 @@ def closeMenu():
 	menu_selected = 0
 	menu_start = 0
 
-#Staring Threads
-thread.start_new_thread(checkinputs, ())
-thread.start_new_thread(mopidyread, ())
-
 
 #INIT
 lcd.clear()
@@ -330,7 +326,7 @@ if (spotify_active == True):
 	while (connected_to_spotify == False):
 		spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 		if (spotify_check != ""):
-			lcd.setCursor(18,3)
+			lcd.setCursor(17,3)
 			lcd.message("OK")
 			connected_to_spotify = True
 	sleep(1)
@@ -339,6 +335,11 @@ if (spotify_active == True):
 Popen("mpc load Starred", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 sleep(2)
 lcd.clear()
+
+#Staring Threads
+thread.start_new_thread(checkinputs, ())
+thread.start_new_thread(mopidyread, ())
+
 #INIT END
 
 while True:
