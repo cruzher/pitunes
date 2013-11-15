@@ -245,16 +245,21 @@ def mopidyread():
 
 	while (True):
 		if (mopidy_is_running == True):
-			if (current_source == "Spotify"):
-				current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+			if (connected_to_spotify == True):
+				if (current_source == "Spotify"):
+					current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
 
-				#playlist
-				playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
-				playlist = str(playlist)
-				playlist = playlist[:-10]
-				current_playlist = playlist.split('\n')
+					#playlist
+					playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
+					playlist = str(playlist)
+					playlist = playlist[:-10]
+					current_playlist = playlist.split('\n')
+			else:
+				spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+				if (spotify_check == True):
+					print "Connected to spotify"
+					connected_to_spotify = True
 		else:
-			print "Waiting for Mopidy to start"
 			mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 			if (mopidy_check != ""):
 				print "Mopidy is running"
