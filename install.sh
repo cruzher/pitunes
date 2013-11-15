@@ -39,7 +39,7 @@ sudo python setup.py install
 cd ..
 
 echo "(07/10) INSTALLING MOPIDY"
-sudo apt-get install -y mopidy
+sudo apt-get install -y mopidy mopidy-spotify
 mkdir $HOME/.config/mopidy
 cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
 sudo sed -i "/exit 0/ c\ " /etc/rc.local
@@ -56,10 +56,11 @@ echo "(09/10) INSTALLING WEBSERVICE"
 sudo apt-get install -y apache2 php5 mysql-server
 sudo apt-get install -y phpmyadmin #Not needed in final version
 
-echo "(10/10) COPY WEBGUI TO APACHE-ROOT"
-sudo chmod 777 /var/www
-rm -rf /var/www/*
-cp -R pitunes/webgui/* /var/www/
+echo "(10/10) CONFIGURING APACHE2"
+#Change User to pi
+#Change DocumentRoot to webgui
+#remove lock folder
+#restart apache
 
 #echo "(12/) START PITUNES.PY ON BOOT"
 #sudo sed -i "/exit 0/ c\ " /etc/rc.local
