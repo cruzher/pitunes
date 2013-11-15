@@ -40,6 +40,7 @@ sw_left = gaugette.switch.Switch(sw_left_pin)
 
 ##VARIABLES
 #Global Main
+spotify_active = True
 connected_to_network = False
 connected_to_spotify = False
 mopidy_is_running = False
@@ -314,6 +315,8 @@ lcd.setCursor(0,1)
 lcd.message("Network         [  ]")
 lcd.setCursor(0,2)
 lcd.message("Mopidy          [  ]")
+lcd.setCursor(0,3)
+lcd.message("Spotify         [  ]")
 
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
@@ -321,9 +324,20 @@ while (mopidy_is_running == False):
 		lcd.setCursor(17,2)
 		lcd.message("OK")
 		mopidy_is_running = True
-		sleep(2)
 	sleep(1)
 
+if (spotify_active == True):
+	while (connected_to_spotify == False):
+		spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+		if (spotify_check != ""):
+			lcd.setCursor(18,3)
+			lcd.message("OK")
+			connected_to_spotify = True
+	sleep(1)
+
+#Remove this later
+Popen("mpc load Starred", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+sleep(2)
 lcd.clear()
 #INIT END
 
