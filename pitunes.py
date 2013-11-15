@@ -242,6 +242,7 @@ def mopidyread():
 	global current_song
 	global current_playlist
 	global mopidy_is_running
+	global connected_to_spotify
 
 	while (True):
 		if (mopidy_is_running == True):
