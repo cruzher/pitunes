@@ -241,6 +241,7 @@ def checkinputs(): #Will be used as a thread
 def mopidyread():
 	global current_song
 	global current_playlist
+	global mopidy_is_running
 
 	while (True):
 		if (mopidy_is_running == True):
