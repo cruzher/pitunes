@@ -2,11 +2,13 @@
 	mysql_connect("localhost", "pitunes", "pitunes");
 	mysql_select_db("pitunes");
 	
-	$spotify = mysql_fetch_assoc(mysql_query("SELECT available_playlists FROM general"));
-	$playlists = explode(",", $spotify['available_playlists']);
-	foreach ($playlists as $playlist) {
-		echo $playlist.'
+	if (isset($_GET['spotify'])) {
+		$spotify = mysql_fetch_assoc(mysql_query("SELECT available_playlists FROM general"));
+		$playlists = explode(",", $spotify['available_playlists']);
+		foreach ($playlists as $playlist) {
+			echo $playlist.'
 ';
+		}
 	}
 	
 	if (isset($_GET['radio'])) {
