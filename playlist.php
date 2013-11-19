@@ -2,7 +2,7 @@
 	mysql_connect("localhost", "pitunes", "pitunes");
 	mysql_select_db("pitunes");
 	
-	if (isset(getopt('spotify:'))) {
+	if (getopt('spotify')) {
 		$spotify = mysql_fetch_assoc(mysql_query("SELECT available_playlists FROM general"));
 		$playlists = explode(",", $spotify['available_playlists']);
 		foreach ($playlists as $playlist) {
