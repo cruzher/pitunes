@@ -11,7 +11,7 @@
 		}
 	}
 	
-	if (isset($_GET['radio'])) {
+	if (getopt('radio')) {
 		$mysql = mysql_query("SELECT * FROM radiostations");
 		while($radio = mysql_fetch_assoc($mysql)){
 			echo $radio['url'].'
