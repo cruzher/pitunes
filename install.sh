@@ -58,13 +58,20 @@ sudo apt-get install -y phpmyadmin #Not needed in final version
 
 echo "(10/10) CONFIGURING APACHE2"
 #Change User to pi
+sudo sed -i "/export APACHE_RUN_USER=/ c\export APACHE_RUN_USER=pi" /etc/apache2/envvars
+sudo sed -i "/export APACHE_RUN_GROUP=/ c\export APACHE_RUN_GROUP=pi" /etc/apache2/envvars
 
 #Change DocumentRoot to webgui
+sudo sed -i "/DocumentRoot / c\	DocumentRoot \/home\/pi\/pitunes\/webgui" /etc/apache2/sites-enabled/000-default
 
 #remove lock folder
+sudo rm -rf /var/lock/apache2/
 
 #restart apache
-#createtables
+sudo service apache2 restart
+
+#Create user, database and tables.
+
 
 #echo "(12/) START PITUNES.PY ON BOOT"
 #sudo sed -i "/exit 0/ c\ " /etc/rc.local
