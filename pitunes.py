@@ -173,7 +173,7 @@ def checkinputs(): #Will be used as a thread
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
 						menu_purpose = "playlist"
-						playlists = Popen("php5 playlists.php -spotify", shell=True, stdout=PIPE).stdout.read()
+						playlists = Popen("php5 playlist.php -spotify", shell=True, stdout=PIPE).stdout.read()
 						menu_items = playlists.split('\n')
 						menu_active = True
 					if (current_source == "Radio"):
