@@ -4,7 +4,7 @@
 	
 	$spotify = mysql_fetch_assoc(mysql_query("SELECT * FROM general WHERE group='spotify' AND setting='available_playlists'"));
 	$playlists = explode($spotify['value'], ",");
-	foreach ($playlist in $playlists) {
+	foreach ($playlists as $playlist) {
 		echo $playlist.'
 ';
 	}
