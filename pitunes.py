@@ -171,7 +171,7 @@ def checkinputs(): #Will be used as a thread
 						print menu_items[menu_selected]
 					if (menu_purpose == "playlist"):
 						Popen("mpc clear", shell=True, stdout=PIPE).stdout.read()
-						Popen("mpc load "+ menu_items[menu_selected], shell=True, stdout=PIPE).stdout.read()
+						Popen("mpc load \"" + menu_items[menu_selected] + "\"", shell=True, stdout=PIPE).stdout.read()
 						Popen("mpc play 1", shell=True, stdout=PIPE).stdout.read()
 						print "Loading playlist: " + menu_items[menu_selected]
 					closeMenu()
