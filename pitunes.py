@@ -340,9 +340,6 @@ if (spotify_active == True):
 			connected_to_spotify = True
 	sleep(1)
 
-#Remove this later
-Popen("mpc load Starred", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
-sleep(2)
 lcd.clear()
 
 #Staring Threads
@@ -358,14 +355,14 @@ while True:
 	#Show message on screen when System is shutting down.
 	if (GPIO.input(atxraspi_pin_in)):
 		lcd.clear()
-		lcd.setCursor(0,0)
-		lcd.message("+------------------+")
+		#lcd.setCursor(0,0)
+		#lcd.message("+------------------+")
 		lcd.setCursor(0,1)
-		lcd.message("|      SYSTEM      |")
+		lcd.message("       SYSTEM")
 		lcd.setCursor(0,2)
-		lcd.message("|   SHUTTING DOWN  |")
-		lcd.setCursor(0,3)
-		lcd.message("+------------------+")
+		lcd.message("    SHUTTING DOWN")
+		#lcd.setCursor(0,3)
+		#lcd.message("+------------------+")
 		i2c.write8(0x10, 0)
 		GPIO.output(cheapamp_pin, False) #Turn off Amp
 		Popen("sudo halt", shell=True)
