@@ -166,8 +166,14 @@ def checkinputs(): #Will be used as a thread
 			if (left_count >0 and left_count < 50): #button is pressed once
 				if (menu_active == True):
 					#choose selected item
-					Popen("mpc play "+str(menu_selected+1), shell=True, stdout=PIPE).stdout.read()
-					print menu_items[menu_selected]
+					if (menu_purpose == "track"):
+						Popen("mpc play "+str(menu_selected+1), shell=True, stdout=PIPE).stdout.read()
+						print menu_items[menu_selected]
+					if (menu_purpose == "playlist"):
+						Popen("mpc clear", shell=True, stdout=PIPE).stdout.read()
+						Popen("mpc load "+ menu_items[menu_selected], shell=True, stdout=PIPE).stdout.read()
+						Popen("mpc play 1", shell=True, stdout=PIPE).stdout.read()
+						print "Loading playlist: " + menu_items[menu_selected]
 					closeMenu()
 				else:
 					if (current_source == "Spotify"):
