@@ -77,6 +77,8 @@ lcd_playstatus = ""
 lcd_volume = None
 lcd_menu_pointer = -1
 lcd_menu_start = -1
+lcd_scroll_counter = 0
+lcd_scroll_pos = 0
 ## END VARIABLES
 
 #GPIO
@@ -435,10 +437,6 @@ while True:
 				lcd.message(current_source)
 				lcd_source = current_source
 
-			#Update Songposition
-			if (current_playlist_pos != lcd_playlist_pos):
-				lcd.setCursor(0,10)
-
 			#Update Song
 			if (current_song != lcd_song):
 				lcd.setCursor(0,2)
@@ -446,6 +444,18 @@ while True:
 				lcd.setCursor(0,2)
 				lcd.message(current_song[:20])
 				lcd_song = current_song
+
+			#Scroll Song if longer then 20.
+			if (len(lcd_song) > 20):
+				if (lcd_scroll_counter >= 3):
+					start = lcd_scroll_pos + 1
+					end = start + 18
+					lcd.setCursor(0,2)
+					lcd.message(lcd_song[start:end])
+					lcd_scroll_pos += 1
+					lcd_scroll_counter = 0
+				else:
+					lcd_scroll_counter += 1
 
 			#Update Volume
 			if (current_volume != lcd_volume):
