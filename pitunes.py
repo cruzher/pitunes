@@ -79,6 +79,7 @@ lcd_menu_pointer = -1
 lcd_menu_start = -1
 lcd_scroll_counter = 0
 lcd_scroll_pos = 0
+lcd_scroll_str = ""
 ## END VARIABLES
 
 #GPIO
@@ -447,12 +448,16 @@ while True:
 
 			#Scroll Song if longer then 20.
 			if (len(lcd_song) > 20):
-				if (lcd_scroll_counter >= 3):
+				lcd_scroll_str = lcd_song + " " + lcd_song
+				if (lcd_scroll_counter >= 5):
 					start = lcd_scroll_pos + 1
 					end = start + 18
 					lcd.setCursor(0,2)
 					lcd.message(lcd_song[start:end])
-					lcd_scroll_pos += 1
+					if (lcd_scroll_pos >= len(lcd_song)):
+						lcd_scroll_pos = 0
+					else:
+						lcd_scroll_pos += 1
 					lcd_scroll_counter = 0
 				else:
 					lcd_scroll_counter += 1
