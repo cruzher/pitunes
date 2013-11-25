@@ -454,7 +454,7 @@ while True:
 					end = start + 20
 					lcd.setCursor(0,2)
 					lcd.message(lcd_scroll_str[start:end])
-					if (lcd_scroll_pos == len(lcd_song)):
+					if (start >= len(lcd_song)):
 						lcd_scroll_pos = 0
 					else:
 						lcd_scroll_pos += 1
