@@ -449,9 +449,9 @@ while True:
 			#Scroll Song if longer then 20.
 			if (len(lcd_song) > 20):
 				lcd_scroll_str = lcd_song + " " + lcd_song
-				if (lcd_scroll_counter >= 5):
+				if (lcd_scroll_counter >= 15):
 					start = lcd_scroll_pos + 1
-					end = start + 18
+					end = start + 20
 					lcd.setCursor(0,2)
 					lcd.message(lcd_song[start:end])
 					if (lcd_scroll_pos >= len(lcd_song)):
