@@ -52,7 +52,8 @@
 	mysql_query($spotify);
 	mysql_query($wifi_networks);
 	
-	$mekk = mysql_num_rows(mysql_query("SELECT * FROM settings"));
+	/*$mekk = mysql_num_rows(mysql_query("SELECT * FROM settings"));
+
 	if (!$mekk) {
 		$insert = "INSERT INTO settings(";
 		$insert .= "`airplay_status`, ";
@@ -66,5 +67,5 @@
 		$insert .= "'8.8.4.4')";
 
 		mysql_query($insert);
-	}
+	}*/
 ?>
