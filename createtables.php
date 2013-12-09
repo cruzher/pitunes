@@ -6,7 +6,7 @@
 	mysql_select_db("pitunes");
 
 	//radiostations
-	$radiostations = "CREATE TABLE radiostations (id int AUTO_INCREMENT, name varchar(20), url varchar(200) PRIMARY KEY (id))";
+	//$radiostations = "CREATE TABLE radiostations (id int AUTO_INCREMENT, name varchar(20), url varchar(200) PRIMARY KEY (id))";
 
 	/*//settings
 	$settings = "CREATE TABLE settings (";
@@ -43,7 +43,7 @@
 	$wifi_networks .= "gateway varchar(100) ";
 	$wifi_networks .= "PRIMARY KEY (id))";*/
 	
-	mysql_query($radiostations);
+	mysql_query("CREATE TABLE radiostations (id int AUTO_INCREMENT, name varchar(20), url varchar(200) PRIMARY KEY (id))");
 	//mysql_query($settings);
 	//mysql_query($spotify);
 	//mysql_query($wifi_networks);
