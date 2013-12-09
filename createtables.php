@@ -2,7 +2,8 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	
-	include("mysql.php");
+	mysql_connect("localhost", "pitunes", "pitunes");
+	mysql_select_db("pitunes");
 
 	//radiostations
 	$radiostations = "CREATE TABLE radiostations (";
