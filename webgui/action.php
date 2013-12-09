@@ -1,5 +1,9 @@
 <?php
 
+	if(isset($_POST['airplay'])) {
+		return "test";
+	}
+
 	function shairportConfig($airplayname, $airplaystatus) {
 		$shairport = "/etc/init.d/shairport";
 		$general = mysql_fetch_assoc(mysql_query("SELECT * FROM settings"));
