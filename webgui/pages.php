@@ -8,7 +8,7 @@
 		echo '<h2>General Settings</h2>';
 
 		echo '<h3>Airplay</h3>';
-		echo '<form id="airplay" action="action.php">';
+		echo '<form method="post" id="airplay" action="action.php">';
 		if ($settings['airplay_status'] == 1) {
 			echo '<input type="radio" name="airplay_status" value="1" checked>Enabled <input type="radio" name="airplay_status" value="0">Disabled<p>';
 		} else {
