@@ -1,7 +1,7 @@
 <?php
 
 	if(isset($_POST['airplay'])) {
-		return "test";
+		echo "test";
 	}
 
 	function shairportConfig($airplayname, $airplaystatus) {

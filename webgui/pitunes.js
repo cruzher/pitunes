@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-	$("#airplay").submit(function( event ) {
+	$( "#airplay" ).submit(function( event ) {
 
 		event.preventDefault();
 
