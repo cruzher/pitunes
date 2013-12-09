@@ -8,7 +8,7 @@
 		echo '<h2>General Settings</h2>';
 
 		echo '<h3>Airplay</h3>';
-		echo '<form method="post" action="action.php">';
+		echo '<form id="airplay">';
 		if ($settings['airplay_status'] == 1) {
 			echo '<input type="radio" name="enabled" value="1" checked>Enabled <input type="radio" name="enabled" value="0">Disabled<p>';
 		} else {
@@ -20,9 +20,11 @@
 		echo '</form>';
 
 		echo '<h3>DNS</h3>';
+		echo '<form id="dns">';
 		echo '<input type="text" name="nameserver_one" value="'.$settings['nameserver_one'].'"><br>';
 		echo '<input type="text" name="nameserver_two" value="'.$settings['nameserver_two'].'"><br>';
-		echo '<span class="submit"><a href="javascript:saveDns();">Save</a></span>';
+		echo '<input type="submit" name="dns" value="Save">';
+		echo '</form>'
 	}
 
 	if(isset($_GET['network'])) {
