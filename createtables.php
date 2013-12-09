@@ -12,7 +12,7 @@
 	$radiostations .= "url varchar(200) ";
 	$radiostations .= "PRIMARY KEY (id))";
 
-	//settings
+	/*//settings
 	$settings = "CREATE TABLE settings (";
 	$settings .= "id int AUTO_INCREMENT, ";
 	$settings .= "airplay_status tinyint(4), ";
@@ -45,12 +45,12 @@
 	$wifi_networks .= "ipaddress varchar(100), ";
 	$wifi_networks .= "netmask varchar(100), ";
 	$wifi_networks .= "gateway varchar(100) ";
-	$wifi_networks .= "PRIMARY KEY (id))";
+	$wifi_networks .= "PRIMARY KEY (id))";*/
 	
 	mysql_query($radiostations);
-	mysql_query($settings);
-	mysql_query($spotify);
-	mysql_query($wifi_networks);
+	//mysql_query($settings);
+	//mysql_query($spotify);
+	//mysql_query($wifi_networks);
 	
 	/*$mekk = mysql_num_rows(mysql_query("SELECT * FROM settings"));
 
