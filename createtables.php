@@ -6,11 +6,7 @@
 	mysql_select_db("pitunes");
 
 	//radiostations
-	$radiostations = "CREATE TABLE radiostations (";
-	$radiostations .= "id int AUTO_INCREMENT, ";
-	$radiostations .= "name varchar(20), ";
-	$radiostations .= "url varchar(200) ";
-	$radiostations .= "PRIMARY KEY (id))";
+	$radiostations = "CREATE TABLE radiostations (id int AUTO_INCREMENT, name varchar(20), url varchar(200) PRIMARY KEY (id))";
 
 	/*//settings
 	$settings = "CREATE TABLE settings (";
