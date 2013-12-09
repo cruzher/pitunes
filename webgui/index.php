@@ -2,6 +2,8 @@
 	<head>
 		<title>piTunes</title>
 		<link rel="stylesheet" href="style.css" type="text/css" />
+		<script type="text/javascript" src="pitunes.js"></script>
+		<script type="text/javascript" charset="utf-8" src="jquery-1.4.4.js"></script>
 	</head>
 	<body>
 		<div id="frame">
