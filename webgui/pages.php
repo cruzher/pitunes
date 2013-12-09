@@ -24,7 +24,7 @@
 		echo '<input type="text" name="nameserver_one" value="'.$settings['nameserver_one'].'"><br>';
 		echo '<input type="text" name="nameserver_two" value="'.$settings['nameserver_two'].'"><br>';
 		echo '<input type="submit" name="dns" value="Save">';
-		echo '</form>'
+		echo '</form>';
 	}
 
 	if(isset($_GET['network'])) {
