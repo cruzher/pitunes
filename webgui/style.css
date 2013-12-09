@@ -29,4 +29,4 @@ h2 {
 .menu_item { width: 137px; height: 25px; line-height: 200%; font-size: 12px; padding-left: 10px; border-left: solid 3px; }
 .menu_item:hover { border-color: orange; }
 .label { font-weight: bold; }
-.submit { padding-left: 5px; font-size: 20px;}
+.submit { padding-left: 5px; font-size: 15px;}
