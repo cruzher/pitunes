@@ -23,7 +23,7 @@
 	$settings .= "lan_gateway varchar(100), ";
 	$settings .= "nameserver_one varchar(100), ";
 	$settings .= "nameserver_two varchar(100), ";
-	$settings .= "spotify_status tintint(4), ";
+	$settings .= "spotify_status tinyint(4), ";
 	$settings .= "spotify_user varchar(100), ";
 	$settings .= "spotify_pass varchar(100), ";
 	$settings .= "PRIMARY KEY (id))";
