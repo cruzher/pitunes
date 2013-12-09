@@ -26,7 +26,7 @@
 	$settings .= "spotify_status tintint(4), ";
 	$settings .= "spotify_user varchar(100), ";
 	$settings .= "spotify_pass varchar(100) ";
-	$settings .= "PRIMARY KEY (ID))";
+	$settings .= "PRIMARY KEY (id))";
 
 	//spotiy_playlists
 	$spotify = "CREATE TABLE spotify_playlists (";
