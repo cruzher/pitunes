@@ -70,7 +70,8 @@ sudo rm -rf /var/lock/apache2/
 #restart apache
 sudo service apache2 restart
 
-#Create user, database and tables.
+#Correcting right on config files
+sudo chmod 777 /etc/init.d/shairport
 
 
 #echo "(12/) START PITUNES.PY ON BOOT"

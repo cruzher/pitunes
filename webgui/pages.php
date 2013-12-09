@@ -20,11 +20,9 @@
 		echo '</form>';
 
 		echo '<h3>DNS</h3>';
-		echo '<form method="post" action="action.php">';
 		echo '<input type="text" name="nameserver_one" value="'.$settings['nameserver_one'].'"><br>';
 		echo '<input type="text" name="nameserver_two" value="'.$settings['nameserver_two'].'"><br>';
-		echo '<input type="submit" name="dns" value="Save">';
-		echo '</form>';
+		echo '<span class="submit"><a href="javascript:saveDns();">Save</a></span>';
 	}
 
 	if(isset($_GET['network'])) {
