@@ -18,15 +18,6 @@ $(document).ready(function() {
 
     });
 
-    $( "#playlist_alias" ).submit(function( event ) {
-        event.preventDefault();
-        alert("mekk");
-        $.post( "action.php", $( "#playlist_alias" ).serialize(), function(data) {
-            alert(data.OK);
-        }, "json");
-
-    });
-
 });
 
 function addPlaylist(playlist) {
@@ -40,6 +31,14 @@ function addPlaylist(playlist) {
         $('#box').append('<input type="hidden" name="playlist_name" value="'+playlist+'">');
         $('#box').append('<input type="submit" value="Save">');
         $('#box').append('</form>');
+
+        $( "#playlist_alias" ).submit(function( event ) {
+            event.preventDefault();
+            alert("mekk");
+            $.post( "action.php", $( "#playlist_alias" ).serialize(), function(data) {
+                alert(data.OK);
+            }, "json");
+        });
     } else {
         $.post( "action.php", {"playlist_alias": '', "playlist_name": playlist}, function(data) {
             alert(data.OK);
