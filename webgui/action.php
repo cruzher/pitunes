@@ -56,6 +56,17 @@
 		header("location: index.php?spotify");
 	}
 
+	if(isset($_POST['playlist_alias'])) {
+		$playlist_alias = $_POST['playlist_alias'];
+		$playlist_name = $_POST['playlist_name'];
+
+		//Update Database
+		mysql_query("INSERT INTO spotify_playlists (`alias`, `name`)VALUES('$playlist_alias', '$playlist_name')");
+
+		//Return response
+		echo '{"OK":"Playlist will now show upp on the LCD"}';
+	}
+
 
 	function shairportConfig($airplayname, $airplaystatus) {
 		$shairport = "/etc/init.d/shairport";
