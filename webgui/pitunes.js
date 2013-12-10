@@ -21,9 +21,11 @@ $(document).ready(function() {
 });
 
 function addPlaylist(playlist) {
-    
+    $('body').append('<div id="box_background"></div>');
+    $('body').append('<div id="box"></div>');
 }
 
 function removePlaylist(playlist) {
 
 }
+
