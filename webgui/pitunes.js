@@ -21,7 +21,7 @@ $(document).ready(function() {
 });
 
 function addPlaylist(playlist) {
-    alert(playlist.length);
+    
 }
 
 function removePlaylist(playlist) {
