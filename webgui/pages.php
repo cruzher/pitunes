@@ -114,11 +114,13 @@
 				if ($lcd) {
 					echo '<td><a href="">yes</a></td>';
 					echo '<td>'.$lcd['alias'].'</td>';
+					echo '<td><b>'.$playlist.'</b></td>';
 				} else {
 					echo '<td><a href="">no</a></td>';
 					echo '<td></td>';
+					echo '<td>'.$playlist.'</td>';
 				}
-				echo '<td>'.$playlist.'</td>';
+				
 				echo '<tr>';
 			}
 			echo '</table>';
