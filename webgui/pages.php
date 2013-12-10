@@ -108,7 +108,6 @@
 			echo '<td width="300" class="head">Playlist</td><tr>';
 
 			foreach ($playlists as $playlist) {
-				//$playlist = str_replace("/n", "", $playlist);
 				$lcd = mysql_fetch_assoc(mysql_query("SELECT * FROM spotify_playlists WHERE name='$playlist'"));
 				
 				if ($lcd) {
