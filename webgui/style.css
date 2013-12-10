@@ -19,3 +19,4 @@ td.head 	{ font-size: 15; font-weight: bold;}
 .menu_item 			{ width: 137px; height: 25px; line-height: 200%; font-size: 12px; padding-left: 10px; border-left: solid 3px; }
 .menu_item:hover 	{ border-color: orange; }
 .label 				{ font-weight: bold; }
+.center				{ text-align: center; }
