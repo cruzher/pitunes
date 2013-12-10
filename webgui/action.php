@@ -56,7 +56,7 @@
 		header("location: index.php?spotify");
 	}
 
-	if(isset($_POST['playlist_alias'])) {
+	if(isset($_POST['playlist_name'])) {
 		$playlist_alias = $_POST['playlist_alias'];
 		$playlist_name = $_POST['playlist_name'];
 

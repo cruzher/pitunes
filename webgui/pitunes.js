@@ -41,7 +41,7 @@ function addPlaylist(playlist) {
         $('#box').append('<input type="submit" value="Save">');
         $('#box').append('</form>');
     } else {
-        $.post( "action.php", $( "#playlist_alias" ).serialize(), function(data) {
+        $.post( "action.php", {"playlist_alias": '', "playlist_name": playlist}, function(data) {
             alert(data.OK);
         }, "json");
     }
