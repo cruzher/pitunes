@@ -20,7 +20,7 @@ $(document).ready(function() {
 
     $( "#playlist_alias" ).submit(function( event ) {
         event.preventDefault();
-
+        alert("mekk");
         $.post( "action.php", $( "#playlist_alias" ).serialize(), function(data) {
             alert(data.OK);
         }, "json");
