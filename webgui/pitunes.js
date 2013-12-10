@@ -37,7 +37,7 @@ function addPlaylist(playlist) {
         $('#box').append('<span class="box-text">The name of the playlist exceeds 19 characters and you need to enter an alias to show in the LCD</span>');
         $('#box').append('<form method="post" action="action.php" id="playlist_alias">');
         $('#box').append('<input type="text" name="playlist_alias">');
-        $('#box').append('<input type="hidden" name="playlist_name">');
+        $('#box').append('<input type="hidden" name="playlist_name" value="'+playlist+'">');
         $('#box').append('<input type="submit" value="Save">');
         $('#box').append('</form>');
     } else {
