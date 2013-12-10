@@ -24,8 +24,8 @@ function addPlaylist(playlist) {
     if (playlist.length > 19 ) {
         $('body').append('<div id="box_background"></div>');
         $('body').append('<div id="box"></div>');
-        $('#box').append('<h2>Add playlist to LCD</h2>');
-        $('#box').append('<span class="center">The name of the playlist exceeds 19 characters and you need to enter an alias to show in the LCD</span>');
+        $('#box').append('<h2>Adding playlist</h2>');
+        $('#box').append('<span class="box-text">The name of the playlist exceeds 19 characters and you need to enter an alias to show in the LCD</span>');
     }
 }
 
