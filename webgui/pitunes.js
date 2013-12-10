@@ -1,17 +1,21 @@
 
-$( "#airplay" ).submit(function( event ) {
+$(document).ready(function() {
+    $( "#airplay" ).submit(function( event ) {
+    	event.preventDefault();
 
-	event.preventDefault();
+        $.post( "action.php", $( "#airplay" ).serialize(), function(data) {
+            alert(data.OK);
+        }, "json");
 
-	var $form = $( this ),
-    airplay_status = $form.find( "input[name='airplay_status']" ).val(),
-    airplay_name = $form.find( "input[name='airplay_name']" ).val(),
-    url = $form.attr( "action" );
+    });
 
-    var posting = $.post( url, {"airplay": 1, "airplay_status": airplay_status, "airplay_name": airplay_name } );
+    $( "#dns" ).submit(function( event ) {
+        event.preventDefault();
 
-    posting.done(function( data ) {
-    	//Do stuff
-    	alert(data);
-  	});
+        $.post( "action.php", $( "#dns" ).serialize(), function(data) {
+            alert(data.OK);
+        }, "json");
+
+    });
+
 });

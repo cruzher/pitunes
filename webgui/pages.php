@@ -8,7 +8,7 @@
 		echo '<h2>General Settings</h2>';
 
 		echo '<h3>Airplay</h3>';
-		echo '<form method="post" id="airplay" action="action.php">';
+		echo '<form method="post" id="airplay">';
 		if ($settings['airplay_status'] == 1) {
 			echo '<input type="radio" name="airplay_status" value="1" checked>Enabled <input type="radio" name="airplay_status" value="0">Disabled<p>';
 		} else {
@@ -85,24 +85,43 @@
 
 		echo '<h2>Spotify</h2>';
 
-		echo '<form method="post" action="action.php">';
-		if($settings['spotify_status'] == 1) {
-			echo '<input type="radio" name="status" value="1" checked>Enabled <input type="radio" name="status" value="0">Disabled<br>';
-		} else {
-			echo '<input type="radio" name="status" value="1">Enabled <input type="radio" name="status" value="0" checked>Disabled<br>';
-		}
-		if($settings['spotify_status'] == 1) {
+		
+		if($settings['spotify_status'] == 0) {
+			echo '<form method="post" action="action.php"><input type="hidden" name="spotify_signin" value="1">';
 			echo '<b>Username</b><br>';
-			echo '<input type="text" name="username" value="'.$settings['spotify_user'].'"><br>';
+			echo '<input type="text" name="spotify_user"><br>';
 			echo '<b>Password</b><br>';
-			echo '<input type="password" name="password" value="******"><br>';
+			echo '<input type="password" name="spotify_pass"><br>';
+			echo '<input type="submit" name="spotifysettings" value="Sign in">';
+			echo '</form>';
 		} else {
-			echo '<b>Username</b><br>';
-			echo '<input type="text" name="username"><br>';
-			echo '<b>Password</b><br>';
-			echo '<input type="password" name="password"><br>';
+			echo '<form method="post" action="action.php">'.$settings['spotify_user'].'<input type="hidden" name="spotify_signout" value="1"><input type="submit" value="Sign out"></form>';
+
+			//Get playlists from spotify
+			//exec("mpc lsplaylists", $playlists);
+			$playlists = array("Testing", "Mekking", "Albums Queen", "Tjohej!", "Albums Infected Mushroom");
+
+			//loop through all playlists to se if the playlists exists in the database.
+			echo '<table>';
+			echo '<td width="15" class="head">LCD</td>';
+			echo '<td width="150" class="head">Alias</td>';
+			echo '<td width="300" class="head">Playlist</td><tr>';
+
+			foreach ($playlists as $playlist) {
+				//$playlist = str_replace("/n", "", $playlist);
+				$lcd = mysql_fetch_assoc(mysql_query("SELECT * FROM spotify_playlists WHERE name='$playlist'"));
+				
+				if ($lcd) {
+					echo '<td><a href="">yes</a></td>';
+					echo '<td>'.$lcd['alias'].'</td>';
+				} else {
+					echo '<td><a href="">no</a></td>';
+					echo '<td></td>';
+				}
+				echo '<td>'.$playlist.'</td>';
+				echo '<tr>';
+			}
+			echo '</table>';
 		}
-		echo '<input type="submit" name="spotifysettings" value="Save">';
-		echo '</form>';
 	}
 ?>

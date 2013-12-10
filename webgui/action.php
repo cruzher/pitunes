@@ -1,8 +1,61 @@
 <?php
+	ini_set('display_errors', '1');
 
-	if(isset($_POST['airplay'])) {
-		echo "test";
+	include("mysql.php");
+
+
+	if(isset($_POST['airplay_status'])) {
+		$airplay_status = $_POST['airplay_status'];
+		$airplay_name = $_POST['airplay_name'];
+
+		//Write Shairport config
+		
+		//Turn service ON or OFF
+		
+		//Activate or Deactivate service on boot
+
+		//Update Database
+		mysql_query("UPDATE settings SET `airplay_status`='$airplay_status', `airplay_name`='$airplay_name'");
+
+		//Return response
+		echo '{"OK":"Airplay settings saved!"}';
 	}
+
+	if(isset($_POST['nameserver_one'])) {
+		$nameserver_one = $_POST['nameserver_one'];
+		$nameserver_two = $_POST['nameserver_two'];
+
+		//Write DNS config
+
+		//Update Database
+		mysql_query("UPDATE settings SET `nameserver_one`='$nameserver_one', `nameserver_two`='$nameserver_two'");
+
+		//Return response
+		echo '{"OK":"DNS settings saved!"}';
+	}
+
+	if(isset($_POST['spotify_signout'])) {
+
+		//Write spotify settings to mopidy config
+
+		//Update Database
+		mysql_query("UPDATE settings SET `spotify_status`='0', `spotify_user`='', `spotify_pass`=''");
+
+		header("location: index.php?spotify");
+	}
+
+	if(isset($_POST['spotify_signin'])) {
+		$spotify_user = $_POST['spotify_user'];
+		$spotify_pass = $_POST['spotify_pass'];
+
+		//Write spotify settings to mopidy config
+
+		//Update Database
+		mysql_query("UPDATE settings SET `spotify_status`='1', `spotify_user`='$spotify_user', `spotify_pass`='$spotify_pass'");
+
+		header("location: index.php?spotify");
+	}
+
 
 	function shairportConfig($airplayname, $airplaystatus) {
 		$shairport = "/etc/init.d/shairport";
