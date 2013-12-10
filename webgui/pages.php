@@ -112,11 +112,11 @@
 				$lcd = mysql_fetch_assoc(mysql_query("SELECT * FROM spotify_playlists WHERE name='$playlist'"));
 				
 				if ($lcd) {
-					echo '<td><a href="">yes</a></td>';
+					echo '<td><a href="javascript:removePlaylist(\''.$playlist.'\');">yes</a></td>';
 					echo '<td>'.$lcd['alias'].'</td>';
 					echo '<td><b>'.$playlist.'</b></td>';
 				} else {
-					echo '<td><a href="">no</a></td>';
+					echo '<td><a href="javascript:addPlaylist(\''.$playlist.'\');">no</a></td>';
 					echo '<td></td>';
 					echo '<td>'.$playlist.'</td>';
 				}
