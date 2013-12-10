@@ -98,8 +98,8 @@
 			echo '<form method="post" action="action.php">'.$settings['spotify_user'].'<input type="hidden" name="spotify_signout" value="1"><input type="submit" value="Sign out"></form>';
 
 			//Get playlists from spotify
-			//exec("mpc lsplaylists", $playlists);
-			$playlists = array("Testing", "Mekking", "Albums Queen", "Tjohej!", "Albums Infected Mushroom");
+			exec("mpc lsplaylists", $playlists);
+			//$playlists = array("Testing", "Mekking", "Albums Queen", "Tjohej!", "Albums Infected Mushroom");
 
 			//loop through all playlists to se if the playlists exists in the database.
 			echo '<table>';
