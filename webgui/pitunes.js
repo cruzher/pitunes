@@ -17,36 +17,83 @@ $(document).ready(function() {
         }, "json");
 
     });
+    $( "#update_system" ).submit(function( event ) {
+        event.preventDefault();
+
+        $.post( "action.php", {"update_system": '1'}, function(data){
+            alert(data.OK);
+        }, "json");
+    });
+
+    //Bind event to changing network mode.
+    $('input[type=radio][name=lan_status]').change(function() {
+        if (this.value == '1') {
+            $("#lan_box").empty();
+            $("#lan_box").append('<span class="label">IP-address</span><br>');
+            $("#lan_box").append('<span>0.0.0.0</span><br>');
+            $("#lan_box").append('<span class="label">Netmask</span><br>');
+            $("#lan_box").append('<span>0.0.0.0</span><br>');
+            $("#lan_box").append('<span class="label">Gateway</span><br>');
+            $("#lan_box").append('<span>0.0.0.0</span><br>');
+            $("#lan_box").append('<input type="submit" value="Save">');
+        }
+        else if (this.value == '2') {
+            $("#lan_box").empty();
+            $("#lan_box").append('<span class="label">IP-address</span><br>');
+            $("#lan_box").append('<input type="text" name="lan_ip" value=""><br>');
+            $("#lan_box").append('<span class="label">Netmask</span><br>');
+            $("#lan_box").append('<input type="text" name="lan_netmask" value=""><br>');
+            $("#lan_box").append('<span class="label">Gateway</span><br>');
+            $("#lan_box").append('<input type="text" name="lan_gateway" value=""><br>');
+            $("#lan_box").append('<input type="submit" value="Save">');
+        }
+    });
 
 });
 
-function addPlaylist(playlist) {
-    if (playlist.length > 19 ) {
-        $('body').append('<div id="box_background"></div>');
-        $('body').append('<div id="box"></div>');
-        $('#box').append('<h2>Adding playlist</h2>');
-        $('#box').append('<span class="box-text">The name of the playlist exceeds 19 characters and you need to enter an alias to show in the LCD</span>');
-        $('#box').append('<form method="post" action="action.php" id="playlist_alias">');
-        $('#box').append('<input type="text" name="playlist_alias">');
-        $('#box').append('<input type="hidden" name="playlist_name" value="'+playlist+'">');
-        $('#box').append('<input type="submit" value="Save">');
-        $('#box').append('</form>');
+function addPlaylist(id, playlist) {
+    var alias = "";
+    var lcd_id = "#"+id+"_lcd";
+    var alias_id = "#"+id+"_alias";
+    var playlist_id = "#"+id+"_playlist";
 
-        $( "#playlist_alias" ).submit(function( event ) {
-            event.preventDefault();
-            alert("mekk");
-            $.post( "action.php", $( "#playlist_alias" ).serialize(), function(data) {
-                alert(data.OK);
-            }, "json");
-        });
+    if (playlist.length > 19 ) {
+        var alias = prompt("\""+playlist+"\"exceeds 19 characters, please enter an alias.", "");
+        while (alias.length == 0 || alias.length > 20) {
+            var alias = prompt("Aliases can't be longer than 19 characters, please choose a shorter alias.", "");
+        }
     } else {
-        $.post( "action.php", {"playlist_alias": '', "playlist_name": playlist}, function(data) {
-            alert(data.OK);
-        }, "json");
+        var alias = prompt("You can enter an alias for the playlist otherwise leave blank.", "");
     }
+
+    if (alias.length == 0) {
+        alias = playlist;
+    }
+
+    $.post( "action.php", {"add_playlist": '1', "playlist_alias": alias, "playlist_name": playlist});
+
+    //Updating table on page.
+    $(lcd_id).empty();
+    $(lcd_id).append('<a href="javascript:removePlaylist('+id+', \''+playlist+'\');">yes</a>')
+    $(alias_id).empty();
+    $(alias_id).append('<span>'+alias+'</span>');
+    $(playlist_id).empty();
+    $(playlist_id).append('<span><b>'+playlist+'</b></span>');
 }
 
-function removePlaylist(playlist) {
+function removePlaylist(id, playlist) {
+    var lcd_id = "#"+id+"_lcd";
+    var alias_id = "#"+id+"_alias";
+    var playlist_id = "#"+id+"_playlist";
 
+    //Removing playlist from DB
+    $.post( "action.php", {"remove_playlist": '1', "playlist_name": playlist});
+
+    //Updating table on page.
+    $(lcd_id).empty();
+    $(lcd_id).append('<a href="javascript:addPlaylist('+id+', \''+playlist+'\');">no</a>')
+    $(alias_id).empty();
+    $(playlist_id).empty();
+    $(playlist_id).append('<span>'+playlist+'</span>');
 }
 

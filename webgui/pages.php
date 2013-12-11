@@ -31,50 +31,36 @@
 		$settings = mysql_fetch_assoc(mysql_query("SELECT * FROM settings"));
 		echo '<h2>Network Settings</h2>';
 		
-		if ($settings['lan_status'] == 0) { //DISABLED
-			echo '<h3>LAN</h3>';
-			echo '<form method="post" action="action.php">';
-			echo '<input type="radio" name="status" value="0" checked>Disabled ';
-			echo '<input type="radio" name="status" value="1">DHCP ';
-			echo '<input type="radio" name="status" value="2">Static<br>';
-			echo '</form>';
-			echo '<span class="footnote">In disabled-mode the network act as a DHCP-server for easy configuration</span><p>';
-			echo '<span class="label">IP-address</span><br>';
-			echo '192.168.1.1<br>';
-			echo '<span class="label">Netmask</span><br>';
-			echo '255.255.255.0<br>';
-			echo '<span class="label">Gateway</span><br>';
-			echo '0.0.0.0<br>';
-		}
 		if ($settings['lan_status'] == 1) { //DHCP
 			echo '<h3>LAN</h3>';
+			
 			echo '<form method="post" action="action.php">';
-			echo '<input type="radio" name="status" value="0">Disabled ';
-			echo '<input type="radio" name="status" value="1" checked>DHCP ';
-			echo '<input type="radio" name="status" value="2">Static<br>';
-			echo '<span class="footnote">In disabled-mode the network act as a DHCP-server for easy configuration</span><p>';
+			echo '<input type="radio" name="lan_status" value="1" checked>DHCP ';
+			echo '<input type="radio" name="lan_status" value="2">Static<br>';
+			echo '<div id="lan_box">';
 			echo '<span class="label">IP-address</span><br>';
 			echo '0.0.0.0<br>';
 			echo '<span class="label">Netmask</span><br>';
 			echo '0.0.0.0<br>';
 			echo '<span class="label">Gateway</span><br>';
 			echo '0.0.0.0<br>';
+			echo '</div>';
 			echo '</form>';
 		}
 		if ($settings['lan_status'] == 2) { //STATIC
 			echo '<h3>LAN</h3>';
 			echo '<form method="post" action="action.php">';
-			echo '<input type="radio" name="status" value="0">Disabled ';
-			echo '<input type="radio" name="status" value="1">DHCP ';
-			echo '<input type="radio" name="status" value="2" checked>Static<br>';
-			echo '<span class="footnote">In disabled-mode the network act as a DHCP-server for easy configuration</span><p>';
+			echo '<input type="radio" name="lan_status" value="1">DHCP ';
+			echo '<input type="radio" name="lan_status" value="2" checked>Static<p>';
+			echo '<div id="lan_box">';
 			echo '<span class="label">IP-address</span><br>';
 			echo '<input type="text" name="lan_ip" value="'.$settings['lan_ip'].'"><br>';
 			echo '<span class="label">Netmask</span><br>';
 			echo '<input type="text" name="lan_netmask" value="'.$settings['lan_netmask'].'"><br>';
 			echo '<span class="label">Gateway</span><br>';
 			echo '<input type="text" name="lan_gateway" value="'.$settings['lan_gateway'].'"><br>';
-			echo '<input type="submit" name="lan" value="Save">';
+			echo '<input type="submit" value="Save">';
+			echo '</div>';
 			echo '</form>';
 		}
 
@@ -99,7 +85,7 @@
 
 			//Get playlists from spotify
 			exec("mpc lsplaylists", $playlists);
-			//$playlists = array("Testing", "Mekking", "Albums Queen", "Tjohej!", "Albums Infected Mushroom");
+			//$playlists = array("Starred", "Albums Queen", "Albums Infected Mushroom", "Albums Sia");
 
 			//loop through all playlists to se if the playlists exists in the database.
 			echo '<table>';
@@ -107,22 +93,32 @@
 			echo '<td width="150" class="head">Alias</td>';
 			echo '<td width="300" class="head">Playlist</td><tr>';
 
+			$i  = 0;
 			foreach ($playlists as $playlist) {
 				$lcd = mysql_fetch_assoc(mysql_query("SELECT * FROM spotify_playlists WHERE name='$playlist'"));
 				
 				if ($lcd) {
-					echo '<td><a href="javascript:removePlaylist(\''.$playlist.'\');">yes</a></td>';
-					echo '<td>'.$lcd['alias'].'</td>';
-					echo '<td><b>'.$playlist.'</b></td>';
+					echo '<td id="'.$i.'_lcd"><a href="javascript:removePlaylist('.$i.', \''.$playlist.'\');">yes</a></td>';
+					echo '<td id="'.$i.'_alias">'.$lcd['alias'].'</td>';
+					echo '<td id="'.$i.'_playlist"><b>'.$playlist.'</b></td>';
 				} else {
-					echo '<td><a href="javascript:addPlaylist(\''.$playlist.'\');">no</a></td>';
-					echo '<td></td>';
-					echo '<td>'.$playlist.'</td>';
+					echo '<td id="'.$i.'_lcd"><a href="javascript:addPlaylist('.$i.', \''.$playlist.'\');">no</a></td>';
+					echo '<td id="'.$i.'_alias"></td>';
+					echo '<td id="'.$i.'_playlist">'.$playlist.'</td>';
 				}
 				
 				echo '<tr>';
+				$i++;
 			}
 			echo '</table>';
 		}
+	}
+
+	if(isset($_GET['system'])) {
+
+		echo '<h2>System</h2>';
+
+		echo '<h3>Update</h3>';
+		echo '<form method="post" id="update_system"><input type="submit" value="Update now"></form>';
 	}
 ?>

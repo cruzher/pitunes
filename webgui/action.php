@@ -1,5 +1,5 @@
 <?php
-	ini_set('display_errors', '1');
+	//ini_set('display_errors', '1');
 
 	include("mysql.php");
 
@@ -41,6 +41,8 @@
 		//Update Database
 		mysql_query("UPDATE settings SET `spotify_status`='0', `spotify_user`='', `spotify_pass`=''");
 
+		//empty spotify_playlists database
+
 		header("location: index.php?spotify");
 	}
 
@@ -56,15 +58,25 @@
 		header("location: index.php?spotify");
 	}
 
-	if(isset($_POST['playlist_name'])) {
+	if(isset($_POST['add_playlist'])) {
 		$playlist_alias = $_POST['playlist_alias'];
 		$playlist_name = $_POST['playlist_name'];
 
-		//Update Database
+		//Insert into Database
 		mysql_query("INSERT INTO spotify_playlists (`alias`, `name`)VALUES('$playlist_alias', '$playlist_name')");
+	}
 
-		//Return response
-		echo '{"OK":"Playlist will now show upp on the LCD"}';
+	if(isset($_POST['remove_playlist'])){
+		$playlist_name = $_POST['playlist_name'];
+
+		//Remove from database
+		mysql_query("DELETE FROM spotify_playlists WHERE name='$playlist_name'");
+	}
+
+	if(isset($_POST['update_system'])) {
+		//exec("(cd /home/pi/pitunes && git pull)", $update);
+
+		echo '{"OK":"Update Complete!"}';
 	}
 
 
