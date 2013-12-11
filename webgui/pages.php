@@ -32,8 +32,7 @@
 		echo '<h2>Network Settings</h2>';
 		
 		if ($settings['lan_status'] == 1) { //DHCP
-			echo '<h3>LAN</h3>';
-			
+			echo '<h3>LAN3</h3>';
 			echo '<form method="post" action="action.php">';
 			echo '<input type="radio" name="lan_status" value="1" checked>DHCP ';
 			echo '<input type="radio" name="lan_status" value="2">Static<br>';
