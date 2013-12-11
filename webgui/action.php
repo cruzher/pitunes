@@ -74,7 +74,7 @@
 	}
 
 	if(isset($_POST['update_system'])) {
-		//exec("(cd /home/pi/pitunes && git pull)", $update);
+		exec("(cd /home/pi/pitunes && git pull)", $update);
 
 		echo '{"OK":"Update Complete!"}';
 	}
