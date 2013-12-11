@@ -20,8 +20,11 @@ $(document).ready(function() {
     $( "#update_system" ).submit(function( event ) {
         event.preventDefault();
 
+        $("#update_button").attr('value', 'Updating...');
+
         $.post( "action.php", {"update_system": '1'}, function(data){
             alert(data.OK);
+            $("#update_button").attr('value', 'Update now');
         }, "json");
     });
 
