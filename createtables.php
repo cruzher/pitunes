@@ -55,16 +55,8 @@
 	$mekk = mysql_num_rows(mysql_query("SELECT * FROM settings"));
 
 	if (!$mekk) {
-		$insert = "INSERT INTO settings(";
-		$insert .= "`airplay_status`, ";
-		$insert .= "`airplay_name`, ";
-		$insert .= "`nameserver_one`, ";
-		$insert .= "`nameserver_two`";
-		$insert .= ")VALUES(";
-		$insert .= "'0', ";
-		$insert .= "'piTunes', ";
-		$insert .= "'8.8.8.8', ";
-		$insert .= "'8.8.4.4')";
+		$insert = "INSERT INTO settings(`airplay_status`, `airplay_name`, `nameserver_one`, `nameserver_two`, `lan_status`, `lan_ip`, `lan_gateway`, `lan_netmask`)"
+		$insert .= "VALUES('0', 'piTunes', '8.8.8.8', '8.8.4.4', '1', '0.0.0.0', '0.0.0.0', '0.0.0.0')";
 
 		mysql_query($insert);
 	}

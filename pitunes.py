@@ -223,9 +223,7 @@ def checkinputs(): #Will be used as a thread
 			elif(right_held == False): #Button is held down
 				right_held = True
 				if (menu_active == False):
-					if (current_source == "Spotify"):
-						Popen("mpc -q stop", shell=True)
-						current_playstatus = False
+					## Open generall menu.
 		else:
 			if (right_count >0 and right_count < 50): #button is pressed once
 				if (menu_active == False):
