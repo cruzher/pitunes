@@ -161,9 +161,10 @@ def checkinputs(): #Will be used as a thread
 					navigate("down")
 
 			elif (menu_active == False):
-				menu_purpose = "track"
-				menu_items = current_playlist
-				menu_active = True
+				if (current_source == "Spotify"):
+					menu_purpose = "track"
+					menu_items = current_playlist
+					menu_active = True
 		## END Left encoder rotating ##
 
 
