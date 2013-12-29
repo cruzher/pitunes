@@ -292,10 +292,12 @@ def mopidyread():
 		airplay_active = Popen("netstat -t |grep rfe", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 		if (airplay_active !=  ""):
 			if (current_source != "AirPlay"):
-				print "active";
 				Popen("mpc -q pause", shell=True)
 				airplay_last_source = current_source
 				current_source = "AirPlay"
+				lcd_song = ""
+				lcd.setCursor(0,2)
+				lcd.message("                    ")
 		elif (current_source == "AirPlay"):
 			current_source = airplay_last_source
 			Popen("mpc -q play", shell=True)
@@ -505,4 +507,14 @@ while True:
 
 		if (current_source == "Radio"):
 			print "Source is Radio"
+
+		if (current_source == "AirPlay"):
+			#Print Source
+			if (current_source != lcd_source):
+				lcd.setCursor(0,1)
+				lcd.message("                    ")
+				lcd.setCursor(0,1)
+				lcd.message(current_source)
+				lcd_source = current_source
+
 	sleep(.01)
