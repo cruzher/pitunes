@@ -450,7 +450,7 @@ while True:
 			if (len(lcd_song) > 20):
 				if (lcd_scroll_counter >= 25):
 					lcd_scroll_str = lcd_song+" ## "+lcd_song
-					start = lcd_scroll_pos + 1
+					start = lcd_scroll_pos
 					end = start + 20;
 					lcd.setCursor(0,2)
 					lcd.message(lcd_scroll_str[start:end])
