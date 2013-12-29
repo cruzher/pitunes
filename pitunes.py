@@ -11,6 +11,10 @@ from Adafruit_CharLCDPlate import Adafruit_CharLCDPlate
 from Adafruit_I2C import Adafruit_I2C
 import gaugette.rotary_encoder
 import gaugette.switch
+import MySQLdb as mdb
+
+#MYSQL
+con = mdb.connect("localhost", "pitunes", "pitunes", "pitunes")
 
 #LCD
 lcd = Adafruit_CharLCDPlate()
@@ -23,8 +27,6 @@ volume_visual_max = 18
 volume_default = 5
 i2c = Adafruit_I2C(0x2A, 1, False)
 i2c.write8(0x10, volume_default) #Default Volumelevel
-
-
 
 #Rotary Encoders
 enc_right_pin_a = 11
@@ -63,6 +65,7 @@ menu_pointer = 1
 menu_selected = 0
 menu_timeout = 0
 menu_items = ["row1", "row2", "row3", "row4"]
+menu_values = ["value1", "value2", "value3", "value4"]
 menu_start = 0
 
 #Global LCD
@@ -125,6 +128,7 @@ def checkinputs(): #Will be used as a thread
 	global current_source
 	global menu_active
 	global menu_items
+	global menu_values
 	global menu_purpose
 	global menu_timeout
 	global current_playstatus
@@ -175,16 +179,23 @@ def checkinputs(): #Will be used as a thread
 						print menu_items[menu_selected]
 					if (menu_purpose == "playlist"):
 						Popen("mpc clear", shell=True, stdout=PIPE).stdout.read()
-						Popen("mpc load \"" + menu_items[menu_selected] + "\"", shell=True, stdout=PIPE).stdout.read()
+						Popen("mpc load \"" + menu_values[menu_selected] + "\"", shell=True, stdout=PIPE).stdout.read()
 						Popen("mpc play 1", shell=True, stdout=PIPE).stdout.read()
-						print "Loading playlist: " + menu_items[menu_selected]
+						print "Loading playlist: " + menu_values[menu_selected]
 					closeMenu()
 				else:
 					if (current_source == "Spotify"):
 						#activate menu (change playlist)
 						menu_purpose = "playlist"
-						playlists = Popen("php5 playlist.php -spotify", shell=True, stdout=PIPE).stdout.read()
-						menu_items = playlists.split('\n')
+						with con:
+							cur = con.cursor(mdb.cursors.DictCursor)
+							cur.execute("SELECT * FROM spotify_playlists")
+							rows = cur.fetchall()
+							menu_items = []
+							menu_values = []
+							for row in rows:
+								menu_items.append(row["alias"])
+								menu_values.append(row["name"])
 						menu_active = True
 					if (current_source == "Radio"):
 						#Like this song (saves to logfile)
