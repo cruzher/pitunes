@@ -289,7 +289,7 @@ def mopidyread():
 
 		#Check if AirPlay is receiving.
 		airplay_active = Popen("netstat -t |grep rfe", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
-		if (airplay_active !=  "")
+		if (airplay_active !=  ""):
 			if (current_source != "AirPlay"):
 				print "active";
 				airplay_last_source = current_source
