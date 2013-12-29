@@ -224,6 +224,7 @@ def checkinputs(): #Will be used as a thread
 				right_held = True
 				if (menu_active == False):
 					## Open generall menu.
+					print "mekk"
 		else:
 			if (right_count >0 and right_count < 50): #button is pressed once
 				if (menu_active == False):
