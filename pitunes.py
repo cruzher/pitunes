@@ -293,10 +293,12 @@ def mopidyread():
 		if (airplay_active !=  ""):
 			if (current_source != "AirPlay"):
 				print "active";
+				Popen("mpc -q pause", shell=True)
 				airplay_last_source = current_source
 				current_source = "AirPlay"
 		elif (current_source == "AirPlay"):
 			current_source = airplay_last_source
+			Popen("mpc -q play", shell=True)
 
 		sleep(1)
 
@@ -450,14 +452,26 @@ while True:
 			lcd_redraw = False
 			clearscreen() 
 
-		if (current_source == "Spotify"):
-			
-			#Update Time
-			if (current_datetime != lcd_datetime):
-				lcd.setCursor(0,0)
-				lcd.message(current_datetime)
-				lcd_datetime = current_datetime
+		#Update Time
+		if (current_datetime != lcd_datetime):
+			lcd.setCursor(0,0)
+			lcd.message(current_datetime)
+			lcd_datetime = current_datetime
 
+		#Update Volume
+		if (current_volume != lcd_volume):
+			lcd.setCursor(0,3)
+			volume_visual = round(current_volume / (volume_max / volume_visual_max))
+			volume_rest = volume_visual_max - volume_visual 
+			vol_print = "-"
+			for i in range(1,19):
+				if (i <= volume_visual):
+					vol_print = vol_print + chr(255)
+				else:
+					vol_print = vol_print + chr(219)
+			lcd.message(vol_print+"+")
+
+		if (current_source == "Spotify"):
 			#Print Source
 			if (current_source != lcd_source):
 				lcd.setCursor(0,1)
@@ -488,19 +502,6 @@ while True:
 					lcd_scroll_counter = 0
 				else:
 					lcd_scroll_counter += 1
-
-			#Update Volume
-			if (current_volume != lcd_volume):
-				lcd.setCursor(0,3)
-				volume_visual = round(current_volume / (volume_max / volume_visual_max))
-				volume_rest = volume_visual_max - volume_visual 
-				vol_print = "-"
-				for i in range(1,19):
-					if (i <= volume_visual):
-						vol_print = vol_print + chr(255)
-					else:
-						vol_print = vol_print + chr(219)
-				lcd.message(vol_print+"+")
 
 		if (current_source == "Radio"):
 			print "Source is Radio"
