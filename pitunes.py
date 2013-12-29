@@ -259,7 +259,7 @@ def mopidyread():
 	while (True):
 		if (current_source == "Spotify"):
 			if (connected_to_spotify == True):
-				current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read()
+				current_song = Popen("mpc current -f \"%artist% - %title%\"", shell=True, stdout=PIPE).stdout.read().strip()
 
 				#playlist
 				playlist = Popen("mpc playlist -f \"%title% - %artist%\"", shell=True, stdout=PIPE).stdout.read()
