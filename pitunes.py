@@ -87,6 +87,7 @@ cheapamp_pin = 27
 lcdbacklight_pin = 22
 atxraspi_pin_in = 24
 atxraspi_pin_out = 23
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(atxraspi_pin_out, GPIO.OUT)
 GPIO.setup(atxraspi_pin_in, GPIO.IN)
@@ -450,8 +451,9 @@ while True:
 				lcd_scroll_str = lcd_song+" "+lcd_song
 				if (lcd_scroll_counter >= 15):
 					start = lcd_scroll_pos + 1
+					end = start + 20;
 					lcd.setCursor(0,2)
-					lcd.message(lcd_scroll_str[start:20])
+					lcd.message(lcd_scroll_str[start:end])
 					if (start >= len(lcd_song)):
 						lcd_scroll_pos = 0
 					else:
