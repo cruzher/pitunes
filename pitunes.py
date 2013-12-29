@@ -448,7 +448,7 @@ while True:
 
 			#Scroll Song if longer then 20.
 			if (len(lcd_song) > 20):
-				if (lcd_scroll_counter >= 15):
+				if (lcd_scroll_counter >= 25):
 					lcd_scroll_str = lcd_song+" ## "+lcd_song
 					start = lcd_scroll_pos + 1
 					end = start + 20;
