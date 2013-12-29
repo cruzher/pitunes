@@ -414,10 +414,10 @@ while True:
 
 		if (menu_start != lcd_menu_start):
 			for i in range(0,3):
-				lcd.setCursor(2,i+1)
+				lcd.setCursor(1,i+1)
 				lcd.message("                  ")
-				lcd.setCursor(2, i+1)
-				lcd.message(menu_items[menu_start + i][:18])
+				lcd.setCursor(1, i+1)
+				lcd.message(menu_items[menu_start + i][:19])
 			lcd_menu_start = menu_start
 
 		###################
