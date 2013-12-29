@@ -294,8 +294,9 @@ def mopidyread():
 				print "active";
 				airplay_last_source = current_source
 				current_source = "AirPlay"
-		else:
+		elif (current_source == "AirPlay"):
 			current_source = airplay_last_source
+
 		sleep(1)
 
 def clearscreen():
