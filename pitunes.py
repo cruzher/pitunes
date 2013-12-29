@@ -50,6 +50,7 @@ current_artist = ""
 current_song = ""
 current_time = ""
 current_datetime = ""
+airplay_last_source = ""
 current_source = "Spotify"
 current_playlist = ["nothing"]
 current_playlist_pos = ""
@@ -264,6 +265,8 @@ def checkinputs(): #Will be used as a thread
 def mopidyread():
 	global current_song
 	global current_playlist
+	global current_source
+	global airplay_last_source
 	global mopidy_is_running
 	global connected_to_spotify
 
@@ -283,6 +286,16 @@ def mopidyread():
 			if (spotify_check != ""):
 				print "Connected to spotify"
 				connected_to_spotify = True
+
+		#Check if AirPlay is receiving.
+		airplay_active = Popen("netstat -t |grep rfe", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+		if (airplay_active !=  "")
+			if (current_source != "AirPlay"):
+				print "active";
+				airplay_last_source = current_source
+				current_source = "AirPlay"
+		else:
+			current_source = airplay_last_source
 		sleep(1)
 
 def clearscreen():
