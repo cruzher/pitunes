@@ -62,7 +62,7 @@ function addPlaylist(id, playlist) {
 
     if (playlist.length > 19 ) {
         var alias = prompt("\""+playlist+"\"exceeds 19 characters, please enter an alias.", "");
-        while (alias.length == 0 || alias.length > 20) {
+        while (alias.length == 0 || alias.length > 19) {
             var alias = prompt("Aliases can't be longer than 19 characters, please choose a shorter alias.", "");
         }
     } else {

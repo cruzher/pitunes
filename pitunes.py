@@ -403,13 +403,13 @@ while True:
 		#MenuPointer
 		if (menu_pointer != lcd_menu_pointer):
 			lcd.setCursor(0,1)
-			lcd.message("  ")
+			lcd.message(" ")
 			lcd.setCursor(0,2)
-			lcd.message("  ")
+			lcd.message(" ")
 			lcd.setCursor(0,3)
-			lcd.message("  ")
+			lcd.message(" ")
 			lcd.setCursor(0,menu_pointer)
-			lcd.message("> ")
+			lcd.message(">")
 			lcd_menu_pointer = menu_pointer
 
 		if (menu_start != lcd_menu_start):
