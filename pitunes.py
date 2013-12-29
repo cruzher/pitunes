@@ -440,6 +440,7 @@ while True:
 
 			#Update Song
 			if (current_song != lcd_song):
+				lcd.lcd_scroll_pos = 0
 				lcd.setCursor(0,2)
 				lcd.message("                    ")
 				lcd.setCursor(0,2)
