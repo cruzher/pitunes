@@ -101,7 +101,7 @@ GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
 GPIO.output(atxraspi_pin_out, True)
 # Power ON Amp
 GPIO.output(cheapamp_pin, True)
-print GPIO.output(cheapamp_pin)
+print GPIO.input(cheapamp_pin)
 sleep(1)
 # Power ON LCD Backlight
 GPIO.output(lcdbacklight_pin, True)
