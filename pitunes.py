@@ -101,7 +101,6 @@ GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
 GPIO.output(atxraspi_pin_out, True)
 # Power ON Amp
 GPIO.output(cheapamp_pin, True)
-print GPIO.input(cheapamp_pin)
 sleep(1)
 # Power ON LCD Backlight
 GPIO.output(lcdbacklight_pin, True)
@@ -228,9 +227,12 @@ def checkinputs(): #Will be used as a thread
 						#decrease volume
 						current_volume -= 1
 						i2c.write8(0x10, current_volume)
-				#if (current_volume == 0):
-
-				#else:
+				if (current_volume == 0):
+					if (GPIO.input(cheapamp_pin)):
+						GPIO.output(cheapamp_pin, False)
+				else:
+					if (not GPIO.input(cheapamp_pin)):
+						GPIO.output(cheapamp_pin, True)
 		## END Right encoder rotating ##
 
 
