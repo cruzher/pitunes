@@ -52,7 +52,7 @@ current_time = ""
 current_datetime = ""
 airplay_last_source = ""
 current_source = "Spotify"
-current_playlist = ["nothing"]
+current_playlist = []
 current_playlist_pos = ""
 current_radiostation = ""
 current_playstatus = False	#play, stop, pause
@@ -65,8 +65,8 @@ menu_purpose = ""		#track or playlist
 menu_pointer = 1
 menu_selected = 0
 menu_timeout = 0
-menu_items = ["row1", "row2", "row3", "row4"]
-menu_values = ["value1", "value2", "value3", "value4"]
+menu_items = []
+menu_values = []
 menu_start = 0
 
 #Global LCD
@@ -101,6 +101,7 @@ GPIO.setup(lcdbacklight_pin, GPIO.OUT) #LCD Backlight
 GPIO.output(atxraspi_pin_out, True)
 # Power ON Amp
 GPIO.output(cheapamp_pin, True)
+print GPIO.output(cheapamp_pin)
 sleep(1)
 # Power ON LCD Backlight
 GPIO.output(lcdbacklight_pin, True)
@@ -227,6 +228,9 @@ def checkinputs(): #Will be used as a thread
 						#decrease volume
 						current_volume -= 1
 						i2c.write8(0x10, current_volume)
+				#if (current_volume == 0):
+
+				#else:
 		## END Right encoder rotating ##
 
 
