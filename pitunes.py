@@ -362,6 +362,14 @@ if (spotify_active == True):
 	lcd.setCursor(0,3)
 	lcd.message("Spotify         [  ]")
 
+while (connected_to_network == False):
+	network_check = Popen("ifconfig |grep \"inet addr:\" |wc -l", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+	if (network_check > 1):
+		lcd.setCursor(17,1)
+		lcd.message("OK")
+		connected_to_network = True
+	sleep(1)
+
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 	if (mopidy_check != ""):

@@ -1,8 +1,11 @@
 #!/bin/bash
 
+#Making sure modules are loaded on boot
 echo "i2c-bcm2708" | sudo tee -a /etc/modules
 echo "i2c-dev" | sudo tee -a /etc/modules
 echo "ipv6" | sudo tee -a /etc/modules
+
+#Loading modlues manually
 sudo modprobe i2c-bcm2708
 sudo modprobe i2c-dev
 sudo modprobe ipv6
@@ -18,7 +21,7 @@ sudo aptitude update
 sudo aptitude -y upgrade
 
 echo "(03/10) INSTALLING DEPENDENCIES"
-sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools mpc screen
+sudo aptitude install -y build-essential python-smbus i2c-tools python-dev python-rpi.gpio python-setuptools mpc supervisor
 
 echo "(04/10) INSTALLING WIRINGPI2"
 cd $HOME/pitunes/wiringPi/
@@ -42,9 +45,9 @@ echo "(07/10) INSTALLING MOPIDY"
 sudo apt-get install -y mopidy mopidy-spotify
 mkdir $HOME/.config/mopidy
 cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
-sudo sed -i "/exit 0/ c\ " /etc/rc.local
-echo "screen -dmS mopidy mopidy --config=/home/pi/.config/mopidy/mopidy.conf" | sudo tee -a /etc/rc.local
-echo "exit 0" | sudo tee -a /etc/rc.local
+sudo cp $HOME/pitunes/conf/supervisor/mopidy.conf /etc/supervisor/conf.d/
+sudo supervisorctl update
+sudo supervisorctl start mopidy
 
 echo "(08/10) INSTALLING SHAIRPORT"
 wget -q http://files.pixor.se/install.scripts/rpi/shairport.sh
@@ -75,9 +78,9 @@ sudo chmod 777 /etc/init.d/shairport
 
 
 #echo "(12/) START PITUNES.PY ON BOOT"
-#sudo sed -i "/exit 0/ c\ " /etc/rc.local
-#echo "python /home/pi/pitunes/pitunes.py" | sudo tee -a /etc/rc.local
-#echo "exit 0" | sudo tee -a /etc/rc.local
+sudo cp $HOME/pitunes/conf/supervisor/pitunes.conf /etc/supervisor/conf.d/
+sudo supervisorctl update
+sudo supervisorctl start pitunes
 
 echo ""
 echo "FINISHED"
