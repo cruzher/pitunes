@@ -362,6 +362,7 @@ if (spotify_active == True):
 	lcd.setCursor(0,3)
 	lcd.message("Spotify         [  ]")
 
+#Wait for network to become available before continuing
 while (connected_to_network == False):
 	network_check = int(Popen("ifconfig |grep \"inet addr:\" |wc -l", shell=True, stdout=PIPE, stderr=PIPE).stdout.read())
 	print network_check
@@ -371,6 +372,7 @@ while (connected_to_network == False):
 		connected_to_network = True
 	sleep(1)
 
+#Wait for mopidy to start
 while (mopidy_is_running == False):
 	mopidy_check = Popen("mpc", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
 	if (mopidy_check != ""):
@@ -379,6 +381,7 @@ while (mopidy_is_running == False):
 		mopidy_is_running = True
 	sleep(1)
 
+#If spotify is activated wait for it to connect.
 if (spotify_active == True):
 	while (connected_to_spotify == False):
 		spotify_check = Popen("mpc lsplaylists", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
@@ -429,7 +432,6 @@ while True:
 			else:
 				lcd.setCursor(5,0)
 				lcd.message("Playlists")
-			print "menu is active"
 		############	
 		#MENU STUFF#
 		############
@@ -521,7 +523,13 @@ while True:
 					lcd_scroll_counter += 1
 
 		if (current_source == "Radio"):
-			print "Source is Radio"
+			#Print Source
+			if (current_source != lcd_source):
+				lcd.setCursor(0,1)
+				lcd.message("                    ")
+				lcd.setCursor(0,1)
+				lcd.message(current_source)
+				lcd_source = current_source
 
 		if (current_source == "AirPlay"):
 			#Print Source
