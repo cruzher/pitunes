@@ -172,6 +172,13 @@ def checkinputs(): #Will be used as a thread
 		if (sw_left_state == 1):
 			if (left_count < 50):
 				left_count += 1
+			elif(left_held == False): #Button is held down
+				left_held = True
+				if (menu_active == False):
+					if (current_source == "Spotify"):
+						current_source == "Radio"
+					if (current_source == "Radio"):
+						current_source == "Spotify"
 		else:
 			if (left_count >0 and left_count < 50): #button is pressed once
 				if (menu_active == True):
@@ -202,15 +209,9 @@ def checkinputs(): #Will be used as a thread
 					if (current_source == "Radio"):
 						#Like this song (saves to logfile)
 						print "I Like This Song"
-			elif (left_count >0 and left_count > 50): #button is held down
-				if (menu_active == False):
-					if (current_source == "Spotify"):
-						current_source == "Radio"
-					if (current_source == "Radio"):
-						current_source == "Spotify"
-
 			##Reset hold-counter##
 			left_count = 0
+			left_held = False
 		## END left switch pressed ##
 
 
