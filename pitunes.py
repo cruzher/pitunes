@@ -364,6 +364,7 @@ if (spotify_active == True):
 
 while (connected_to_network == False):
 	network_check = Popen("ifconfig |grep \"inet addr:\" |wc -l", shell=True, stdout=PIPE, stderr=PIPE).stdout.read()
+	print network_check
 	if (network_check > 1):
 		lcd.setCursor(17,1)
 		lcd.message("OK")
