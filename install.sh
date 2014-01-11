@@ -43,8 +43,6 @@ cd ..
 
 echo "(07/10) INSTALLING MOPIDY"
 sudo apt-get install -y mopidy mopidy-spotify
-mkdir $HOME/.config/mopidy
-cp $HOME/pitunes/conf/mopidy.conf $HOME/.config/mopidy/
 sudo cp $HOME/pitunes/conf/supervisor/mopidy.conf /etc/supervisor/conf.d/
 sudo supervisorctl update
 sudo supervisorctl start mopidy
@@ -75,6 +73,9 @@ sudo service apache2 restart
 
 #Correcting right on config files
 sudo chmod 777 /etc/init.d/shairport
+
+#Create database
+php5 createdatabase.php
 
 
 #echo "(12/) START PITUNES.PY ON BOOT"

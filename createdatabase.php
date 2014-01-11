@@ -2,7 +2,16 @@
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	
+	mysql_connect("localhost", "root", "pitunes");
+
+	mysql_query("CREATE USER 'pitunes'@'localhost' IDENTIFIED BY  'pitunes';");
+	mysql_query("GRANT USAGE ON * . * TO  'pitunes'@'localhost' IDENTIFIED BY  'pitunes' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;");
+	mysql_query("CREATE DATABASE IF NOT EXISTS  `pitunes` ;");
+	mysql_query("GRANT ALL PRIVILEGES ON  `pitunes` . * TO  'pitunes'@'localhost';");
+	mysql_close();
+
 	mysql_connect("localhost", "pitunes", "pitunes");
+
 	mysql_select_db("pitunes");
 
 	//radiostations
@@ -55,7 +64,7 @@
 	$mekk = mysql_num_rows(mysql_query("SELECT * FROM settings"));
 
 	if (!$mekk) {
-		$insert = "INSERT INTO settings(`airplay_status`, `airplay_name`, `nameserver_one`, `nameserver_two`, `lan_status`, `lan_ip`, `lan_gateway`, `lan_netmask`)"
+		$insert = "INSERT INTO settings(`airplay_status`, `airplay_name`, `nameserver_one`, `nameserver_two`, `lan_status`, `lan_ip`, `lan_gateway`, `lan_netmask`)";
 		$insert .= "VALUES('0', 'piTunes', '8.8.8.8', '8.8.4.4', '1', '0.0.0.0', '0.0.0.0', '0.0.0.0')";
 
 		mysql_query($insert);
