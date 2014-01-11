@@ -390,7 +390,7 @@ if (spotify_active == True):
 			lcd.setCursor(17,3)
 			lcd.message("OK")
 			connected_to_spotify = True
-	sleep(1)
+		sleep(1)
 
 lcd.clear()
 
