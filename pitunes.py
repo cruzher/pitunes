@@ -87,8 +87,8 @@ lcd_scroll_str = ""
 ## END VARIABLES
 
 #GPIO
-cheapamp_pin = 27
-lcdbacklight_pin = 22
+cheapamp_pin = 22
+lcdbacklight_pin = 27
 atxraspi_pin_in = 24
 atxraspi_pin_out = 23
 GPIO.setwarnings(False)
