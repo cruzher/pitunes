@@ -146,7 +146,7 @@ def checkinputs(): #Will be used as a thread
 		enc_left_seq = enc_left.rotation_sequence()
 		sw_right_state = sw_right.get_state()
 		sw_left_state = sw_left.get_state()
-		print sw_left_state
+		print sw_right_state
 
 		## Left encoder rotating ##
 		if (enc_left_delta != 0 and enc_left_seq == 2):
