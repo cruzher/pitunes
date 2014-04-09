@@ -44,6 +44,7 @@ cd ..
 echo "(07/12) INSTALLING MOPIDY"
 sudo apt-get install -y mopidy mopidy-spotify
 sudo cp $HOME/pitunes/conf/mopidy/spotify.conf /etc/mopidy/extensions.d/
+sudo service mopidy restart
 
 echo "(08/12) INSTALLING SHAIRPORT"
 wget -q http://files.pixor.se/install.scripts/rpi/shairport.sh
