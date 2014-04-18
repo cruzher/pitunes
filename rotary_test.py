@@ -24,9 +24,9 @@ while True:
 	sw_left_state = sw_left.get_state()
 
 	if (enc_left_delta != 0 and enc_left_seq == 2):
-		if (enc_left_delta < 0):
+		if (enc_left_delta > 0):
 			direction = "left"
-		elif (enc_left_delta > 0):
+		elif (enc_left_delta < 0):
 			direction = "right"
 		print direction+' '+str(enc_left_seq)
 	sleep(.01)
