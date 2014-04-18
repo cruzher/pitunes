@@ -27,11 +27,11 @@ while True:
 	sw_left_state = sw_left.get_state()
 
 	if (enc_left_delta != 0):
-		enc_help_left[1] = enc_help_left[0]
-		enc_help_left[0] = enc_left_seq
-		
 		if (enc_left_seq == 2):
-			print str(enc_left_seq) + str(enc_help_left[0]) + str(enc_help_left[1])
+			print str(enc_left_seq) + ' ' + str(enc_help_left[0]) + str(enc_help_left[1])
 		else:
 			print enc_left_seq
+
+		enc_help_left[1] = enc_help_left[0]
+		enc_help_left[0] = enc_left_seq
 	sleep(.01)
