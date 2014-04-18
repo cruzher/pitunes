@@ -22,5 +22,7 @@ while True:
 	sw_right_state = sw_right.get_state()
 	sw_left_state = sw_left.get_state()
 
-	print enc_right_delta
+	if (enc_left_delta != 0 ):
+		print enc_left_delta+'\n'
+		print enc_left_seq
 	sleep(.01)
