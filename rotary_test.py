@@ -24,10 +24,6 @@ while True:
 	sw_right_state = sw_right.get_state()
 	sw_left_state = sw_left.get_state()
 
-	if (enc_left_delta != 0 and enc_left_seq == 2):
-		if (enc_left_delta > 0):
-			left_value -= 1
-		elif (enc_left_delta < 0):
-			left_value += 1
-		print left_value
+	if (enc_left_delta != 0):
+		print enc_left_seq
 	sleep(.01)
