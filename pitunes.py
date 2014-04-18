@@ -39,6 +39,7 @@ enc_right = gaugette.rotary_encoder.RotaryEncoder(enc_right_pin_a, enc_right_pin
 sw_right = gaugette.switch.Switch(sw_right_pin)
 enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
 sw_left = gaugette.switch.Switch(sw_left_pin)
+enc_help_left = [0,0]
 
 ##VARIABLES
 #Global Main
@@ -134,6 +135,7 @@ def checkinputs(): #Will be used as a thread
 	global menu_timeout
 	global current_playstatus
 	global current_volume
+	global enc_help_left
 	left_count = 0
 	left_held = False
 	right_count = 0
@@ -150,22 +152,27 @@ def checkinputs(): #Will be used as a thread
 
 		## Left encoder rotating ##
 		if (enc_left_delta != 0 and enc_left_seq == 2):
-			if (menu_active == True): 
+			error_check = str(enc_help_left[0]) + str(enc_help_left[1])
+			if (error_check == "10" or error_check == "30"):
+				if (menu_active == True): 
 
-				#Update timeout to keep menu active.
-				menu_timeout = current_time + 10
+					#Update timeout to keep menu active.
+					menu_timeout = current_time + 10
 
-				if (enc_left_delta>0): #rotating left
-					navigate("up")
+					if (enc_left_delta>0): #rotating left
+						navigate("up")
 
-				elif (enc_left_delta<0): #rotating right
-					navigate("down")
+					elif (enc_left_delta<0): #rotating right
+						navigate("down")
 
-			elif (menu_active == False):
-				if (current_source == "Spotify"):
-					menu_purpose = "track"
-					menu_items = current_playlist
-					menu_active = True
+				elif (menu_active == False):
+					if (current_source == "Spotify"):
+						menu_purpose = "track"
+						menu_items = current_playlist
+						menu_active = True
+
+		enc_help_left[1] = enc_help_left[0]
+		enc_help_left[0] = enc_left_seq
 		## END Left encoder rotating ##
 
 
