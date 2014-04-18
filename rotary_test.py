@@ -1,6 +1,7 @@
 import gaugette.rotary_encoder
 import gaugette.switch
 from time import sleep
+import string
 
 #Rotary Encoders
 enc_right_pin_a = 11
@@ -23,6 +24,6 @@ while True:
 	sw_left_state = sw_left.get_state()
 
 	if (enc_left_delta != 0 ):
-		print enc_left_delta+'\n'
+		print str(enc_left_delta)+'\n'
 		print enc_left_seq
 	sleep(.01)
