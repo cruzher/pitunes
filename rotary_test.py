@@ -2,6 +2,7 @@ import gaugette.rotary_encoder
 import gaugette.switch
 from time import sleep
 import string
+left_value = 0
 
 #Rotary Encoders
 enc_right_pin_a = 11
@@ -25,8 +26,8 @@ while True:
 
 	if (enc_left_delta != 0 and enc_left_seq == 2):
 		if (enc_left_delta > 0):
-			direction = "left"
+			left_value -= 1
 		elif (enc_left_delta < 0):
-			direction = "right"
-		print direction+' '+str(enc_left_seq)
+			left_value += 1
+		print left_value
 	sleep(.01)
