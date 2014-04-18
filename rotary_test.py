@@ -15,6 +15,8 @@ enc_right = gaugette.rotary_encoder.RotaryEncoder(enc_right_pin_a, enc_right_pin
 sw_right = gaugette.switch.Switch(sw_right_pin)
 enc_left = gaugette.rotary_encoder.RotaryEncoder(enc_left_pin_a, enc_left_pin_b)
 sw_left = gaugette.switch.Switch(sw_left_pin)
+enc_help_left = [0,0]
+
 
 while True:
 	enc_right_delta = enc_right.get_delta()
@@ -25,5 +27,11 @@ while True:
 	sw_left_state = sw_left.get_state()
 
 	if (enc_left_delta != 0):
-		print enc_left_seq
+		enc_help_left[1] = enc_help_left[0]
+		enc_help_left[0] = enc_left_seq
+		
+		if (enc_left_seq == 2):
+			print str(enc_left_seq) + str(enc_help_left[0]) + str(enc_help_left[1])
+		else:
+			print enc_left_seq
 	sleep(.01)
