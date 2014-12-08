@@ -8,14 +8,15 @@
 		echo '<h2>General Settings</h2>';
 
 		echo '<h3>Airplay</h3>';
+		echo '<b>Name</b><br>';
+		echo '<input type="text" name="airplay_name" value="'.$settings['airplay_name'].'">';
 		echo '<form method="post" id="airplay">';
 		if ($settings['airplay_status'] == 1) {
 			echo '<input type="radio" name="airplay_status" value="1" checked>Enabled <input type="radio" name="airplay_status" value="0">Disabled<p>';
 		} else {
 			echo '<input type="radio" name="airplay_status" value="1">Enabled <input type="radio" name="airplay_status" value="0" checked>Disabled<p>';
 		}
-		echo '<b>Name</b><br>';
-		echo '<input type="text" name="airplay_name" value="'.$settings['airplay_name'].'"><br>';
+		
 		echo '<input type="submit" name="airplay" value="Save">';
 		echo '</form>';
 
