@@ -2,7 +2,7 @@
 	
 	include("mysql.php");
 
-	if(isset($_GET['general'])) {
+	if(isset($_GET['settings'])) {
 		$settings = mysql_fetch_assoc(mysql_query("SELECT * FROM settings"));
 
 		echo '<h2>General Settings</h2>';
