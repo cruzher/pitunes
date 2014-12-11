@@ -42,12 +42,9 @@ $(document).ready(function() {
         }
         else if (this.value == '2') {
             $("#lan_box").empty();
-            $("#lan_box").append('<span class="label">IP-address</span><br>');
-            $("#lan_box").append('<input type="text" name="lan_ip" value=""><br>');
-            $("#lan_box").append('<span class="label">Netmask</span><br>');
-            $("#lan_box").append('<input type="text" name="lan_netmask" value=""><br>');
-            $("#lan_box").append('<span class="label">Gateway</span><br>');
-            $("#lan_box").append('<input type="text" name="lan_gateway" value=""><br>');
+            $("#lan_box").append('<input type="text" name="lan_ip" value="" placeholder="IP-address"><br>');
+            $("#lan_box").append('<input type="text" name="lan_netmask" value="" placeholder="Netmask"><br>');
+            $("#lan_box").append('<input type="text" name="lan_gateway" value="" placeholder="Gateway"><br>');
             $("#lan_box").append('<input type="submit" value="Save">');
         }
     });
