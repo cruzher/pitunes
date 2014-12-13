@@ -98,7 +98,12 @@ function removePlaylist(id, playlist) {
 }
 
 function addRadiostation() {
-    openBox({'width':300, 'height':300});
+    var html = '<image src="images/radio.icon" style="width: 80px"><p>';
+    html += '<input type="text" name="stationname" placeholder="Name"><br>';
+    html += '<input type="text" name="stationurl" placeholder="url"><br>';
+    html += '<input type="submit" name="addradio" value="Add Radiostation">';
+
+    openBox({'html': html, 'width':300, 'height':300, });
 }
 
 function openBox(opts) {
