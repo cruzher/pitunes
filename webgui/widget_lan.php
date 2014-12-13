@@ -5,8 +5,7 @@
 	
 	echo '<div class="settings_small">';
 	if ($settings['lan_status'] == 1) { //DHCP
-		echo '<img src="images/lanicon2.png" style="width: 80px;"><br>';
-		echo '<b>LAN</b><p>';
+		echo '<img src="images/lanicon2.png" style="width: 80px;"><p>';
 		echo '<form method="post" action="action.php">';
 		echo '<input type="radio" name="lan_status" value="1" checked>DHCP ';
 		echo '<input type="radio" name="lan_status" value="2">Static<br>';
