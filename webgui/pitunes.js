@@ -108,7 +108,7 @@ function openBox(opts) {
     var marginleft  = (width / 2) * -1;
     var margintop   = (height / 2) * -1;
 
-    $('body').append('<a href="javascript:closeBox();"><div class="box_background"></div></a><div class="box_frame" style="width: '+width+'; height: '+height+'; margin-left: '+marginleft+'; margin-top: '+margintop+';">'+htmlinput+'</div>');
+    $('body').append('<a href="javascript:closeBox();" id="removebox"><div class="box_background"></div></a><div class="box_frame" style="width: '+width+'; height: '+height+'; margin-left: '+marginleft+'; margin-top: '+margintop+';">'+htmlinput+'</div>');
     $('.box_background').fadeIn(function(){
         $('.box_frame').fadeIn();
     });
@@ -118,7 +118,7 @@ function openBox(opts) {
 function closeBox() {
     $('.box_frame').fadeOut(function(){
         $('.box_background').fadeOut(function(){
-            $('.box_background').remove();
+            $('#removebox').remove();
             $('.box_frame').remove();
         });  
     });
