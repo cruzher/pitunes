@@ -101,8 +101,8 @@ function openBox(opts) {
     var htmlinput   = opts.html || "No Input";
     var height      = opts.height || 200;
     var width       = opts.width || 200;
-    var marginleft  = width / 2;
-    var margintop   = height / 2;
+    var marginleft  = (width / 2) * -1;
+    var margintop   = (height / 2) * -1;
 
     $('body').append('<a href="javascript:closeBox();"><div class="box_background"></div></a><div class="box_frame" style="width: '+width+'; height: '+height+'; margin-left: '+marginleft+'; margin-top: '+margintop+';">'+htmlinput+'</div>');
     $('.box_background').fadeIn(function(){
