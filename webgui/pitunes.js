@@ -100,10 +100,10 @@ function removePlaylist(id, playlist) {
 function addRadiostation() {
     var html = '<image src="images/radioicon.png" style="margin-top: 10px; width: 80px"><p>';
     html += '<input type="text" name="stationname" placeholder="Name" style="width: 300px;"><br>';
-    html += '<input type="text" name="stationurl" placeholder="url"><br>';
+    html += '<input type="text" name="stationurl" placeholder="url" style="width: 300px;"><br>';
     html += '<input type="submit" name="addradio" value="Add Radiostation">';
 
-    openBox({'html': html, 'width':350, 'height':200, });
+    openBox({'html': html, 'width':350, 'height':180, });
 }
 
 function openBox(opts) {
