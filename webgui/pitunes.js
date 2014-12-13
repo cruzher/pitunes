@@ -97,6 +97,10 @@ function removePlaylist(id, playlist) {
     $(playlist_id).append('<span>'+playlist+'</span>');
 }
 
+function addRadiostation() {
+    openBox({'width':300, 'height':300});
+}
+
 function openBox(opts) {
     var htmlinput   = opts.html || "No Input";
     var height      = opts.height || 200;
