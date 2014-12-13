@@ -98,8 +98,13 @@ function removePlaylist(id, playlist) {
 }
 
 function openBox(opts) {
-    var htmlinput = opts.html || "No Input";
-    $('body').append('<a href="javascript:closeBox();"><div class="box_background"></div></a><div class="box_frame">'+htmlinput+'</div>');
+    var htmlinput   = opts.html || "No Input";
+    var height      = opts.height || 200;
+    var width       = opts.width || 200;
+    var marginleft  = width / 2;
+    var margintop   = height / 2;
+
+    $('body').append('<a href="javascript:closeBox();"><div class="box_background"></div></a><div class="box_frame" style="width: '+width+'; height: '+height+'; margin-left: '+marginleft+'; margin-top: '+margintop+';">'+htmlinput+'</div>');
     $('.box_background').fadeIn(function(){
         $('.box_frame').fadeIn();
     });
