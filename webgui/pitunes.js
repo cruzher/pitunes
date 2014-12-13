@@ -97,7 +97,14 @@ function removePlaylist(id, playlist) {
     $(playlist_id).append('<span>'+playlist+'</span>');
 }
 
-function addRadiostation() {
-    $('body').append('<div class="box_background"></div><div class="box_frame"></div>');
+function openBox(opts) {
+    var htmlinput = opts.html || "No Input";
+    $('body').append('<div class="box_background"></div><div class="box_frame">'+htmlinput+'</div>');
+    $('.box_background').fadeIn();
+    $('.box_frame').fadeIn();
+}
 
+function closeBox() {
+    $('.box_background').delete();
+    $('.box_frame').delete();
 }
