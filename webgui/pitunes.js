@@ -98,6 +98,6 @@ function removePlaylist(id, playlist) {
 }
 
 function addRadiostation() {
-    $('body').append('<div class="box_background">&nbsp;<div class="box_frame">&nbsp;</div></div>');
+    $('body').append('<div class="box_background"><div class="box_frame"></div></div>');
 
 }
