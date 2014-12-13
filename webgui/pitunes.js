@@ -99,7 +99,7 @@ function removePlaylist(id, playlist) {
 
 function openBox(opts) {
     var htmlinput = opts.html || "No Input";
-    $('body').append('<div class="box_background"></div><div class="box_frame">'+htmlinput+'</div>');
+    $('body').append('<a href="javascript:closeBox();"><div class="box_background"></div></a><div class="box_frame">'+htmlinput+'</div>');
     $('.box_background').fadeIn();
     $('.box_frame').fadeIn();
 }
