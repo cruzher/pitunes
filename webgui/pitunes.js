@@ -107,8 +107,8 @@ function openBox(opts) {
 }
 
 function closeBox() {
-    $('.box_background').fadeOut(function(){
-        $('.box_frame').fadeOut(function(){
+    $('.box_frame').fadeOut(function(){
+        $('.box_background').fadeOut(function(){
             $('.box_background').remove();
             $('.box_frame').remove();
         });  
