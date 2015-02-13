@@ -24,7 +24,7 @@ td.head 	{ font-size: 15; font-weight: bold;}
 .title_pic			{ position: absolute; top: 10; left: 50%; width: 100px; margin-left: -70px;}
 .crossicon			{ position: absolute; top: 4px; right: 4px; width: 17px;}
 .settings_small		{ margin-top: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px; padding-top: 10px; float: left; width: 273px; height: 200px; text-align: center; -moz-border-radius: 5px; border-radius: 5px; box-shadow: 0px 0px 5px #888888; background-color: #fff;}
-.settings_big		{ overflow: scroll; position: relative; margin-top: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px; padding-top: 10px; float: left; width: 860px; height: 300px; text-align: center; -moz-border-radius: 5px; border-radius: 5px; box-shadow: 0px 0px 5px #888888; background-color: #fff;}
+.settings_big		{ overflow: auto; position: relative; margin-top: 20px; margin-left: 10px; margin-right: 10px; margin-bottom: 0px; padding-top: 10px; float: left; width: 860px; height: 300px; text-align: center; -moz-border-radius: 5px; border-radius: 5px; box-shadow: 0px 0px 5px #888888; background-color: #fff;}
 .playlist_item		{ position: relative; float: left; margin-left: 87px; margin-top: 10px; width: 300px; height: 25px; line-height: 25px; letter-spacing: 3px; font-size: 18px; -moz-border-radius: 5px; border-radius: 5px; box-shadow: 0px 0px 5px #888888; background-color: #fff;}
 
 .box_background		{ 
