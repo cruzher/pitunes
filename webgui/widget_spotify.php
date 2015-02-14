@@ -3,7 +3,7 @@
 	echo '<img src="images/spotifyicon.jpeg" style="width: 80px;"><br>';
 	echo '<b>Spotify</b><p>';
 
-	echo '<span style="position: absolute; left: 480px; top: 34px; font-size: 12px;"><a href="">Add Playlist</a></span>';
+	echo '<span style="position: absolute; left: 480px; top: 34px; font-size: 12px;"><a href="javascript:addPlaylist();">Add Playlist</a></span>';
 	echo '<span style="position: absolute; left: 480px; top: 54px; font-size: 12px;"><a href="">Sign out</a></span>';
 
 	if ($settings['spotify_status'] == 0){

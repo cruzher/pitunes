@@ -106,6 +106,15 @@ function addRadiostation() {
     openBox({'html': html, 'width':350, 'height':180, });
 }
 
+function addPlaylist() {
+    var html = '<image src="images/spotifyicon.png" style="margin-top: 10px; width: 80px"><p>';
+    html += '<input type="text" name="stationname" placeholder="Name" style="width: 300px;"><br>';
+    html += '<input type="text" name="stationurl" placeholder="url" style="width: 300px;"><br>';
+    html += '<input type="submit" name="addradio" value="Add Radiostation">';
+
+    openBox({'html': html, 'width':350, 'height':180, });
+}
+
 function openBox(opts) {
     var htmlinput   = opts.html || "No Input";
     var height      = opts.height || 200;
