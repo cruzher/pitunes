@@ -108,7 +108,8 @@ function addRadiostation() {
 
 function addPlaylist() {
     var html = '<image src="images/spotifyicon.jpeg" style="margin-top: 10px; width: 80px"><p>';
-    html += '<select name="playlist">';
+    html += '<select name="playlist" style="width: 300px;">';
+    html += '<option value="0">-- Choose Playlist --</option>';
     html += '<option value="1">Starred</option>';
     html += '</select>';
     html += '<input type="text" name="playlistalias" placeholder="Name" style="width: 300px;"><br>';
