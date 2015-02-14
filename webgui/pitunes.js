@@ -107,10 +107,12 @@ function addRadiostation() {
 }
 
 function addPlaylist() {
-    var html = '<image src="images/spotifyicon.png" style="margin-top: 10px; width: 80px"><p>';
-    html += '<input type="text" name="stationname" placeholder="Name" style="width: 300px;"><br>';
-    html += '<input type="text" name="stationurl" placeholder="url" style="width: 300px;"><br>';
-    html += '<input type="submit" name="addradio" value="Add Radiostation">';
+    var html = '<image src="images/spotifyicon.jpeg" style="margin-top: 10px; width: 80px"><p>';
+    html += '<select name="playlist">';
+    html += '<option value="1">Starred</option>';
+    html += '</select>';
+    html += '<input type="text" name="playlistalias" placeholder="Name" style="width: 300px;"><br>';
+    html += '<input type="submit" name="addplaylist" value="Add playlist">';
 
     openBox({'html': html, 'width':350, 'height':180, });
 }
